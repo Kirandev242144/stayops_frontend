@@ -1,5 +1,11 @@
 import React from 'react';
-import { FiAlertTriangle } from 'react-icons/fi';
+import { 
+  FiLogIn, 
+  FiLogOut, 
+  FiHome, 
+  FiAlertTriangle, 
+  FiArchive 
+} from 'react-icons/fi';
 import { OP_TABS } from '../frontdeskConstants';
 import { isLateArrival, isMissedArrival } from '../utils/frontdeskStatus';
 import { calculateFolio } from '../utils/folioCalculator';
@@ -30,62 +36,76 @@ export default function FrontdeskCounters({
     return folio.isBalancePending;
   });
 
+  const counterItems = [
+    {
+      id: OP_TABS.CHECKIN,
+      shortLabel: 'Check-in',
+      fullTitle: "Today's Check-in Arrivals",
+      count: todayArrivals.length,
+      icon: FiLogIn,
+      sub: pendingBalanceArrivals.length > 0 ? `${pendingBalanceArrivals.length} Balance Pending` : '100% Pre-paid'
+    },
+    {
+      id: OP_TABS.CHECKOUT,
+      shortLabel: 'Check-out',
+      fullTitle: "Today's Check-out Departures",
+      count: todayDepartures.length,
+      icon: FiLogOut,
+      sub: 'Folio & GST Invoice Ready'
+    },
+    {
+      id: OP_TABS.INHOUSE,
+      shortLabel: 'In-House',
+      fullTitle: "Currently In-House Guests",
+      count: inHouseGuests.length,
+      icon: FiHome,
+      sub: 'Active Room Stay'
+    },
+    {
+      id: OP_TABS.NOSHOW,
+      shortLabel: 'Alerts',
+      fullTitle: "No-Show / Late Arrivals",
+      count: noShowAlerts,
+      icon: FiAlertTriangle,
+      isAlert: noShowAlerts > 0,
+      sub: noShowAlerts === 0 ? 'All arrived on time' : `${noShowAlerts} requiring review`
+    },
+    {
+      id: OP_TABS.COMPLETED,
+      shortLabel: 'Completed',
+      fullTitle: "Completed / Checked-out",
+      count: completedStays.length,
+      icon: FiArchive,
+      sub: 'Archived & Invoiced'
+    }
+  ];
+
   return (
-    <div className="fd-counters-grid">
-      <div
-        className={`fd-counter-card ${opTab === OP_TABS.CHECKIN ? 'active' : ''}`}
-        onClick={() => setOpTab(OP_TABS.CHECKIN)}
-      >
-        <div className="fd-counter-title">Today's Check-in Arrivals</div>
-        <div className="fd-counter-value">{todayArrivals.length}</div>
-        <span className="fd-counter-sub">
-          {pendingBalanceArrivals.length > 0 ? `${pendingBalanceArrivals.length} Balance Pending` : '100% Pre-paid Queue'}
-        </span>
-      </div>
-
-      <div
-        className={`fd-counter-card ${opTab === OP_TABS.CHECKOUT ? 'active' : ''}`}
-        onClick={() => setOpTab(OP_TABS.CHECKOUT)}
-      >
-        <div className="fd-counter-title">Today's Check-out Departures</div>
-        <div className="fd-counter-value">{todayDepartures.length}</div>
-        <span className="fd-counter-sub">Folio & GST Invoice Ready</span>
-      </div>
-
-      <div
-        className={`fd-counter-card ${opTab === OP_TABS.INHOUSE ? 'active' : ''}`}
-        onClick={() => setOpTab(OP_TABS.INHOUSE)}
-      >
-        <div className="fd-counter-title">Currently In-House Guests</div>
-        <div className="fd-counter-value">{inHouseGuests.length}</div>
-        <span className="fd-counter-sub">Active Room Stay</span>
-      </div>
-
-      <div
-        className={`fd-counter-card ${opTab === OP_TABS.NOSHOW ? 'active' : ''} ${noShowAlerts > 0 ? 'fd-counter-alert' : ''}`}
-        onClick={() => setOpTab(OP_TABS.NOSHOW)}
-      >
-        <div className="fd-counter-title">
-          {noShowAlerts > 0 && <FiAlertTriangle className="fd-alert-icon" />}
-          No-Show / Late Arrivals
-        </div>
-        <div className="fd-counter-value">{noShowAlerts}</div>
-        <span className="fd-counter-sub">
-          {lateArrivals.length > 0 ? `${lateArrivals.length} late today` : ''}
-          {missedArrivals.length > 0 ? `${lateArrivals.length > 0 ? ' · ' : ''}${missedArrivals.length} missed` : ''}
-          {noShowGuests.length > 0 ? `${(lateArrivals.length > 0 || missedArrivals.length > 0) ? ' · ' : ''}${noShowGuests.length} marked` : ''}
-          {noShowAlerts === 0 ? 'All guests arrived on time' : ''}
-        </span>
-      </div>
-
-      <div
-        className={`fd-counter-card ${opTab === OP_TABS.COMPLETED ? 'active' : ''}`}
-        onClick={() => setOpTab(OP_TABS.COMPLETED)}
-      >
-        <div className="fd-counter-title">Completed / Checked-out Stays</div>
-        <div className="fd-counter-value">{completedStays.length}</div>
-        <span className="fd-counter-sub">Archived & Invoiced</span>
-      </div>
+    <div className="fd-counters-grid" role="tablist">
+      {counterItems.map(item => {
+        const Icon = item.icon;
+        const isActive = opTab === item.id;
+        return (
+          <button
+            key={item.id}
+            type="button"
+            role="tab"
+            aria-selected={isActive}
+            className={`fd-counter-card ${isActive ? 'active' : ''} ${item.isAlert ? 'fd-counter-alert' : ''}`}
+            onClick={() => setOpTab(item.id)}
+          >
+            <div className="fd-counter-header-row">
+              <span className="fd-counter-icon">
+                <Icon size={14} />
+              </span>
+              <span className="fd-counter-title">{item.fullTitle}</span>
+              <span className="fd-counter-mobile-label">{item.shortLabel}</span>
+            </div>
+            <div className="fd-counter-value">{item.count}</div>
+            <span className="fd-counter-sub">{item.sub}</span>
+          </button>
+        );
+      })}
     </div>
   );
 }

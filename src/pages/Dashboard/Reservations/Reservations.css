@@ -1873,12 +1873,12 @@
 }
 
 /* --------------------------------------------------
-   NATIVE MOBILE FULLSCREEN OVERHAUL (< 768px)
+   NATIVE MOBILE & RESPONSIVE SHEET OVERHAUL (< 1024px)
    Transforms New Walk-In Reservation modal into
    a responsive, native-feeling mobile booking screen.
 -------------------------------------------------- */
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   /* Backing backdrop becomes full viewport container */
   .res-modal-backdrop {
     padding: 0 !important;

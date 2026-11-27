@@ -1,5 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { FiX, FiCheckCircle, FiRefreshCw } from 'react-icons/fi';
+import { 
+  FiX, 
+  FiCheckCircle, 
+  FiRefreshCw, 
+  FiAlertTriangle, 
+  FiSettings, 
+  FiZap 
+} from 'react-icons/fi';
 import { API_BASE_URL } from '../../../../config/api';
 
 export default function RazorpayQrModal({
@@ -126,7 +133,9 @@ export default function RazorpayQrModal({
         {/* HEADER */}
         <div className="fd-modal-header">
           <div>
-            <h3 className="fd-modal-title">⚡ Razorpay Dynamic UPI QR</h3>
+            <h3 className="fd-modal-title" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+              <FiZap size={16} color="#0D9488" /> Razorpay Dynamic UPI QR
+            </h3>
             <span className="fd-modal-subtext">Scan to pay for {res.guest} ({res.id})</span>
           </div>
           <button type="button" className="fd-modal-close" onClick={onClose}>
@@ -139,7 +148,9 @@ export default function RazorpayQrModal({
 
           {isPaid ? (
             <div className="qr-success-box">
-              <div className="qr-success-emoji">🎉</div>
+              <div className="qr-success-emoji">
+                <FiCheckCircle size={40} color="#10B981" />
+              </div>
               <h3 className="qr-success-title">
                 Payment Received!
               </h3>
@@ -156,7 +167,9 @@ export default function RazorpayQrModal({
             </div>
           ) : error ? (
             <div className="qr-error-box">
-              <div className="qr-error-emoji">⚠️</div>
+              <div className="qr-error-emoji">
+                <FiAlertTriangle size={36} color="#F59E0B" />
+              </div>
               <h4 className="qr-error-title">
                 Razorpay API Key Missing or Invalid
               </h4>
@@ -171,8 +184,9 @@ export default function RazorpayQrModal({
                     onClose();
                     if (onNavigateToSettings) onNavigateToSettings();
                   }}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
                 >
-                  ⚙️ Go to Settings &rarr; Payments
+                  <FiSettings size={14} /> Go to Settings &rarr; Payments
                 </button>
                 <button
                   type="button"

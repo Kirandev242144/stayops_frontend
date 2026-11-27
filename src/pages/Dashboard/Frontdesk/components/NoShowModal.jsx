@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FiX } from 'react-icons/fi';
+import { FiX, FiAlertTriangle } from 'react-icons/fi';
 import { calculateFolio } from '../utils/folioCalculator';
 
 export default function NoShowModal({
@@ -31,7 +31,9 @@ export default function NoShowModal({
       <div className="fd-modal" style={{ maxWidth: 500 }} onClick={e => e.stopPropagation()}>
         <div className="fd-modal-header">
           <div>
-            <h3 className="fd-modal-title">⚠️ Mark Reservation as No-Show</h3>
+            <h3 className="fd-modal-title" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+              <FiAlertTriangle size={17} color="#EF4444" /> Mark Reservation as No-Show
+            </h3>
             <span className="fd-modal-subtext">Guest missed arrival for {res.guest} ({res.id})</span>
           </div>
           <button type="button" className="fd-modal-close" onClick={onClose}><FiX size={18} /></button>
@@ -69,7 +71,7 @@ export default function NoShowModal({
 
           <div className="fd-modal-footer">
             <button type="button" className="fd-modal-cancel-btn" onClick={onClose}>Cancel</button>
-            <button type="submit" className="fd-modal-submit-btn fd-btn-dark">Confirm No-Show ⚠️</button>
+            <button type="submit" className="fd-modal-submit-btn fd-btn-dark">Confirm No-Show</button>
           </div>
         </form>
       </div>

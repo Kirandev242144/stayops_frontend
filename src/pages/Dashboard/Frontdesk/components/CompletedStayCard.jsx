@@ -1,4 +1,5 @@
 import React from 'react';
+import { FiHome, FiCalendar, FiDollarSign, FiFileText } from 'react-icons/fi';
 import { calculateFolio } from '../utils/folioCalculator';
 
 export default function CompletedStayCard({
@@ -21,13 +22,15 @@ export default function CompletedStayCard({
           <div className="fd-completed-main-line">
             <span className="fd-completed-name">{res.guest}</span>
             <span className="fd-badge-ota">{res.id}</span>
-            <span className="fd-status-tag-green">&#9872; Checked Out & Completed</span>
+            <span className="fd-status-tag-green">Checked Out & Completed</span>
           </div>
 
           <div className="fd-completed-sub-line">
-            {res.propertyName && <span>🏡 {res.propertyName}</span>}
-            <span>🗓️ {res.checkin} &rarr; {res.checkout}</span>
-            <span>💰 Total: <strong>₹{folio.totalFolio.toLocaleString('en-IN')} ({folio.isBalancePending ? `Balance ₹${folio.balanceDue.toLocaleString('en-IN')}` : 'Paid'})</strong></span>
+            {res.propertyName && (
+              <span><FiHome size={12} /> {res.propertyName}</span>
+            )}
+            <span><FiCalendar size={12} /> {res.checkin} &rarr; {res.checkout}</span>
+            <span><FiDollarSign size={12} /> Total: <strong>₹{folio.totalFolio.toLocaleString('en-IN')} ({folio.isBalancePending ? `Balance ₹${folio.balanceDue.toLocaleString('en-IN')}` : 'Paid'})</strong></span>
           </div>
         </div>
       </div>
@@ -38,7 +41,7 @@ export default function CompletedStayCard({
           className="fd-btn-tax-invoice"
           onClick={() => onOpenTaxInvoice(res)}
         >
-          <span>🧾</span> Tax Invoice
+          <FiFileText size={13} /> Tax Invoice
         </button>
 
         <button
@@ -46,7 +49,7 @@ export default function CompletedStayCard({
           className="fd-btn-details-dropdown"
           onClick={() => onOpenVoucher(res)}
         >
-          Details &blackdown;
+          Details
         </button>
       </div>
     </div>

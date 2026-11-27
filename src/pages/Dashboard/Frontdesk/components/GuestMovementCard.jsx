@@ -64,15 +64,12 @@ export default function GuestMovementCard({
       <div className="gmc-header">
         <div className="gmc-header-left">
           <span className="gmc-booking-ref">{res.id}</span>
-          <span className="gmc-source-pill">{res.ota || 'Walk-In'}</span>
+          <span className="gmc-source-pill">{res.ota || res.bookingSource || 'Walk-In'}</span>
           {res.propertyName && (
-            <span className="gmc-property-pill"><FiHome /> {res.propertyName}</span>
+            <span className="gmc-property-pill"><FiHome size={11} /> {res.propertyName}</span>
           )}
-          {res.unit && (
-            <span className="gmc-unit-pill"><FiGrid/> {res.unit} Unit</span>
-          )}
-          {res.guest && (
-            <span className="gmc-unit-pill"><FiUser />{res.guests} Guests</span>
+          {(res.roomUnit || res.unit) && (
+            <span className="gmc-unit-pill"><FiGrid size={11} /> {res.roomUnit || res.unit}</span>
           )}
         </div>
 
