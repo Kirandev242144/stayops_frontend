@@ -18,7 +18,10 @@ import {
   FiUploadCloud,
   FiSmartphone,
   FiUsers,
-  FiLayers
+  FiLayers,
+  FiCreditCard,
+  FiChevronDown,
+  FiChevronUp
 } from 'react-icons/fi';
 import { BOOKING_SOURCES } from '../constants';
 import { formatTime12Hr } from '../../../../utils/timeFormat';
@@ -712,6 +715,7 @@ function TariffSummaryPanel({
   adultsCount = 1,
   childrenCount = 0
 }) {
+  const [isMobileOpen, setIsMobileOpen] = useState(true);
   const {
     ratePerNight = 0,
     totalNights = 1,
@@ -731,112 +735,152 @@ function TariffSummaryPanel({
   const displayBalanceDue = isUnpaid ? effectiveTotalAmount : calculatedBalanceDue;
 
   return (
-    <div className="nwr-tariff-panel">
-      <div className="nwr-tariff-heading">Tariff Summary</div>
+    <div className={`nwr-tariff-panel nwr-tariff-card ${isMobileOpen ? 'mobile-card-open' : 'mobile-card-collapsed'}`}>
+      {/* NATIVE MOBILE CARD HEADER (CLICKABLE ACCORDION) */}
+      <div 
+        className="nwr-tariff-mobile-card-header" 
+        onClick={() => setIsMobileOpen(prev => !prev)}
+        role="button"
+        tabIndex={0}
+      >
+        <div className="nwr-tmch-left">
+          <div className="nwr-tmch-icon">
+            <FiCreditCard size={15} />
+          </div>
+          <div className="nwr-tmch-info">
+            <span className="nwr-tmch-title">Tariff & Pricing</span>
+            {ratePerNight > 0 && (
+              <span className="nwr-tmch-subtitle">
+                {selectedProperty?.name || 'Property'} • {reservationForm.roomUnit || 'Room'}
+              </span>
+            )}
+          </div>
+        </div>
 
-      {ratePerNight > 0 ? (
-        <>
-          <div className="nwr-tariff-property">
-            <span>{selectedProperty?.name || '—'}</span>
-            <span className="nwr-tariff-unit">{reservationForm.roomUnit || '—'}</span>
+        <div className="nwr-tmch-right">
+          {ratePerNight > 0 ? (
+            <div className="nwr-tmch-price-pill">
+              <span className="nwr-tmch-amount">₹{effectiveTotalAmount.toLocaleString('en-IN')}</span>
+              <span className="nwr-tmch-nights">{totalNights}N</span>
+            </div>
+          ) : (
+            <span className="nwr-tmch-norate">No rate configured</span>
+          )}
+          <span className="nwr-tmch-arrow">
+            {isMobileOpen ? <FiChevronUp size={15} /> : <FiChevronDown size={15} />}
+          </span>
+        </div>
+      </div>
+
+      {/* DESKTOP PERMANENT HEADER */}
+      <div className="nwr-tariff-heading desktop-only">Tariff Summary</div>
+
+      {/* CARD BODY CONTENT */}
+      <div className={`nwr-tariff-body-wrap ${isMobileOpen ? 'mobile-body-open' : 'mobile-body-closed'}`}>
+        {ratePerNight > 0 ? (
+          <>
+            <div className="nwr-tariff-property">
+              <span>{selectedProperty?.name || '—'}</span>
+              <span className="nwr-tariff-unit">{reservationForm.roomUnit || '—'}</span>
+            </div>
+
+            <div className="nwr-tariff-rate-row">
+              <span className="nwr-tariff-rate">₹{ratePerNight.toLocaleString('en-IN')}</span>
+              <span className="nwr-tariff-dim">&nbsp;/ night</span>
+            </div>
+
+            <div className="nwr-tariff-divider" />
+
+            <div className="nwr-tariff-row">
+              <span className="nwr-tariff-dim">Room Base Tariff ({totalNights} Night{totalNights > 1 ? 's' : ''})</span>
+              <span>₹{roomBaseTotal.toLocaleString('en-IN')}</span>
+            </div>
+
+            {childTotalFee > 0 && (
+              <div className="nwr-tariff-row">
+                <span className="nwr-tariff-dim">Child Charges ({reservationForm.childrenCount} child)</span>
+                <span>+₹{childTotalFee.toLocaleString('en-IN')}</span>
+              </div>
+            )}
+
+            {serviceChargeAmount > 0 && (
+              <div className="nwr-tariff-row">
+                <span className="nwr-tariff-dim">Service Charge ({serviceChargePercent}%)</span>
+                <span>+₹{serviceChargeAmount.toLocaleString('en-IN')}</span>
+              </div>
+            )}
+
+            {gstAmount > 0 && !taxInclusive && (
+              <div className="nwr-tariff-row">
+                <span className="nwr-tariff-dim">GST Tax ({gstRate}%)</span>
+                <span>+₹{gstAmount.toLocaleString('en-IN')}</span>
+              </div>
+            )}
+
+            {taxInclusive && gstAmount > 0 && (
+              <div className="nwr-tariff-row">
+                <span className="nwr-tariff-dim">GST ({gstRate}% Included)</span>
+                <span className="nwr-tariff-dim">₹{gstAmount.toLocaleString('en-IN')}</span>
+              </div>
+            )}
+
+            <div className="nwr-tariff-row">
+              <span className="nwr-tariff-dim">Total Booking Amount</span>
+              <span className="nwr-tariff-bold">₹{effectiveTotalAmount.toLocaleString('en-IN')}</span>
+            </div>
+
+            <div className="nwr-tariff-row">
+              <span className="nwr-tariff-dim">Collected Now</span>
+              <span className={displayPaidAmount > 0 ? 'nwr-tariff-green' : 'nwr-tariff-dim'}>
+                ₹{displayPaidAmount.toLocaleString('en-IN')}
+              </span>
+            </div>
+
+            <div className="nwr-tariff-divider" />
+
+            <div className="nwr-tariff-balance">
+              <span>Balance Due</span>
+              <strong className={displayBalanceDue === 0 ? 'nwr-tariff-green' : 'nwr-tariff-amber'}>
+                ₹{displayBalanceDue.toLocaleString('en-IN')}
+              </strong>
+            </div>
+
+            {displayBalanceDue === 0 && (
+              <div className="nwr-tariff-paid-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                <FiCheckCircle size={13} /> Fully Settled
+              </div>
+            )}
+
+            {displayBalanceDue > 0 && (
+              <div className="nwr-tariff-note">
+                {isUnpaid ? 'Collect full amount at checkout' : 'Remaining balance due at checkout'}
+              </div>
+            )}
+          </>
+        ) : (
+          <div className="nwr-tariff-empty">
+            <span>No rate configured</span>
+            <span className="nwr-tariff-dim">Set pricing in Properties → Pricing tab</span>
+          </div>
+        )}
+
+        <div className="nwr-tariff-dates">
+          <div className="nwr-tariff-date-row">
+            <span className="nwr-tariff-dim">Check-In</span>
+            <span>{reservationForm.checkIn}{reservationForm.checkInTime ? ` • ${formatTime12Hr(reservationForm.checkInTime)}` : ''}</span>
+          </div>
+          <div className="nwr-tariff-date-row">
+            <span className="nwr-tariff-dim">Check-Out</span>
+            <span>{reservationForm.checkOut}{reservationForm.checkOutTime ? ` • ${formatTime12Hr(reservationForm.checkOutTime)}` : ''}</span>
           </div>
 
-          <div className="nwr-tariff-rate-row">
-            <span className="nwr-tariff-rate">₹{ratePerNight.toLocaleString('en-IN')}</span>
-            <span className="nwr-tariff-dim">&nbsp;/ night</span>
-          </div>
-
-          <div className="nwr-tariff-divider" />
-
-          <div className="nwr-tariff-row">
-            <span className="nwr-tariff-dim">Room Base Tariff ({totalNights} Night{totalNights > 1 ? 's' : ''})</span>
-            <span>₹{roomBaseTotal.toLocaleString('en-IN')}</span>
-          </div>
-
-          {childTotalFee > 0 && (
-            <div className="nwr-tariff-row">
-              <span className="nwr-tariff-dim">Child Charges ({reservationForm.childrenCount} child)</span>
-              <span>+₹{childTotalFee.toLocaleString('en-IN')}</span>
-            </div>
-          )}
-
-          {serviceChargeAmount > 0 && (
-            <div className="nwr-tariff-row">
-              <span className="nwr-tariff-dim">Service Charge ({serviceChargePercent}%)</span>
-              <span>+₹{serviceChargeAmount.toLocaleString('en-IN')}</span>
-            </div>
-          )}
-
-          {gstAmount > 0 && !taxInclusive && (
-            <div className="nwr-tariff-row">
-              <span className="nwr-tariff-dim">GST Tax ({gstRate}%)</span>
-              <span>+₹{gstAmount.toLocaleString('en-IN')}</span>
-            </div>
-          )}
-
-          {taxInclusive && gstAmount > 0 && (
-            <div className="nwr-tariff-row">
-              <span className="nwr-tariff-dim">GST ({gstRate}% Included)</span>
-              <span className="nwr-tariff-dim">₹{gstAmount.toLocaleString('en-IN')}</span>
-            </div>
-          )}
-
-          <div className="nwr-tariff-row">
-            <span className="nwr-tariff-dim">Total Booking Amount</span>
-            <span className="nwr-tariff-bold">₹{effectiveTotalAmount.toLocaleString('en-IN')}</span>
-          </div>
-
-          <div className="nwr-tariff-row">
-            <span className="nwr-tariff-dim">Collected Now</span>
-            <span className={displayPaidAmount > 0 ? 'nwr-tariff-green' : 'nwr-tariff-dim'}>
-              ₹{displayPaidAmount.toLocaleString('en-IN')}
+          <div className="nwr-tariff-date-row">
+            <span className="nwr-tariff-dim">Guests</span>
+            <span>
+              {adultsCount} adult{adultsCount > 1 ? 's' : ''}
+              {childrenCount > 0 ? `, ${childrenCount} child${childrenCount > 1 ? 'ren' : ''}` : ''}
             </span>
           </div>
-
-          <div className="nwr-tariff-divider" />
-
-          <div className="nwr-tariff-balance">
-            <span>Balance Due</span>
-            <strong className={displayBalanceDue === 0 ? 'nwr-tariff-green' : 'nwr-tariff-amber'}>
-              ₹{displayBalanceDue.toLocaleString('en-IN')}
-            </strong>
-          </div>
-
-          {displayBalanceDue === 0 && (
-            <div className="nwr-tariff-paid-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-              <FiCheckCircle size={13} /> Fully Settled
-            </div>
-          )}
-
-          {displayBalanceDue > 0 && (
-            <div className="nwr-tariff-note">
-              {isUnpaid ? 'Collect full amount at checkout' : 'Remaining balance due at checkout'}
-            </div>
-          )}
-        </>
-      ) : (
-        <div className="nwr-tariff-empty">
-          <span>No rate configured</span>
-          <span className="nwr-tariff-dim">Set pricing in Properties → Pricing tab</span>
-        </div>
-      )}
-
-      <div className="nwr-tariff-dates">
-        <div className="nwr-tariff-date-row">
-          <span className="nwr-tariff-dim">Check-In</span>
-          <span>{reservationForm.checkIn}{reservationForm.checkInTime ? ` • ${formatTime12Hr(reservationForm.checkInTime)}` : ''}</span>
-        </div>
-        <div className="nwr-tariff-date-row">
-          <span className="nwr-tariff-dim">Check-Out</span>
-          <span>{reservationForm.checkOut}{reservationForm.checkOutTime ? ` • ${formatTime12Hr(reservationForm.checkOutTime)}` : ''}</span>
-        </div>
-
-        <div className="nwr-tariff-date-row">
-          <span className="nwr-tariff-dim">Guests</span>
-          <span>
-            {adultsCount} adult{adultsCount > 1 ? 's' : ''}
-            {childrenCount > 0 ? `, ${childrenCount} child${childrenCount > 1 ? 'ren' : ''}` : ''}
-          </span>
         </div>
       </div>
     </div>
