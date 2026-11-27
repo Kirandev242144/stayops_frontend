@@ -8,26 +8,34 @@ export default function FrontdeskHeader({
 }) {
   const formattedToday = new Date().toLocaleDateString('en-US', {
     weekday: 'long',
-    month: 'long',
+    month: 'short',
     day: 'numeric'
   });
 
   return (
     <>
-      {/* ── 1. NATIVE MOBILE APP HEADING & SEARCH (< 768px) ── */}
-      <div className="fd-mobile-app-header">
-        <div className="fd-mobile-title-block">
-          <h1 className="fd-mobile-main-heading">Front Desk</h1>
-          <span className="fd-mobile-date-subtitle">{formattedToday}</span>
+      {/* ── 1. NATIVE MOBILE APP HEADING & SEARCH (< 768px - Stitch Layout) ── */}
+      <div className="fd-stitch-header">
+        {/* Title + Date on left, Live badge on right */}
+        <div className="fd-stitch-title-row">
+          <div>
+            <h1 className="fd-stitch-main-title">Front Desk</h1>
+            <p className="fd-stitch-date-sub">{formattedToday}</p>
+          </div>
+          <div className="fd-stitch-live-badge">
+            <span className="fd-stitch-live-dot"></span>
+            <span>Live</span>
+          </div>
         </div>
 
-        <div className="fd-mobile-search-row">
-          <div className="fd-mobile-search-field">
-            <FiSearch className="fd-mobile-search-icon" size={17} />
+        {/* Sleek Search + House Keeping Action Row */}
+        <div className="fd-stitch-search-row">
+          <div className="fd-stitch-search-box">
+            <FiSearch className="fd-stitch-search-icon" size={14} />
             <input
-              type="text"
-              placeholder="Search bookings..."
-              className="fd-mobile-search-input"
+              type="search"
+              placeholder="Search guests, rooms, bookings..."
+              className="fd-stitch-search-input"
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
             />
@@ -36,12 +44,12 @@ export default function FrontdeskHeader({
           {onOpenHousekeeping && (
             <button
               type="button"
-              className="fd-mobile-btn-hk"
+              className="fd-stitch-hk-btn"
               onClick={onOpenHousekeeping}
               title="Open Housekeeping Hub"
             >
-              <FiCheckSquare size={17} />
-              <span>Rooms</span>
+              <FiCheckSquare size={14} className="fd-stitch-hk-icon" />
+              <span>House Keeping</span>
             </button>
           )}
         </div>

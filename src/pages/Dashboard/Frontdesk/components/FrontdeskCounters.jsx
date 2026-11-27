@@ -36,73 +36,43 @@ export default function FrontdeskCounters({
     return folio.isBalancePending;
   });
 
-  const mobileChips = [
-    { id: OP_TABS.CHECKIN, label: 'Arrivals', count: todayArrivals.length, icon: FiLogIn },
-    { id: OP_TABS.CHECKOUT, label: 'Departures', count: todayDepartures.length, icon: FiLogOut },
-    { id: OP_TABS.INHOUSE, label: 'In-House', count: inHouseGuests.length, icon: FiHome },
-    { id: OP_TABS.NOSHOW, label: 'Alerts', count: noShowAlerts, icon: FiAlertTriangle, isAlert: noShowAlerts > 0 },
-    { id: OP_TABS.COMPLETED, label: 'Completed', count: completedStays.length, icon: FiArchive },
-  ];
-
   return (
     <>
-      {/* ── 1. NATIVE MOBILE APP PRIMARY ACTION COUNTERS (< 768px) ── */}
-      <div className="fd-mobile-counters-section">
-        <div className="fd-mob-action-grid">
-          <button
-            type="button"
-            className={`fd-mob-action-card ${opTab === OP_TABS.CHECKIN ? 'active' : ''}`}
-            onClick={() => setOpTab(OP_TABS.CHECKIN)}
-          >
-            <div className="fd-mob-action-top">
-              <span className="fd-mob-action-num">{todayArrivals.length}</span>
-              <FiLogIn className="fd-mob-action-icon" size={18} />
-            </div>
-            <span className="fd-mob-action-label">Arrivals</span>
-          </button>
+      {/* ── 1. NATIVE MOBILE APP MICRO-METRIC STAT CARDS (< 768px - Stitch Layout) ── */}
+      <div className="fd-stitch-kpis">
+        {/* Arrivals Card */}
+        <button
+          type="button"
+          className={`fd-stitch-kpi ${opTab === OP_TABS.CHECKIN ? 'active' : ''}`}
+          onClick={() => setOpTab(OP_TABS.CHECKIN)}
+        >
+          <div className="fd-stitch-kpi-left">
+            <span className="fd-stitch-kpi-num">{todayArrivals.length}</span>
+            <span className="fd-stitch-kpi-label">Arrivals</span>
+          </div>
+          {todayArrivals.length > 0 && (
+            <span className="fd-stitch-pending-pill">
+              {todayArrivals.length} Pending
+            </span>
+          )}
+        </button>
 
-          <button
-            type="button"
-            className={`fd-mob-action-card ${opTab === OP_TABS.CHECKOUT ? 'active' : ''}`}
-            onClick={() => setOpTab(OP_TABS.CHECKOUT)}
-          >
-            <div className="fd-mob-action-top">
-              <span className="fd-mob-action-num">{todayDepartures.length}</span>
-              <FiLogOut className="fd-mob-action-icon" size={18} />
-            </div>
-            <span className="fd-mob-action-label">Departures</span>
-          </button>
-        </div>
-
-        {/* Secondary Queues as horizontal swipeable chips */}
-        <div className="fd-mob-secondary-chips" role="tablist">
-          <button
-            type="button"
-            className={`fd-mob-sec-chip ${opTab === OP_TABS.INHOUSE ? 'active' : ''}`}
-            onClick={() => setOpTab(OP_TABS.INHOUSE)}
-          >
-            <FiHome size={13} />
-            <span>In-House ({inHouseGuests.length})</span>
-          </button>
-
-          <button
-            type="button"
-            className={`fd-mob-sec-chip ${opTab === OP_TABS.NOSHOW ? 'active' : ''} ${noShowAlerts > 0 ? 'alert' : ''}`}
-            onClick={() => setOpTab(OP_TABS.NOSHOW)}
-          >
-            <FiAlertTriangle size={13} />
-            <span>Alerts ({noShowAlerts})</span>
-          </button>
-
-          <button
-            type="button"
-            className={`fd-mob-sec-chip ${opTab === OP_TABS.COMPLETED ? 'active' : ''}`}
-            onClick={() => setOpTab(OP_TABS.COMPLETED)}
-          >
-            <FiArchive size={13} />
-            <span>Completed ({completedStays.length})</span>
-          </button>
-        </div>
+        {/* Departures Card */}
+        <button
+          type="button"
+          className={`fd-stitch-kpi ${opTab === OP_TABS.CHECKOUT ? 'active' : ''}`}
+          onClick={() => setOpTab(OP_TABS.CHECKOUT)}
+        >
+          <div className="fd-stitch-kpi-left">
+            <span className="fd-stitch-kpi-num">{todayDepartures.length}</span>
+            <span className="fd-stitch-kpi-label">Departures</span>
+          </div>
+          {todayDepartures.length > 0 && (
+            <span className="fd-stitch-pending-pill blue">
+              {todayDepartures.length} Ready
+            </span>
+          )}
+        </button>
       </div>
 
       {/* ── 2. DESKTOP & LAPTOP SPACIOUS 5-COLUMN PMS CARDS (>= 769px) ── */}
@@ -155,9 +125,6 @@ export default function FrontdeskCounters({
           <div className="fd-counter-value">{noShowAlerts}</div>
           <span className="fd-counter-sub">
             {lateArrivals.length > 0 ? `${lateArrivals.length} late today` : ''}
-            {missedArrivals.length > 0 ? `${lateArrivals.length > 0 ? ' · ' : ''}${missedArrivals.length} missed` : ''}
-            {noShowGuests.length > 0 ? `${(lateArrivals.length > 0 || missedArrivals.length > 0) ? ' · ' : ''}${noShowGuests.length} marked` : ''}
-            {noShowAlerts === 0 ? 'All guests arrived on time' : ''}
           </span>
         </div>
 
@@ -167,7 +134,7 @@ export default function FrontdeskCounters({
           role="button"
           tabIndex={0}
         >
-          <div className="fd-counter-title">Completed / Checked-out Stays</div>
+          <div className="fd-counter-title">Completed / Checked-out</div>
           <div className="fd-counter-value">{completedStays.length}</div>
           <span className="fd-counter-sub">Archived & Invoiced</span>
         </div>

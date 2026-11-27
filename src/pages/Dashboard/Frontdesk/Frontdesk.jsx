@@ -522,10 +522,13 @@ export default function Frontdesk({ onNavigate }) {
       {/* TIME FILTER */}
       <FrontdeskTimeFilter
         opTab={opTab}
+        setOpTab={setOpTab}
         timeFilter={timeFilter}
         setTimeFilter={setTimeFilter}
         filteredCount={filteredQueue.length}
         completedCount={completedCount}
+        inHouseCount={reservationsList.filter(r => r.status === 'inhouse' || r.status === 'checkedin').length}
+        alertsCount={reservationsList.filter(r => r.status === 'no_show').length}
       />
 
       {/* QUEUE CARDS */}

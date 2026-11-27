@@ -12,7 +12,9 @@ import {
   FiHome,
   FiGrid,
   FiShield,
-  FiEye
+  FiEye,
+  FiCheckCircle,
+  FiAlertTriangle
 } from 'react-icons/fi';
 import { calculateFolio } from '../utils/folioCalculator';
 
@@ -38,9 +40,9 @@ function formatStayDates(checkin, checkout, guestCount = 1) {
 }
 
 /**
- * Human-designed Operational Guest Movement Card for Front Desk.
+ * Modern Compact Operational Guest Movement Card for Front Desk.
  * Dual-layout:
- * - .gmc-mob-card: Clean, flat, native PWA layout with zero nested-box clutter
+ * - .fd-stitch-card: Ultra-modern, compact, low-profile PWA card (Stitch Layout)
  * - .gmc-desktop-view: High-density, spacious desktop operational card
  */
 export default function GuestMovementCard({
@@ -64,11 +66,6 @@ export default function GuestMovementCard({
   const roomUnitName = res.roomUnit || res.unit || 'Room Unit';
   const stayDatesText = formatStayDates(res.checkin, res.checkout, res.guests || 1);
 
-  // Compute short date & night count for mobile
-  const checkinDateShort = res.checkin
-    ? new Date(res.checkin).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
-    : '—';
-
   const nightsCount = (() => {
     if (!res.checkin || !res.checkout) return 1;
     try {
@@ -79,18 +76,29 @@ export default function GuestMovementCard({
     }
   })();
 
-  // Mobile status badge label & style
-  let mobStatusLabel = 'Arriving today';
-  let mobStatusClass = 'arriving';
+  const isIdVerified = Boolean(
+    res.idType && (res.idNumber || res.idDocumentUrl || res.status === 'checkedin')
+  );
+
+  // Status badge label and styling for Stitch mobile card
+  let statusBadgeLabel = 'Arriving Today';
+  let statusBadgeClass = 'arriving';
+  let isAlertCard = false;
+
   if (isInHouse) {
-    mobStatusLabel = 'In-House';
-    mobStatusClass = 'inhouse';
+    statusBadgeLabel = 'In-House';
+    statusBadgeClass = 'inhouse';
+  } else if (!isIdVerified && isCheckInPending) {
+    statusBadgeLabel = 'ID Pending';
+    statusBadgeClass = 'alert';
+    isAlertCard = true;
   } else if (res.status === 'no_show') {
-    mobStatusLabel = 'No-Show';
-    mobStatusClass = 'noshow';
+    statusBadgeLabel = 'No-Show';
+    statusBadgeClass = 'alert';
+    isAlertCard = true;
   } else if (!isCheckInPending) {
-    mobStatusLabel = res.status || 'Confirmed';
-    mobStatusClass = 'confirmed';
+    statusBadgeLabel = res.status || 'Confirmed';
+    statusBadgeClass = 'confirmed';
   }
 
   // Handle direct WhatsApp opening
@@ -108,175 +116,125 @@ export default function GuestMovementCard({
     window.open(`https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`, '_blank');
   };
 
+  const initial = (res.guest || 'G').charAt(0).toUpperCase();
+
   return (
     <>
       {/* ═════════════════════════════════════════════════════════
-          1. NATIVE MOBILE APP PWA CARD (< 768px)
-          Designed to feel like an authentic iOS / Material 3 card:
-          - Status + Booking ID at top
-          - Guest Avatar + Name + WhatsApp
-          - Clean Key-Value details (Flat, NO box-in-box)
-          - Full-width 50px Primary CTA at bottom
-          - Clean 44px Secondary Voucher CTA
+          1. NATIVE MOBILE APP PWA CARD (< 768px - Stitch Layout)
+          - Streamlined Information Architecture
+          - Single-line top status + booking ID + rate & payment status
+          - Compact guest profile with verified check + single-line room detail
+          - Quick tactile action buttons (Check In / Voucher / QR Pay)
          ═════════════════════════════════════════════════════════ */}
-      <div className="gmc-mob-card">
-        {/* Top Status & Booking Ref */}
-        <div className="gmc-mob-topbar">
-          <span className={`gmc-mob-badge ${mobStatusClass}`}>
-            {mobStatusLabel}
-          </span>
-          <span className="gmc-mob-ref">{res.id}</span>
+      <article className={`fd-stitch-card ${isAlertCard ? 'alert-border' : ''}`}>
+        
+        {/* Top Row: Status badge & ID on left, Financial Rate on right */}
+        <div className="fd-stitch-card-top">
+          <div className="fd-stitch-top-left">
+            <span className={`fd-stitch-status-badge ${statusBadgeClass}`}>
+              <span className="fd-stitch-status-dot"></span>
+              {statusBadgeLabel}
+            </span>
+            <span className="fd-stitch-booking-ref">{res.bookingRef || res.id}</span>
+          </div>
+
+          <div className="fd-stitch-top-right">
+            <span className="fd-stitch-amount">₹{folio.totalFolio.toLocaleString('en-IN')}</span>
+            {folio.isBalancePending ? (
+              <span className="fd-stitch-pay-badge due">DUE AT DESK</span>
+            ) : (
+              <span className="fd-stitch-pay-badge paid">PAID</span>
+            )}
+          </div>
         </div>
 
-        {/* Guest Profile Row */}
-        <div className="gmc-mob-guest-row">
-          <div className="gmc-mob-avatar">
-            {(res.guest || 'G').charAt(0).toUpperCase()}
+        {/* Middle Row: Guest Profile + Verified check + Room details + WhatsApp */}
+        <div className="fd-stitch-card-mid">
+          <div className="fd-stitch-guest-left">
+            <div className="fd-stitch-avatar">
+              {initial}
+            </div>
+            <div className="fd-stitch-guest-details">
+              <div className="fd-stitch-name-line">
+                <h3 className="fd-stitch-guest-name">{res.guest}</h3>
+                {isIdVerified ? (
+                  <span className="fd-stitch-verified-icon" title="ID Verified">
+                    <FiCheckCircle size={12} />
+                  </span>
+                ) : (
+                  <span className="fd-stitch-pending-icon" title="ID Pending">
+                    <FiAlertTriangle size={11} />
+                  </span>
+                )}
+              </div>
+              <p className="fd-stitch-room-line">
+                <FiHome size={12} className="fd-stitch-room-icon" />
+                <span className="truncate">{roomUnitName} • {res.guests || 1} guest{res.guests > 1 ? 's' : ''} • {nightsCount} night{nightsCount > 1 ? 's' : ''}</span>
+              </p>
+            </div>
           </div>
-          <div className="gmc-mob-guest-info">
-            <h3 className="gmc-mob-guest-name">{res.guest}</h3>
-            <span className="gmc-mob-guest-sub">
-              {res.guests || 1} Guest · {nightsCount} Night{nightsCount > 1 ? 's' : ''}
-            </span>
-          </div>
+
           {res.phone && (
             <button
               type="button"
-              className="gmc-mob-wa-btn"
+              className="fd-stitch-wa-btn"
               onClick={handleWhatsApp}
-              title="Chat on WhatsApp"
+              title="Contact on WhatsApp"
             >
-              <FiMessageSquare size={13} />
-              <span>WhatsApp</span>
+              <FiMessageSquare size={14} />
             </button>
           )}
         </div>
 
-        {/* Key-Value Information Rows (Clean, Flat, No nested box) */}
-        <div className="gmc-mob-kv-section">
-          <div className="gmc-mob-kv-row">
-            <span className="gmc-mob-k">Room</span>
-            <span className="gmc-mob-v gmc-mob-room-val">{roomUnitName} · {res.id}</span>
-          </div>
+        {/* Bottom Action Strip: Compact tactile buttons */}
+        <div className="fd-stitch-card-bot">
+          {isCheckInPending && (
+            <button
+              type="button"
+              className="fd-stitch-btn-primary"
+              onClick={() => onExecuteCheckIn(res)}
+            >
+              <FiKey size={14} className="fd-stitch-btn-icon-sky" />
+              <span>{folio.isBalancePending ? 'Check In & Collect' : 'Check In'}</span>
+            </button>
+          )}
 
-          <div className="gmc-mob-kv-row">
-            <span className="gmc-mob-k">Check-in</span>
-            <span className="gmc-mob-v">{checkinDateShort}</span>
-          </div>
+          {isInHouse && (
+            <button
+              type="button"
+              className="fd-stitch-btn-primary checkout"
+              onClick={() => onExecuteCheckOut(res)}
+            >
+              <FiLogOut size={14} className="fd-stitch-btn-icon-amber" />
+              <span>Check Out</span>
+            </button>
+          )}
 
-          <div className="gmc-mob-kv-row">
-            <span className="gmc-mob-k">ID verification</span>
-            <span className="gmc-mob-v gmc-mob-id-val">
-              {res.idType && (res.idNumber || res.idDocumentUrl || res.status === 'checkedin') ? (
-                <span className="gmc-mob-id-verified-wrap">
-                  <span className="gmc-mob-verified-badge">
-                    <FiShield size={12} /> Verified
-                  </span>
-                  {res.idDocumentUrl && (
-                    <button
-                      type="button"
-                      className="gmc-mob-btn-view-id"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        if (onViewIdDocument) onViewIdDocument(res);
-                        else window.open(res.idDocumentUrl, '_blank');
-                      }}
-                    >
-                      <FiEye size={11} /> View ID
-                    </button>
-                  )}
-                </span>
-              ) : (
-                <span className="gmc-mob-pending-badge">
-                  <FiShield size={12} /> Pending
-                </span>
-              )}
-            </span>
-          </div>
-
-          <div className="gmc-mob-kv-row">
-            <span className="gmc-mob-k">Total amount</span>
-            <span className="gmc-mob-v gmc-mob-v-bold">₹{folio.totalFolio.toLocaleString('en-IN')}</span>
-          </div>
-
-          <div className="gmc-mob-kv-row">
-            <span className="gmc-mob-k">Paid</span>
-            <span className="gmc-mob-v gmc-mob-v-green">₹{folio.paidAmount.toLocaleString('en-IN')}</span>
-          </div>
+          <button
+            type="button"
+            className="fd-stitch-btn-voucher"
+            onClick={() => onOpenVoucher(res)}
+            title="View booking voucher"
+          >
+            <FiFileText size={13} className="text-slate-500" />
+            <span>Voucher</span>
+          </button>
 
           {folio.isBalancePending && (
-            <div className="gmc-mob-kv-row highlight-due">
-              <span className="gmc-mob-k gmc-mob-k-due">Balance due</span>
-              <span className="gmc-mob-v gmc-mob-v-due">₹{folio.balanceDue.toLocaleString('en-IN')}</span>
-            </div>
+            <button
+              type="button"
+              className="fd-stitch-btn-qr"
+              onClick={() => onOpenRazorpayQr(res, folio.balanceDue)}
+              title="Scan & Pay UPI QR"
+            >
+              <FiZap size={13} />
+              <span>QR Pay</span>
+            </button>
           )}
         </div>
 
-        {/* Primary Action Button (Full-width 50px thumb target) */}
-        {isCheckInPending && (
-          <button
-            type="button"
-            className="gmc-mob-primary-btn checkin"
-            onClick={() => onExecuteCheckIn(res)}
-          >
-            <FiKey size={16} /> Execute Check-in
-          </button>
-        )}
-
-        {isInHouse && (
-          <button
-            type="button"
-            className="gmc-mob-primary-btn checkout"
-            onClick={() => onExecuteCheckOut(res)}
-          >
-            <FiLogOut size={16} /> Execute Check-out
-          </button>
-        )}
-
-        {/* Secondary Action: View booking voucher */}
-        <div className="gmc-mob-secondary-actions">
-          <button
-            type="button"
-            className="gmc-mob-secondary-btn"
-            onClick={() => onOpenVoucher(res)}
-          >
-            <FiFileText size={14} /> View booking voucher
-          </button>
-
-          {/* Quick Operations: QR Pay, Record Payment, Meal */}
-          {(folio.isBalancePending || isInHouse) && (
-            <div className="gmc-mob-quick-chips">
-              {folio.isBalancePending && (
-                <button
-                  type="button"
-                  className="gmc-mob-chip-btn"
-                  onClick={() => onOpenRazorpayQr(res, folio.balanceDue)}
-                >
-                  <FiZap size={12} /> QR Pay
-                </button>
-              )}
-              {folio.isBalancePending && (
-                <button
-                  type="button"
-                  className="gmc-mob-chip-btn"
-                  onClick={() => onOpenRecordPayment(res, folio.balanceDue)}
-                >
-                  <FiCreditCard size={12} /> Payment
-                </button>
-              )}
-              {isInHouse && (
-                <button
-                  type="button"
-                  className="gmc-mob-chip-btn"
-                  onClick={() => onOpenAddMeal && onOpenAddMeal(res)}
-                >
-                  <FiPlusCircle size={12} /> Add Meal
-                </button>
-              )}
-            </div>
-          )}
-        </div>
-      </div>
+      </article>
 
       {/* ═════════════════════════════════════════════════════════
           2. DESKTOP & LAPTOP SPACIOUS PMS CARD (>= 769px)
