@@ -899,7 +899,8 @@ function ModalFooter({
   isCapacityExceeded,
   handleRazorpayClick,
   handleCreateWalkin,
-  pricing = {}
+  pricing = {},
+  onOpenTariffSheet
 }) {
   const isDisabled = isCurrentRoomOccupied || isCapacityExceeded;
   const { effectiveTotalAmount = 0, totalNights = 1, ratePerNight = 0 } = pricing;
@@ -910,12 +911,20 @@ function ModalFooter({
         <button type="button" className="nwr-btn-ghost" onClick={onClose}>
           Cancel
         </button>
-        {ratePerNight > 0 && (
-          <div className="nwr-mobile-price-badge">
-            <span className="nwr-mpb-amount">₹{effectiveTotalAmount.toLocaleString('en-IN')}</span>
-            <span className="nwr-mpb-sub">{totalNights}N</span>
-          </div>
-        )}
+        <div 
+          className="nwr-mobile-price-badge"
+          onClick={onOpenTariffSheet}
+          role="button"
+          tabIndex={0}
+          title="Tap to open Tariff & Pricing Summary"
+        >
+          <span className="nwr-mpb-amount">
+            {ratePerNight > 0 ? `₹${effectiveTotalAmount.toLocaleString('en-IN')}` : 'Tariff'}
+          </span>
+          <span className="nwr-mpb-sub">
+            {ratePerNight > 0 ? `${totalNights}N • Breakdown ⌃` : 'View ⌃'}
+          </span>
+        </div>
       </div>
 
       <div className="nwr-footer-right">
@@ -1056,12 +1065,14 @@ export default function NewReservationModal({
 
   const [currentStep, setCurrentStep] = useState(1);
   const [stepError, setStepError] = useState('');
+  const [showMobileTariffSheet, setShowMobileTariffSheet] = useState(false);
 
   // Reset to Step 1 whenever modal opens
   useEffect(() => {
     if (isOpen) {
       setCurrentStep(1);
       setStepError('');
+      setShowMobileTariffSheet(false);
     }
   }, [isOpen]);
 
@@ -1310,8 +1321,141 @@ export default function NewReservationModal({
           handleRazorpayClick={handleRazorpayClick}
           handleCreateWalkin={handleCreateWalkin}
           pricing={pricing}
+          onOpenTariffSheet={() => setShowMobileTariffSheet(true)}
         />
       </div>
+
+      {/* NATIVE MOBILE SLIDE-UP TARIFF SHEET */}
+      {showMobileTariffSheet && (
+        <div className="nwr-tariff-sheet-backdrop" onClick={() => setShowMobileTariffSheet(false)}>
+          <div className="nwr-tariff-sheet" onClick={e => e.stopPropagation()}>
+            <div className="nwr-tariff-sheet-handle-bar">
+              <div className="nwr-tariff-sheet-handle" />
+            </div>
+
+            <div className="nwr-tariff-sheet-header">
+              <div className="nwr-tsh-title-wrap">
+                <FiCreditCard size={18} />
+                <div>
+                  <h4>Tariff & Pricing Breakdown</h4>
+                  <span className="nwr-tsh-subtitle">
+                    {selectedProperty?.name || 'StayOps'} • {reservationForm.roomUnit || 'Room'}
+                  </span>
+                </div>
+              </div>
+              <button 
+                type="button" 
+                className="nwr-tsh-close" 
+                onClick={() => setShowMobileTariffSheet(false)}
+                aria-label="Close tariff sheet"
+              >
+                <FiX size={18} />
+              </button>
+            </div>
+
+            <div className="nwr-tariff-sheet-body">
+              {pricing.ratePerNight > 0 ? (
+                <>
+                  <div className="nwr-tariff-rate-row">
+                    <span className="nwr-tariff-rate">₹{pricing.ratePerNight.toLocaleString('en-IN')}</span>
+                    <span className="nwr-tariff-dim">&nbsp;/ night</span>
+                  </div>
+
+                  <div className="nwr-tariff-divider" />
+
+                  <div className="nwr-tariff-row">
+                    <span className="nwr-tariff-dim">Room Base Tariff ({pricing.totalNights} Night{pricing.totalNights > 1 ? 's' : ''})</span>
+                    <span>₹{pricing.roomBaseTotal.toLocaleString('en-IN')}</span>
+                  </div>
+
+                  {pricing.childTotalFee > 0 && (
+                    <div className="nwr-tariff-row">
+                      <span className="nwr-tariff-dim">Child Charges ({reservationForm.childrenCount} child)</span>
+                      <span>+₹{pricing.childTotalFee.toLocaleString('en-IN')}</span>
+                    </div>
+                  )}
+
+                  {pricing.serviceChargeAmount > 0 && (
+                    <div className="nwr-tariff-row">
+                      <span className="nwr-tariff-dim">Service Charge ({pricing.serviceChargePercent}%)</span>
+                      <span>+₹{pricing.serviceChargeAmount.toLocaleString('en-IN')}</span>
+                    </div>
+                  )}
+
+                  {pricing.gstAmount > 0 && (
+                    <div className="nwr-tariff-row">
+                      <span className="nwr-tariff-dim">GST Tax ({pricing.gstRate}%)</span>
+                      <span>+₹{pricing.gstAmount.toLocaleString('en-IN')}</span>
+                    </div>
+                  )}
+
+                  <div className="nwr-tariff-row">
+                    <span className="nwr-tariff-dim">Total Booking Amount</span>
+                    <span className="nwr-tariff-bold">₹{pricing.effectiveTotalAmount.toLocaleString('en-IN')}</span>
+                  </div>
+
+                  <div className="nwr-tariff-row">
+                    <span className="nwr-tariff-dim">Collected Now</span>
+                    <span className={(isUnpaid ? 0 : pricing.calculatedPaidAmount) > 0 ? 'nwr-tariff-green' : 'nwr-tariff-dim'}>
+                      ₹{(isUnpaid ? 0 : pricing.calculatedPaidAmount).toLocaleString('en-IN')}
+                    </span>
+                  </div>
+
+                  <div className="nwr-tariff-divider" />
+
+                  <div className="nwr-tariff-balance">
+                    <span>Balance Due</span>
+                    <strong className={(isUnpaid ? pricing.effectiveTotalAmount : pricing.calculatedBalanceDue) === 0 ? 'nwr-tariff-green' : 'nwr-tariff-amber'}>
+                      ₹{(isUnpaid ? pricing.effectiveTotalAmount : pricing.calculatedBalanceDue).toLocaleString('en-IN')}
+                    </strong>
+                  </div>
+
+                  {(isUnpaid ? pricing.effectiveTotalAmount : pricing.calculatedBalanceDue) === 0 ? (
+                    <div className="nwr-tariff-paid-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                      <FiCheckCircle size={13} /> Fully Settled
+                    </div>
+                  ) : (
+                    <div className="nwr-tariff-note">
+                      {isUnpaid ? 'Collect full amount at checkout' : 'Remaining balance due at checkout'}
+                    </div>
+                  )}
+                </>
+              ) : (
+                <div className="nwr-tariff-empty">
+                  <span>No room rate configured yet</span>
+                  <span className="nwr-tariff-dim">Select rooms in Stay & Rooms step or set pricing in Property Settings</span>
+                </div>
+              )}
+
+              <div className="nwr-tariff-dates">
+                <div className="nwr-tariff-date-row">
+                  <span className="nwr-tariff-dim">Check-In</span>
+                  <span>{reservationForm.checkIn}{reservationForm.checkInTime ? ` • ${formatTime12Hr(reservationForm.checkInTime)}` : ''}</span>
+                </div>
+                <div className="nwr-tariff-date-row">
+                  <span className="nwr-tariff-dim">Check-Out</span>
+                  <span>{reservationForm.checkOut}{reservationForm.checkOutTime ? ` • ${formatTime12Hr(reservationForm.checkOutTime)}` : ''}</span>
+                </div>
+                <div className="nwr-tariff-date-row">
+                  <span className="nwr-tariff-dim">Guests</span>
+                  <span>
+                    {adultsCount} adult{adultsCount > 1 ? 's' : ''}
+                    {childrenCount > 0 ? `, ${childrenCount} child${childrenCount > 1 ? 'ren' : ''}` : ''}
+                  </span>
+                </div>
+              </div>
+
+              <button 
+                type="button" 
+                className="nwr-tariff-sheet-done-btn" 
+                onClick={() => setShowMobileTariffSheet(false)}
+              >
+                Done
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
