@@ -2,17 +2,14 @@ import React from 'react';
 import { 
   FiUser, 
   FiCalendar, 
-  FiPhone, 
   FiMessageSquare, 
   FiFileText, 
   FiPlusCircle, 
   FiCreditCard, 
   FiZap,
-  FiFilePlus,
   FiLogOut,
   FiKey,
   FiHome,
-  FiRefreshCw,
   FiGrid,
   FiShield,
   FiEye
@@ -20,8 +17,29 @@ import {
 import { calculateFolio } from '../utils/folioCalculator';
 
 /**
+ * Format raw ISO dates into clean, human-readable stay dates
+ * e.g. "2026-11-27", "2026-11-28" -> "27 Nov – 28 Nov • 1 Night"
+ */
+function formatStayDates(checkin, checkout, guestCount = 1) {
+  if (!checkin || !checkout) {
+    return `${checkin || ''} – ${checkout || ''} • ${guestCount} Guest${guestCount > 1 ? 's' : ''}`;
+  }
+  try {
+    const cin = new Date(checkin);
+    const cout = new Date(checkout);
+    const cinStr = cin.toLocaleDateString('en-US', { day: 'numeric', month: 'short' });
+    const coutStr = cout.toLocaleDateString('en-US', { day: 'numeric', month: 'short' });
+    const diffMs = cout.getTime() - cin.getTime();
+    const nights = Math.max(1, Math.round(diffMs / (1000 * 60 * 60 * 24)));
+    return `${cinStr} – ${coutStr} • ${nights} Night${nights > 1 ? 's' : ''} • ${guestCount} Guest${guestCount > 1 ? 's' : ''}`;
+  } catch {
+    return `${checkin} – ${checkout} • ${guestCount} Guest${guestCount > 1 ? 's' : ''}`;
+  }
+}
+
+/**
  * Human-designed Operational Guest Movement Card for Front Desk.
- * Groups room status, guest profile, folio financial numbers, and operational actions logically.
+ * Designed for high-density desktop and native mobile PWA touch execution.
  */
 export default function GuestMovementCard({
   res,
@@ -40,7 +58,9 @@ export default function GuestMovementCard({
 
   const isCheckInPending = res.status === 'confirmed' || res.status === 'checkin';
   const isInHouse = res.status === 'checkedin' || res.status === 'inhouse';
-  const isNoShow = res.status === 'no_show';
+
+  const roomUnitName = res.roomUnit || res.unit || 'Room Unit';
+  const stayDatesText = formatStayDates(res.checkin, res.checkout, res.guests || 1);
 
   // Handle direct WhatsApp opening
   const handleWhatsApp = (e) => {
@@ -60,20 +80,25 @@ export default function GuestMovementCard({
   return (
     <div className="gmc-card">
       
-      {/* ── CARD HEADER BAR ── */}
+      {/* ── 1. CARD TOP BAR: ROOM UNIT & BOOKING REF ── */}
       <div className="gmc-header">
         <div className="gmc-header-left">
-          <span className="gmc-booking-ref">{res.id}</span>
-          <span className="gmc-source-pill">{res.ota || res.bookingSource || 'Walk-In'}</span>
-          {res.propertyName && (
-            <span className="gmc-property-pill"><FiHome size={11} /> {res.propertyName}</span>
-          )}
-          {(res.roomUnit || res.unit) && (
-            <span className="gmc-unit-pill"><FiGrid size={11} /> {res.roomUnit || res.unit}</span>
-          )}
+          {/* Prominent Room Badge */}
+          <div className="gmc-room-tag">
+            <FiGrid size={13} />
+            <span className="gmc-room-name">{roomUnitName}</span>
+          </div>
+
+          <div className="gmc-meta-pills">
+            <span className="gmc-booking-ref">{res.id}</span>
+            <span className="gmc-source-pill">{res.ota || res.bookingSource || 'Walk-In'}</span>
+            {res.propertyName && (
+              <span className="gmc-property-pill"><FiHome size={11} /> {res.propertyName}</span>
+            )}
+          </div>
         </div>
 
-        {/* Primary Operational Action CTA */}
+        {/* Primary Operational Action CTA (Desktop Only, Top Right) */}
         <div className="gmc-header-right">
           {isCheckInPending && (
             <button
@@ -97,7 +122,7 @@ export default function GuestMovementCard({
         </div>
       </div>
 
-      {/* ── GUEST & STAY BODY ── */}
+      {/* ── 2. GUEST IDENTITY & STAY DETAILS ── */}
       <div className="gmc-body">
         <div className="gmc-guest-profile">
           <div className="gmc-avatar">
@@ -119,16 +144,19 @@ export default function GuestMovementCard({
             </div>
             
             <div className="gmc-meta-tags">
-              <span><FiUser size={12} /> {res.guests} Guest{res.guests > 1 ? 's' : ''}</span>
-              <span><FiCalendar size={12} /> {res.checkin} &rarr; {res.checkout}</span>
+              <span className="gmc-stay-dates">
+                <FiCalendar size={12} /> {stayDatesText}
+              </span>
+              
               {res.idType && (res.idNumber || res.idDocumentUrl || res.status === 'checkedin') ? (
-                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-                  <span style={{ color: '#15803d', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                <span className="gmc-id-verified-wrap">
+                  <span className="gmc-id-verified-text">
                     <FiShield size={12} /> ID Verified ({res.idType})
                   </span>
                   {res.idDocumentUrl && (
                     <button
                       type="button"
+                      className="gmc-btn-view-id"
                       onClick={(e) => {
                         e.stopPropagation();
                         if (onViewIdDocument) {
@@ -137,19 +165,6 @@ export default function GuestMovementCard({
                           window.open(res.idDocumentUrl, '_blank');
                         }
                       }}
-                      style={{
-                        background: '#eff6ff',
-                        border: '1px solid #bfdbfe',
-                        color: '#1d4ed8',
-                        padding: '1px 8px',
-                        borderRadius: 4,
-                        fontSize: 11,
-                        cursor: 'pointer',
-                        fontWeight: 650,
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: 3
-                      }}
                       title="View guest uploaded ID photo"
                     >
                       <FiEye size={11} /> View ID
@@ -157,7 +172,7 @@ export default function GuestMovementCard({
                   )}
                 </span>
               ) : isCheckInPending ? (
-                <span style={{ color: '#b91c1c', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                <span className="gmc-id-pending-text">
                   <FiShield size={12} /> ID Pending
                 </span>
               ) : null}
@@ -168,36 +183,56 @@ export default function GuestMovementCard({
         {/* Special Request or Caretaker Notes */}
         {res.notes && (
           <div className="gmc-notes-box">
-            <span className="gmc-notes-label">📝 Caretaker Note:</span>
+            <span className="gmc-notes-label">Note:</span>
             <span className="gmc-notes-content">{res.notes}</span>
           </div>
         )}
       </div>
 
-      {/* ── FOOTER: FINANCIAL FOLIO + TOOLBAR ACTIONS ── */}
-      <div className="gmc-footer">
-        
-        {/* Folio Summary Numbers */}
-        <div className="gmc-folio-summary">
-          <div className="gmc-folio-item">
-            <span className="lbl">Total Folio</span>
-            <strong className="val-dark">₹{folio.totalFolio.toLocaleString('en-IN')}</strong>
-          </div>
-          <div className="gmc-folio-item">
-            <span className="lbl">Paid</span>
-            <strong className="val-green">₹{folio.paidAmount.toLocaleString('en-IN')}</strong>
-          </div>
-          <div className="gmc-folio-item">
-            <span className="lbl">Balance Due</span>
-            <strong className={folio.isBalancePending ? "val-due-badge" : "val-paid-badge"}>
-              {folio.isBalancePending ? `₹${folio.balanceDue.toLocaleString('en-IN')}` : '₹0 (Paid)'}
-            </strong>
-          </div>
+      {/* ── 3. FINANCIAL FOLIO SUMMARY ── */}
+      <div className="gmc-folio-strip">
+        <div className="gmc-folio-item">
+          <span className="lbl">TOTAL FOLIO</span>
+          <strong className="val-dark">₹{folio.totalFolio.toLocaleString('en-IN')}</strong>
         </div>
+        <div className="gmc-folio-item">
+          <span className="lbl">PAID</span>
+          <strong className="val-green">₹{folio.paidAmount.toLocaleString('en-IN')}</strong>
+        </div>
+        <div className="gmc-folio-item">
+          <span className="lbl">BALANCE DUE</span>
+          <strong className={folio.isBalancePending ? "val-due-badge" : "val-paid-badge"}>
+            {folio.isBalancePending ? `₹${folio.balanceDue.toLocaleString('en-IN')}` : '₹0 (Paid)'}
+          </strong>
+        </div>
+      </div>
 
-        {/* Operational Actions Toolbar */}
+      {/* ── 4. MOBILE-ONLY FULL-WIDTH PRIMARY ACTION (At Bottom of Card) ── */}
+      <div className="gmc-mobile-primary-action">
+        {isCheckInPending && (
+          <button
+            type="button"
+            className="gmc-btn-primary gmc-btn-checkin"
+            onClick={() => onExecuteCheckIn(res)}
+          >
+            <FiKey size={15} /> Execute Check-In
+          </button>
+        )}
+
+        {isInHouse && (
+          <button
+            type="button"
+            className="gmc-btn-primary gmc-btn-checkout"
+            onClick={() => onExecuteCheckOut(res)}
+          >
+            <FiLogOut size={15} /> Execute Check-Out
+          </button>
+        )}
+      </div>
+
+      {/* ── 5. OPERATIONAL TOOLS GRID (QR, PAYMENT, MEAL, BILL) ── */}
+      <div className="gmc-footer">
         <div className="gmc-toolbar">
-          
           {/* Quick UPI QR Payment */}
           {folio.isBalancePending && (
             <button
@@ -205,7 +240,7 @@ export default function GuestMovementCard({
               className="gmc-tool-btn gmc-btn-qr"
               onClick={() => onOpenRazorpayQr(res, folio.balanceDue)}
             >
-              <FiZap size={13} /> Scan & Pay QR
+              <FiZap size={13} /> Scan &amp; Pay QR
             </button>
           )}
 
@@ -250,7 +285,6 @@ export default function GuestMovementCard({
             <FiFileText size={13} /> {isInHouse ? 'View Folio & Bill' : 'Booking Voucher'}
           </button>
         </div>
-
       </div>
 
     </div>
