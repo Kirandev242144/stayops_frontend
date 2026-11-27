@@ -1,0 +1,362 @@
+/* ===================================================
+   STAYOPS MOBILE CALENDAR AGENDA (NATIVE TOUCH UI)
+=================================================== */
+
+.mob-cal-agenda-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+/* ── 1. DATE SCRUBBER CARD ── */
+.mob-cal-scrubber-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 12px 14px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+.mob-cal-scrubber-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.mob-cal-header-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.mob-cal-month-year {
+  font-size: 16px;
+  font-weight: 800;
+  color: #0F172A;
+  line-height: 1.2;
+}
+
+.mob-cal-weekday {
+  font-size: 12px;
+  color: #64748B;
+  font-weight: 500;
+}
+
+.mob-cal-header-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mob-cal-today-btn {
+  padding: 5px 10px;
+  background: #F1F5F9;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #0F172A;
+  cursor: pointer;
+}
+
+.mob-cal-stepper {
+  display: flex;
+  align-items: center;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.mob-cal-stepper button {
+  background: transparent;
+  border: none;
+  padding: 6px 8px;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Horizontal scrollable date pills */
+.mob-cal-days-strip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.mob-cal-days-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.mob-cal-day-pill {
+  flex: 0 0 calc((100% - 48px) / 7);
+  min-width: 44px;
+  height: 60px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mob-pill-dayname {
+  font-size: 10px;
+  font-weight: 700;
+  color: #94A3B8;
+  text-transform: uppercase;
+}
+
+.mob-pill-daynum {
+  font-size: 15px;
+  font-weight: 800;
+  color: #1E293B;
+}
+
+.mob-cal-day-pill.today {
+  border-color: #3B82F6;
+}
+
+.mob-cal-day-pill.today .mob-pill-daynum {
+  color: #2563EB;
+}
+
+.mob-pill-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #3B82F6;
+  position: absolute;
+  bottom: 4px;
+}
+
+.mob-cal-day-pill.selected {
+  background: #008060 !important;
+  border-color: #008060 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 12px rgba(0, 128, 96, 0.25);
+}
+
+.mob-cal-day-pill.selected .mob-pill-dayname,
+.mob-cal-day-pill.selected .mob-pill-daynum {
+  color: #FFFFFF !important;
+}
+
+.mob-cal-day-pill.selected .mob-pill-dot {
+  background: #FFFFFF;
+}
+
+/* ── 2. METRIC CHIPS ── */
+.mob-cal-metric-chips {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.mob-metric-chip {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 8px 10px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.mob-chip-num {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.mob-chip-label {
+  font-size: 11px;
+  color: #64748B;
+  font-weight: 600;
+}
+
+.mob-metric-chip.green .mob-chip-num { color: #059669; }
+.mob-metric-chip.blue .mob-chip-num { color: #2563EB; }
+.mob-metric-chip.amber .mob-chip-num { color: #D97706; }
+
+/* ── 3. ROOM UNITS LIST ── */
+.mob-cal-room-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mob-cal-room-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mob-cal-room-card:active {
+  transform: scale(0.98);
+}
+
+.mob-cal-room-card.occupied {
+  border-left: 4px solid #2563EB;
+}
+
+.mob-cal-room-card.available {
+  border-left: 4px solid #059669;
+}
+
+.mob-cal-room-card.blocked {
+  border-left: 4px solid #D97706;
+  background: #FFFDF8;
+}
+
+.mob-room-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mob-room-title-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mob-room-badge {
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+
+.mob-room-badge.available { background: #ECFDF5; color: #047857; }
+.mob-room-badge.occupied { background: #EFF6FF; color: #1D4ED8; }
+.mob-room-badge.blocked { background: #FEF3C7; color: #B45309; }
+
+.mob-room-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.mob-room-price {
+  font-size: 13px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.mob-room-price small {
+  font-size: 11px;
+  color: #64748B;
+  font-weight: 500;
+}
+
+.mob-room-booking-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: #F8FAFC;
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+
+.mob-guest-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mob-guest-icon {
+  color: #2563EB;
+  flex-shrink: 0;
+}
+
+.mob-guest-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0F172A;
+}
+
+.mob-channel-pill {
+  font-size: 10px;
+  font-weight: 700;
+  color: #6D28D9;
+  background: #F5F3FF;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-left: auto;
+}
+
+.mob-stay-dates-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #64748B;
+}
+
+.mob-stay-icon {
+  color: #64748B;
+}
+
+.mob-status-pill {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-left: auto;
+}
+
+.mob-status-pill.checkedin { background: #D1FAE5; color: #065F46; }
+.mob-status-pill.confirmed { background: #DBEAFE; color: #1E40AF; }
+
+.mob-blocked-reason {
+  margin: 0;
+  font-size: 12px;
+  color: #B45309;
+}
+
+.mob-room-avail-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mob-hk-tag {
+  font-size: 11px;
+  color: #64748B;
+  font-weight: 500;
+}
+
+.mob-book-btn {
+  background: #008060;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}

@@ -10,6 +10,7 @@ import { formatDateKey } from './utils/calendarUtils';
 // Child Components & Modals
 import CalendarHeader from './components/CalendarHeader';
 import CalendarGrid from './components/CalendarGrid';
+import MobileCalendarAgenda from './components/MobileCalendarAgenda';
 import BookingVoucherModal from '../Reservations/components/BookingVoucherModal';
 import NewReservationModal from '../Reservations/components/NewReservationModal';
 import BulkPriceModal from './components/BulkPriceModal';
@@ -203,33 +204,55 @@ export default function Calendar({ onNavigate }) {
         onOpenBulkPriceModal={() => setShowBulkPriceModal(true)}
       />
 
-      {/* 2. TAPE CHART TIMELINE MATRIX */}
+      {/* 2. TAPE CHART TIMELINE MATRIX (DESKTOP) & AGENDA (MOBILE) */}
       {isLoading ? (
         <div className="cal-loading-state">
           <div className="cal-spinner" />
           <p>Loading multi-room timeline grid...</p>
         </div>
       ) : (
-        <CalendarGrid
-          daysArray={daysArray}
-          roomsList={filteredRooms}
-          reservationsList={reservationsList}
-          mealOrders={mealOrders}
-          taxSettings={taxSettingsMap || taxSettings}
-          viewMode={viewMode}
-          customRates={customRates}
-          blockedDates={blockedDates}
-          housekeepingMap={housekeepingMap}
-          onClickBooking={res => setSelectedResDetails(res)}
-          onEmptySlotClick={handleEmptySlotClick}
-          onRangeSlotSelect={handleRangeSlotSelect}
-          onOpenInlineRateModal={(room, dateKey, currentRate) => {
-            setInlineRateData({ room, dateKey, currentRate });
-          }}
-          onToggleHousekeeping={toggleHousekeeping}
-          onOpenPhotoProofModal={(room, hkDetails) => setPhotoProofTarget({ room, hkDetails })}
-          onUnblockDate={block => setSelectedBlockForUnblock(block)}
-        />
+        <>
+          {/* Desktop Timeline Grid View */}
+          <div className="cal-desktop-grid-view">
+            <CalendarGrid
+              daysArray={daysArray}
+              roomsList={filteredRooms}
+              reservationsList={reservationsList}
+              mealOrders={mealOrders}
+              taxSettings={taxSettingsMap || taxSettings}
+              viewMode={viewMode}
+              customRates={customRates}
+              blockedDates={blockedDates}
+              housekeepingMap={housekeepingMap}
+              onClickBooking={res => setSelectedResDetails(res)}
+              onEmptySlotClick={handleEmptySlotClick}
+              onRangeSlotSelect={handleRangeSlotSelect}
+              onOpenInlineRateModal={(room, dateKey, currentRate) => {
+                setInlineRateData({ room, dateKey, currentRate });
+              }}
+              onToggleHousekeeping={toggleHousekeeping}
+              onOpenPhotoProofModal={(room, hkDetails) => setPhotoProofTarget({ room, hkDetails })}
+              onUnblockDate={block => setSelectedBlockForUnblock(block)}
+            />
+          </div>
+
+          {/* Native Mobile Agenda View (< 768px) */}
+          <div className="cal-mobile-agenda-view">
+            <MobileCalendarAgenda
+              startDate={startDate}
+              setStartDate={setStartDate}
+              roomsList={filteredRooms}
+              reservationsList={reservationsList}
+              blockedDates={blockedDates}
+              customRates={customRates}
+              housekeepingMap={housekeepingMap}
+              onSelectBooking={res => setSelectedResDetails(res)}
+              onEmptySlotClick={handleEmptySlotClick}
+              onOpenNewResModal={() => setShowNewResModal(true)}
+              onOpenBlockDatesModal={() => setShowBlockDatesModal(true)}
+            />
+          </div>
+        </>
       )}
 
       {/* 3. OVERLAY MODALS */}
