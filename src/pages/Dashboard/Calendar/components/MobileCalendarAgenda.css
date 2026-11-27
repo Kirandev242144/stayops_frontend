@@ -2,20 +2,165 @@
    STAYOPS MOBILE CALENDAR AGENDA (NATIVE TOUCH UI)
 =================================================== */
 
-.mob-cal-agenda-container {
+.mob-cal-container {
   display: flex;
   flex-direction: column;
   gap: 12px;
   width: 100%;
+  box-sizing: border-box;
 }
 
-/* ── 1. DATE SCRUBBER CARD ── */
+/* ── 1. NATIVE TOP TOOLBAR CARD ── */
+.mob-cal-top-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.mob-cal-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.mob-cal-property-pill {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 175px;
+}
+
+.mob-cal-prop-icon {
+  position: absolute;
+  left: 10px;
+  color: #008060;
+  pointer-events: none;
+}
+
+.mob-cal-property-select {
+  width: 100%;
+  height: 36px;
+  padding: 0 10px 0 30px;
+  background: #F8FAFC;
+  border: 1px solid #CBD5E1;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #0F172A;
+  outline: none;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mob-cal-actions-cluster {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mob-cal-icon-btn {
+  width: 36px;
+  height: 36px;
+  background: #F8FAFC;
+  border: 1px solid #CBD5E1;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.mob-cal-icon-btn:active,
+.mob-cal-icon-btn.active {
+  background: #E2E8F0;
+  border-color: #94A3B8;
+  color: #0F172A;
+}
+
+.mob-cal-new-booking-btn {
+  height: 36px;
+  padding: 0 12px;
+  background: #008060;
+  border: 1px solid #008060;
+  border-radius: 9px;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(0, 128, 96, 0.2);
+}
+
+.mob-cal-new-booking-btn:active {
+  background: #006E52;
+  transform: scale(0.97);
+}
+
+.mob-cal-search-bar {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.mob-cal-search-inner-icon {
+  position: absolute;
+  left: 10px;
+  color: #94A3B8;
+}
+
+.mob-cal-search-input {
+  width: 100%;
+  height: 36px;
+  padding: 0 30px 0 32px;
+  background: #F8FAFC;
+  border: 1px solid #CBD5E1;
+  border-radius: 9px;
+  font-size: 12px;
+  color: #0F172A;
+  outline: none;
+}
+
+.mob-cal-search-input:focus {
+  border-color: #008060;
+  background: #FFFFFF;
+}
+
+.mob-cal-search-clear {
+  position: absolute;
+  right: 8px;
+  background: transparent;
+  border: none;
+  color: #94A3B8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── 2. DATE SCRUBBER CARD ── */
 .mob-cal-scrubber-card {
   background: #FFFFFF;
   border: 1px solid #E2E8F0;
   border-radius: 14px;
   padding: 12px 14px;
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
 }
 
 .mob-cal-scrubber-header {
@@ -31,14 +176,14 @@
 }
 
 .mob-cal-month-year {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 800;
   color: #0F172A;
   line-height: 1.2;
 }
 
 .mob-cal-weekday {
-  font-size: 12px;
+  font-size: 11px;
   color: #64748B;
   font-weight: 500;
 }
@@ -53,26 +198,30 @@
   padding: 5px 10px;
   background: #F1F5F9;
   border: 1px solid #CBD5E1;
-  border-radius: 6px;
+  border-radius: 7px;
   font-size: 11px;
   font-weight: 700;
   color: #0F172A;
   cursor: pointer;
 }
 
+.mob-cal-today-btn:active {
+  background: #E2E8F0;
+}
+
 .mob-cal-stepper {
   display: flex;
   align-items: center;
   background: #F8FAFC;
-  border: 1px solid #E2E8F0;
-  border-radius: 8px;
+  border: 1px solid #CBD5E1;
+  border-radius: 7px;
   overflow: hidden;
 }
 
 .mob-cal-stepper button {
   background: transparent;
   border: none;
-  padding: 6px 8px;
+  padding: 5px 8px;
   color: #334155;
   display: flex;
   align-items: center;
@@ -80,7 +229,11 @@
   cursor: pointer;
 }
 
-/* Horizontal scrollable date pills */
+.mob-cal-stepper button:active {
+  background: #E2E8F0;
+}
+
+/* Horizontal swipeable day selector pills */
 .mob-cal-days-strip {
   display: flex;
   align-items: center;
@@ -98,7 +251,7 @@
 .mob-cal-day-pill {
   flex: 0 0 calc((100% - 48px) / 7);
   min-width: 44px;
-  height: 60px;
+  height: 58px;
   background: #F8FAFC;
   border: 1px solid #E2E8F0;
   border-radius: 12px;
@@ -159,7 +312,7 @@
   background: #FFFFFF;
 }
 
-/* ── 2. METRIC CHIPS ── */
+/* ── 3. METRIC CHIPS ── */
 .mob-cal-metric-chips {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -172,13 +325,24 @@
   border-radius: 10px;
   padding: 8px 10px;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 6px;
 }
 
+.mob-chip-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.mob-chip-dot.green { background: #10B981; }
+.mob-chip-dot.blue { background: #3B82F6; }
+.mob-chip-dot.amber { background: #F59E0B; }
+
 .mob-chip-num {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 800;
+  color: #0F172A;
 }
 
 .mob-chip-label {
@@ -187,11 +351,7 @@
   font-weight: 600;
 }
 
-.mob-metric-chip.green .mob-chip-num { color: #059669; }
-.mob-metric-chip.blue .mob-chip-num { color: #2563EB; }
-.mob-metric-chip.amber .mob-chip-num { color: #D97706; }
-
-/* ── 3. ROOM UNITS LIST ── */
+/* ── 4. ROOMS LIST ── */
 .mob-cal-room-list {
   display: flex;
   flex-direction: column;
@@ -209,6 +369,7 @@
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
   -webkit-tap-highlight-color: transparent;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
 }
 
 .mob-cal-room-card:active {
@@ -220,7 +381,7 @@
 }
 
 .mob-cal-room-card.available {
-  border-left: 4px solid #059669;
+  border-left: 4px solid #008060;
 }
 
 .mob-cal-room-card.blocked {
@@ -260,8 +421,8 @@
 
 .mob-room-price {
   font-size: 13px;
-  font-weight: 700;
-  color: #334155;
+  font-weight: 800;
+  color: #0F172A;
 }
 
 .mob-room-price small {
@@ -343,20 +504,39 @@
 
 .mob-hk-tag {
   font-size: 11px;
+  font-weight: 600;
   color: #64748B;
-  font-weight: 500;
 }
+
+.mob-hk-tag.clean { color: #059669; }
+.mob-hk-tag.dirty { color: #DC2626; }
+.mob-hk-tag.progress { color: #D97706; }
 
 .mob-book-btn {
   background: #008060;
   color: #FFFFFF;
   border: none;
-  border-radius: 6px;
-  padding: 5px 10px;
-  font-size: 11px;
+  border-radius: 7px;
+  padding: 6px 12px;
+  font-size: 12px;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
   gap: 4px;
   cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.mob-book-btn:active {
+  background: #006E52;
+}
+
+.mob-cal-empty-state {
+  background: #FFFFFF;
+  border: 1px dashed #CBD5E1;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  color: #64748B;
+  font-size: 13px;
 }

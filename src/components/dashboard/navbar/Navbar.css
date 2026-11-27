@@ -276,47 +276,96 @@
    RESPONSIVE MOBILE PWA NAVBAR
    ============================================================ */
 
+.navbar-mobile-brand {
+  display: none;
+}
+
+.navbar-desktop-greeting {
+  display: block;
+}
+
 @media (max-width: 768px) {
   .dashboard-navbar,
   .dashboard-navbar.navbar-collapsed {
     left: 0 !important;
-    padding: 0 14px;
-    height: 56px;
+    padding: 0 12px;
+    height: 52px;
     padding-top: env(safe-area-inset-top, 0px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
-  .navbar-greeting {
-    max-width: 50%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  .navbar-desktop-greeting {
+    display: none !important;
   }
 
-  .navbar-greeting h2 {
-    font-size: 0.88rem;
+  .navbar-mobile-brand {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .navbar-mobile-logo {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+
+  .navbar-mobile-brand-name {
+    font-size: 15px;
+    font-weight: 800;
+    color: #111827;
+    letter-spacing: -0.02em;
   }
 
   .navbar-actions {
-    gap: 8px;
-  }
-
-  .navbar-buttons {
+    display: flex;
+    align-items: center;
     gap: 6px;
   }
 
-  /* Make primary quick action button compact on mobile */
-  .navbar-btn.primary {
-    height: 34px;
-    padding: 0 10px;
-    font-size: 12px;
+  .navbar-buttons {
+    gap: 4px;
   }
 
-  .navbar-btn.primary span {
-    display: none;
+  /* Hide + Quick Action button on mobile navbar */
+  .navbar-btn.primary {
+    display: none !important;
   }
 
   .navbar-btn.icon {
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+  }
+
+  /* Compact Language button */
+  .navbar-lang-btn {
+    height: 32px;
+    padding: 0 8px;
+    font-size: 11px;
+    gap: 4px;
+    border-radius: 8px;
+  }
+
+  /* Hide user name and role text on mobile, keep avatar */
+  .user-info {
+    display: none !important;
+  }
+
+  .user-profile {
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    gap: 0 !important;
+  }
+
+  .user-avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
+    border-radius: 8px;
   }
 }

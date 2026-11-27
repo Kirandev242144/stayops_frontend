@@ -183,26 +183,28 @@ export default function Calendar({ onNavigate }) {
   return (
     <div className="cal-container">
       
-      {/* 1. HEADER & NAVIGATION TOOLBAR */}
-      <CalendarHeader
-        startDate={startDate}
-        setStartDate={setStartDate}
-        numDays={numDays}
-        setNumDays={setNumDays}
-        viewMode={viewMode}
-        setViewMode={setViewMode}
-        selectedPropertyId={selectedPropertyId}
-        setSelectedPropertyId={setSelectedPropertyId}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        propertiesList={propertiesList}
-        onPrevDays={handlePrevDays}
-        onNextDays={handleNextDays}
-        onResetToday={handleResetToday}
-        onOpenNewResModal={() => setShowNewResModal(true)}
-        onOpenBlockDatesModal={() => setShowBlockDatesModal(true)}
-        onOpenBulkPriceModal={() => setShowBulkPriceModal(true)}
-      />
+      {/* 1. HEADER & NAVIGATION TOOLBAR (DESKTOP ONLY) */}
+      <div className="cal-desktop-header">
+        <CalendarHeader
+          startDate={startDate}
+          setStartDate={setStartDate}
+          numDays={numDays}
+          setNumDays={setNumDays}
+          viewMode={viewMode}
+          setViewMode={setViewMode}
+          selectedPropertyId={selectedPropertyId}
+          setSelectedPropertyId={setSelectedPropertyId}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          propertiesList={propertiesList}
+          onPrevDays={handlePrevDays}
+          onNextDays={handleNextDays}
+          onResetToday={handleResetToday}
+          onOpenNewResModal={() => setShowNewResModal(true)}
+          onOpenBlockDatesModal={() => setShowBlockDatesModal(true)}
+          onOpenBulkPriceModal={() => setShowBulkPriceModal(true)}
+        />
+      </div>
 
       {/* 2. TAPE CHART TIMELINE MATRIX (DESKTOP) & AGENDA (MOBILE) */}
       {isLoading ? (
@@ -246,10 +248,16 @@ export default function Calendar({ onNavigate }) {
               blockedDates={blockedDates}
               customRates={customRates}
               housekeepingMap={housekeepingMap}
+              selectedPropertyId={selectedPropertyId}
+              setSelectedPropertyId={setSelectedPropertyId}
+              propertiesList={propertiesList}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
               onSelectBooking={res => setSelectedResDetails(res)}
               onEmptySlotClick={handleEmptySlotClick}
               onOpenNewResModal={() => setShowNewResModal(true)}
               onOpenBlockDatesModal={() => setShowBlockDatesModal(true)}
+              onOpenBulkPriceModal={() => setShowBulkPriceModal(true)}
             />
           </div>
         </>
