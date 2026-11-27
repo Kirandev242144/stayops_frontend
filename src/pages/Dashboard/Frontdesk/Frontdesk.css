@@ -123,75 +123,77 @@
 /* ── PACING STRIP COUNTERS ── */
 .fd-counters-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 16px;
+}
+
+@media (max-width: 1200px) {
+  .fd-counters-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
 }
 
 .fd-counter-card {
   background: #FFFFFF;
   color: #0F172A;
   border: 1px solid #E2E8F0;
-  border-radius: 12px;
-  padding: 18px;
+  border-radius: 14px;
+  padding: 18px 20px;
   cursor: pointer;
-  transition: all 0.15s ease;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: all 0.18s ease;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 112px;
+  text-align: left;
+  box-sizing: border-box;
 }
 
 .fd-counter-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+  border-color: #CBD5E1;
 }
 
 .fd-counter-card.active {
   background: #0F172A;
   color: #FFFFFF;
   border-color: #0F172A;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.22);
 }
 
 .fd-counter-card.active .fd-counter-title,
-.fd-counter-card.active .fd-counter-sub,
-.fd-counter-card.active .fd-counter-mobile-label {
-  color: rgba(255, 255, 255, 0.9);
+.fd-counter-card.active .fd-counter-sub {
+  color: rgba(255, 255, 255, 0.85);
 }
 
-.fd-counter-header-row {
+.fd-counter-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748B;
   display: flex;
   align-items: center;
   gap: 6px;
   margin-bottom: 4px;
 }
 
-.fd-counter-icon {
-  display: inline-flex;
-  align-items: center;
-  color: #64748B;
-}
-
-.fd-counter-card.active .fd-counter-icon {
-  color: #94A3B8;
-}
-
-.fd-counter-mobile-label {
-  display: none;
-}
-
-.fd-counter-title {
-  font-size: 12px;
-  font-weight: 600;
-  color: #64748B;
-  margin-bottom: 4px;
-}
-
 .fd-counter-value {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 800;
+  color: inherit;
+  line-height: 1.1;
+  margin: 6px 0;
+  letter-spacing: -0.5px;
 }
 
 .fd-counter-sub {
-  font-size: 11px;
+  font-size: 11.5px;
   color: #94A3B8;
-  margin-top: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
 }
 
 /* ── TIME FILTER BAR ── */
@@ -1772,26 +1774,12 @@ display: inline-flex;
     box-shadow: 0 4px 14px rgba(15, 23, 42, 0.22) !important;
   }
 
-  .fd-counter-header-row {
-    display: flex !important;
-    align-items: center !important;
-    gap: 6px !important;
-  }
-
-  .fd-counter-icon {
-    display: inline-flex !important;
-    align-items: center !important;
-    color: inherit !important;
-  }
-
   .fd-counter-title {
-    display: none !important;
-  }
-
-  .fd-counter-mobile-label {
-    display: inline !important;
-    font-size: 12px !important;
-    font-weight: 700 !important;
+    font-size: 11px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: block !important;
   }
 
   .fd-counter-value {
