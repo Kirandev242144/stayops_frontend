@@ -1,0 +1,108 @@
+/* ==========================================================================
+   AdminModal.css — Accessible Modal Dialog Styles
+   ========================================================================== */
+
+.admin-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(9, 27, 51, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: adminModalFadeIn 0.18s ease-out;
+}
+
+.admin-modal {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 20px 48px rgba(9, 27, 51, 0.22);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: adminModalSlideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes adminModalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes adminModalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Header */
+.admin-modal__header {
+  padding: 20px 24px;
+  border-bottom: 1px solid #F1F5F9;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.admin-modal__title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #091B33;
+}
+
+.admin-modal__subtitle {
+  margin: 4px 0 0 0;
+  font-size: 13px;
+  color: #64748B;
+}
+
+.admin-modal__close {
+  background: transparent;
+  border: none;
+  color: #94A3B8;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.admin-modal__close:hover {
+  background: #F1F5F9;
+  color: #0F172A;
+}
+
+/* Body */
+.admin-modal__body {
+  padding: 24px;
+  overflow-y: auto;
+  max-height: calc(85vh - 140px);
+  color: #334155;
+  font-size: 14px;
+}
+
+/* Footer */
+.admin-modal__footer {
+  padding: 16px 24px;
+  background: #F8FAFC;
+  border-top: 1px solid #F1F5F9;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}

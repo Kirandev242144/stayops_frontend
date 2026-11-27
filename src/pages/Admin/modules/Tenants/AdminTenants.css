@@ -1,0 +1,238 @@
+/* ==========================================================================
+   AdminTenants.css
+   ========================================================================== */
+
+.admin-tenants {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Identity cell ── */
+.t-identity {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.t-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #E6F7F8;
+  color: #04B3C0;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid #C4EFF2;
+}
+
+.t-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.t-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #0F172A;
+}
+
+.t-sub {
+  font-size: 11.5px;
+  color: #94A3B8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+/* ── Contact cell ── */
+.t-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.t-email {
+  font-size: 13px;
+  color: #334155;
+}
+
+.t-phone {
+  font-size: 11.5px;
+  color: #94A3B8;
+}
+
+/* ── Plan cell ── */
+.t-plan {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.t-plan-label {
+  font-size: 13px;
+  color: #334155;
+}
+
+.t-trial-days {
+  font-size: 11px;
+  color: #F59E0B;
+  font-weight: 600;
+}
+
+/* ── Status cell ── */
+.t-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #334155;
+}
+
+.t-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Action buttons ── */
+.t-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.t-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  border: 1px solid #E2E8F0;
+  background: #F8FAFC;
+  color: #64748B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.13s, color 0.13s, border-color 0.13s;
+}
+
+.t-btn:hover {
+  background: #F1F5F9;
+  color: #0F172A;
+}
+
+.t-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.t-btn--danger:hover {
+  background: #FEE2E2;
+  color: #DC2626;
+  border-color: #FECACA;
+}
+
+.t-btn--success:hover {
+  background: #ECFDF5;
+  color: #059669;
+  border-color: #A7F3D0;
+}
+
+/* ── Error banner ── */
+.admin-db-error-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #FEF2F2;
+  border: 1px solid #FCA5A5;
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 20px;
+}
+
+.admin-db-error-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.admin-db-error-icon {
+  color: #DC2626;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.admin-db-error-title {
+  margin: 0 0 2px 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #991B1B;
+}
+
+.admin-db-error-desc {
+  margin: 0;
+  font-size: 12px;
+  color: #7F1D1D;
+}
+
+/* ── Skeleton ── */
+.admin-loading-container {
+  background: #ffffff;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.admin-skeleton-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.skeleton-search { width: 260px; height: 36px; }
+.skeleton-tabs   { width: 280px; height: 36px; }
+
+.admin-skeleton-table {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-skeleton-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 8px;
+  border-bottom: 1px solid #F8FAFC;
+}
+
+.skeleton-box {
+  background: linear-gradient(90deg, #F1F5F9 25%, #E2E8F0 50%, #F1F5F9 75%);
+  background-size: 200% 100%;
+  animation: shimmerSkeleton 1.5s infinite ease-in-out;
+  border-radius: 6px;
+  height: 16px;
+}
+
+.skeleton-col-lg { width: 28%; height: 26px; }
+.skeleton-col-md { width: 20%; }
+.skeleton-col-sm { width: 13%; }
+.skeleton-col-xs { width: 8%;  }
+
+@keyframes shimmerSkeleton {
+  0%   { background-position:  200% 0; }
+  100% { background-position: -200% 0; }
+}

@@ -1,0 +1,562 @@
+/* =========================================================
+   CREATE PROPERTY PAGE
+========================================================= */
+
+.create-property-page {
+  width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+  padding: 30px 38px 60px;
+  background: #f7f9fb;
+}
+
+.create-property-page-header {
+  max-width: 920px;
+  margin: 0 auto 20px;
+}
+
+.create-property-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #526174;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.create-property-back:hover {
+  color: #08a8b8;
+}
+
+.create-property-heading {
+  margin-top: 20px;
+}
+
+.create-property-heading h1 {
+  margin: 0;
+  color: #17253b;
+  font-size: 28px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.create-property-heading p {
+  margin: 7px 0 0;
+  color: #718096;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.create-property-card {
+  max-width: 920px;
+  margin: 0 auto;
+  background: #ffffff;
+  border: 1px solid #dbe2ea;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.create-property-card-section {
+  padding: 24px 26px;
+  border-bottom: 1px solid #eef1f5;
+}
+
+.create-property-card-section h2 {
+  margin: 0;
+  color: #17253b;
+  font-size: 17px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.create-property-section-description {
+  margin: 6px 0 20px;
+  color: #7a8798;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.create-property-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 16px;
+}
+
+.create-property-form-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 17px;
+  color: #344258;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.create-property-field-full {
+  grid-column: 1 / -1;
+}
+
+.create-property-form-grid input,
+.create-property-form-grid select,
+.create-property-form-grid textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 42px;
+  padding: 0 12px;
+  border: 1px solid #d4dbe4;
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: #25334a;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.create-property-form-grid textarea {
+  min-height: 100px;
+  padding: 11px 12px;
+  resize: vertical;
+}
+
+.create-property-form-grid input::placeholder,
+.create-property-form-grid textarea::placeholder {
+  color: #98a2b3;
+}
+
+.create-property-form-grid input:focus,
+.create-property-form-grid select:focus,
+.create-property-form-grid textarea:focus {
+  border-color: #08a8b8;
+  box-shadow: 0 0 0 3px rgba(8, 168, 184, 0.08);
+}
+
+.create-property-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 9px;
+  padding: 18px 26px;
+  background: #ffffff;
+}
+
+.create-property-cancel {
+  height: 40px;
+  padding: 0 16px;
+  border: 1px solid #d6dde6;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #46546a;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.create-property-cancel:hover {
+  background: #f8fafc;
+}
+
+.create-property-submit {
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 17px;
+  border: 0;
+  border-radius: 8px;
+  background: #08a8b8;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.create-property-submit:hover {
+  background: #0797a5;
+}
+
+@media (max-width: 700px) {
+  .create-property-page {
+    padding: 22px 16px 40px;
+  }
+
+  .create-property-card-section {
+    padding: 20px 18px;
+  }
+
+  .create-property-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .create-property-field-full {
+    grid-column: auto;
+  }
+
+  .create-property-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    padding: 16px 18px;
+  }
+
+  .create-property-cancel,
+  .create-property-submit {
+    width: 100%;
+  }
+}
+
+.create-property-form-grid label span small {
+  color: #98a2b3;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+/* =========================================================
+   PROPERTY CREATION WIZARD STYLES
+   ========================================================= */
+
+.wiz-steps-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.wiz-step-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 20px;
+  background: #E2E8F0;
+  color: #64748B;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.wiz-step-pill.active {
+  background: #0F172A;
+  color: #FFFFFF;
+}
+
+.wiz-step-pill.completed {
+  background: #ECFDF5;
+  color: #047857;
+  border: 1px solid #A7F3D0;
+}
+
+.wiz-num {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.wiz-step-line {
+  flex: 1;
+  height: 2px;
+  background: #E2E8F0;
+  max-width: 60px;
+}
+
+/* Structure Selection Radio Cards */
+.wiz-structure-select {
+  margin-bottom: 16px;
+}
+
+.wiz-radio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.wiz-radio-card {
+  border: 1.5px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  background: #FFFFFF;
+  transition: all 0.15s ease;
+}
+
+.wiz-radio-card.selected {
+  border-color: #08a8b8;
+  background: #F0FDFA;
+}
+
+.wiz-radio-card input {
+  margin-top: 3px;
+  accent-color: #08a8b8;
+}
+
+.wiz-radio-card strong {
+  display: block;
+  font-size: 13.5px;
+  color: #0F172A;
+  margin-bottom: 2px;
+}
+
+.wiz-radio-card p {
+  margin: 0;
+  font-size: 12px;
+  color: #64748B;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* Step 2 Unit Box */
+.wiz-unit-box {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+}
+
+.wiz-unit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.wiz-unit-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 14px;
+}
+
+.wiz-del-btn {
+  background: #FEF2F2;
+  color: #DC2626;
+  border: 1px solid #FCA5A5;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.wiz-add-cat-btn {
+  background: #FFFFFF;
+  color: #08a8b8;
+  border: 1.5px dashed #08a8b8;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.wiz-add-cat-btn:hover {
+  background: #F0FDFA;
+}
+
+/* Step 3 Universal Amenities Chips / Pills */
+.wiz-chips-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #0F172A;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.wiz-chips-subtitle {
+  font-size: 12px;
+  color: #64748B;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.wiz-chips-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.wiz-chip {
+  background: #F8FAFC;
+  color: #475569;
+  border: 1px solid #CBD5E1;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.wiz-chip:hover {
+  background: #FFFFFF;
+  color: #0F172A;
+  border-color: #94A3B8;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.wiz-chip.selected {
+  background: #F0FDFA;
+  color: #0D9488;
+  border-color: #99F6E4;
+  font-weight: 700;
+}
+
+.wiz-chip-check {
+  font-size: 12px;
+  font-weight: 800;
+  color: #0D9488;
+}
+
+/* Atlas PMS Category Label & Search Box */
+.wiz-category-label {
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #64748B;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.wiz-amenity-search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #F8FAFC;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  padding: 4px 10px;
+  width: 220px;
+}
+
+.wiz-amenity-search-box input {
+  border: none !important;
+  outline: none !important;
+  background: transparent !important;
+  font-size: 12.5px !important;
+  padding: 0 !important;
+  min-height: 28px !important;
+  box-shadow: none !important;
+}
+
+/* Auto-Generate Room Numbers Button */
+.wiz-auto-gen-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #EEF2FF;
+  color: #4F46E5;
+  border: 1px solid #C7D2FE;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.wiz-auto-gen-btn:hover {
+  background: #E0E7FF;
+  color: #4338CA;
+  border-color: #A5B4FC;
+}
+
+/* Modern Radio Card Hover Effects */
+.wiz-radio-card {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wiz-radio-card:hover {
+  border-color: #08a8b8;
+  box-shadow: 0 4px 12px rgba(8, 168, 184, 0.08);
+  transform: translateY(-1px);
+}
+
+/* Property Amenities Chips Grid & Pill Styling */
+.wiz-chips-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.wiz-chip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 20px;
+  border: 1px solid #CBD5E1;
+  background: #FFFFFF;
+  color: #334155;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  user-select: none;
+}
+
+.wiz-chip-btn:hover {
+  border-color: #08a8b8;
+  color: #08a8b8;
+  background: #F0FDFA;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(8, 168, 184, 0.12);
+}
+
+.wiz-chip-btn.selected {
+  background: #08a8b8;
+  border-color: #08a8b8;
+  color: #FFFFFF;
+  font-weight: 700;
+  box-shadow: 0 3px 8px rgba(8, 168, 184, 0.28);
+}
+
+.wiz-chip-btn.selected:hover {
+  background: #0797a5;
+  border-color: #0797a5;
+  color: #FFFFFF;
+}
+
+.wiz-chip-check {
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1;
+}
+

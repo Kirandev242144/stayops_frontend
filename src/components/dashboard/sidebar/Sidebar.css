@@ -1,0 +1,606 @@
+/* ============================================================
+   STAYOPS SIDEBAR DESIGN SYSTEM
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+
+.sidebar {
+    width: 240px;
+    height: 100vh;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #ffffff;
+    border-right: 1px solid #e5e7eb;
+
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+
+    z-index: 100;
+
+    transition: width 0.2s ease;
+}
+
+
+/* ============================================================
+   LOGO
+   ============================================================ */
+
+.sidebar-logo {
+    height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    padding: 0 22px;
+
+    border-bottom: 1px solid #f3f4f6;
+
+    flex-shrink: 0;
+
+    transition:
+        padding 0.2s ease,
+        justify-content 0.2s ease;
+}
+
+.sidebar-logo img {
+    width: 155px;
+    height: auto;
+
+    object-fit: contain;
+
+    transition:
+        width 0.2s ease,
+        height 0.2s ease;
+}
+
+
+/* ============================================================
+   SIDEBAR BODY
+   ============================================================ */
+
+.sidebar-body {
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 14px 10px;
+
+    scrollbar-width: none;
+}
+
+.sidebar-body::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+
+.sidebar-section {
+    margin-bottom: 16px;
+}
+
+.sidebar-title {
+    margin: 0 0 8px 8px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 1.1px;
+
+    text-transform: uppercase;
+
+    color: #9ca3af;
+}
+
+.sidebar-section-items {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+
+/* ============================================================
+   NAVIGATION ITEM
+   ============================================================ */
+
+.sidebar-item {
+    width: 100%;
+    height: 40px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 12px;
+
+    background: transparent;
+
+    border: none;
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+
+/* Hover */
+
+.sidebar-item:hover {
+    background: #f3f4f6;
+}
+
+
+/* Active */
+
+.sidebar-item.active {
+    background: #e6f9fa;
+}
+
+
+/* ============================================================
+   ITEM LEFT SIDE
+   ============================================================ */
+
+.sidebar-item-left {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+/* ============================================================
+   ICON
+   ============================================================ */
+
+.sidebar-icon {
+    width: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    font-size: 16px;
+
+    color: #6b7280;
+
+    transition: color 0.15s ease;
+}
+
+
+/* Active icon */
+
+.sidebar-item.active .sidebar-icon {
+    color: #04b3c0;
+}
+
+
+/* ============================================================
+   LABEL
+   ============================================================ */
+
+.sidebar-label {
+    font-size: 13px;
+
+    font-weight: 500;
+
+    font-family: "Inter", sans-serif;
+
+    color: #4b5563;
+
+    white-space: nowrap;
+
+    transition:
+        color 0.15s ease,
+        opacity 0.15s ease;
+}
+
+
+/* Hover label */
+
+.sidebar-item:hover .sidebar-label {
+    color: #111827;
+}
+
+
+/* Active label */
+
+.sidebar-item.active .sidebar-label {
+    color: #04b3c0;
+
+    font-weight: 600;
+}
+
+
+/* ============================================================
+   BADGE
+   ============================================================ */
+
+.sidebar-badge {
+    padding: 2px 7px;
+
+    border-radius: 999px;
+
+    background: #ff6b35;
+
+    color: #ffffff;
+
+    font-size: 10.5px;
+    font-weight: 700;
+
+    line-height: 1.3;
+
+    flex-shrink: 0;
+}
+
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.sidebar-footer {
+    padding: 12px 10px;
+
+    border-top: 1px solid #f3f4f6;
+
+    flex-shrink: 0;
+}
+
+
+/* ============================================================
+   TRIAL CARD
+   ============================================================ */
+
+.trial-card {
+    padding: 12px;
+
+    border: 1px solid #fde68a;
+
+    border-radius: 10px;
+
+    background: #fffbeb;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* Trial header */
+
+.trial-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 8px;
+
+    font-size: 12px;
+}
+
+
+/* Trial title */
+
+.trial-title {
+    color: #92400e;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* Trial days */
+
+.trial-days {
+    font-size: 11px;
+
+    color: #b45309;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* Trial progress */
+
+.trial-progress {
+    height: 5px;
+
+    background: #fde68a;
+
+    border-radius: 999px;
+
+    overflow: hidden;
+
+    margin-bottom: 8px;
+}
+
+
+/* Trial progress fill */
+
+.trial-progress-fill {
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        #f59e0b,
+        #fbbf24
+    );
+
+    border-radius: 999px;
+
+    transition: width 0.3s ease;
+}
+
+
+/* Trial bottom text */
+
+.trial-plan {
+    margin: 0;
+
+    font-size: 11.5px;
+
+    color: #92400e;
+
+    line-height: 1.4;
+}
+
+
+/* ============================================================
+   LOGOUT BUTTON
+   ============================================================ */
+
+.logout-btn {
+    width: 100%;
+
+    margin-top: 10px;
+
+    padding: 9px 12px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    color: #ef4444;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+
+/* Logout hover */
+
+.logout-btn:hover {
+    background: #fef2f2;
+
+    color: #dc2626;
+}
+
+
+/* Logout icon */
+
+.logout-btn svg {
+    font-size: 18px;
+
+    flex-shrink: 0;
+}
+
+
+/* ============================================================
+   COLLAPSED SIDEBAR
+   ============================================================ */
+
+.sidebar.collapsed {
+    width: 72px;
+}
+
+
+/* ============================================================
+   COLLAPSED LOGO
+   ============================================================ */
+
+.sidebar.collapsed .sidebar-logo {
+    padding: 0;
+
+    justify-content: center;
+}
+
+.sidebar.collapsed .sidebar-logo img {
+    width: 42px;
+    height: 42px;
+}
+
+
+/* ============================================================
+   COLLAPSED BODY
+   ============================================================ */
+
+.sidebar.collapsed .sidebar-body {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+/* ============================================================
+   HIDE SECTION TITLES
+   ============================================================ */
+
+.sidebar.collapsed .sidebar-title {
+    display: none;
+}
+
+
+/* ============================================================
+   COLLAPSED NAVIGATION ITEMS
+   ============================================================ */
+
+.sidebar.collapsed .sidebar-item {
+    justify-content: center;
+
+    padding: 0;
+}
+
+.sidebar.collapsed .sidebar-item-left {
+    flex: none;
+
+    justify-content: center;
+
+    gap: 0;
+}
+
+.sidebar.collapsed .sidebar-icon {
+    width: 20px;
+
+    font-size: 17px;
+}
+
+
+/* ============================================================
+   HIDE BADGES
+   ============================================================ */
+
+.sidebar.collapsed .sidebar-badge {
+    display: none;
+}
+
+
+/* ============================================================
+   COLLAPSED TRIAL CARD
+   ============================================================ */
+
+.sidebar.collapsed .trial-card {
+    display: none;
+}
+
+
+/* ============================================================
+   COLLAPSED LOGOUT
+   ============================================================ */
+
+.sidebar.collapsed .logout-btn {
+    justify-content: center;
+
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.sidebar.collapsed .logout-btn span {
+    display: none;
+}
+
+
+/* ============================================================
+   SIDEBAR TOGGLE BUTTON
+   ============================================================ */
+
+.sidebar-toggle {
+    position: absolute;
+
+    top: 72px;
+    right: -12px;
+
+    width: 24px;
+    height: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 50%;
+
+    color: #667085;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 18px;
+    font-weight: 400;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    z-index: 200;
+
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.08);
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Toggle hover */
+
+.sidebar-toggle:hover {
+    background: #f8fafc;
+
+    color: #111827;
+
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+
+/* Toggle active */
+
+.sidebar-toggle:active {
+    transform: scale(0.95);
+}
+
+
+/* ============================================================
+   COLLAPSED TOGGLE
+   ============================================================ */
+
+.sidebar.collapsed .sidebar-toggle {
+    right: -12px;
+}

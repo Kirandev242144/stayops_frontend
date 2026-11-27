@@ -1,0 +1,240 @@
+/* ==========================================================================
+   AdminSettings.css — Platform Configuration Styles
+   ========================================================================== */
+
+.admin-settings {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-settings-card {
+  background: #ffffff;
+  border: 1px solid #E5E7EB;
+  border-radius: 14px;
+  box-shadow: 0 1px 3px rgba(16, 47, 89, 0.04), 0 1px 2px rgba(16, 47, 89, 0.02);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.admin-settings-card__header {
+  padding: 18px 24px;
+  border-bottom: 1px solid #F1F5F9;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.settings-icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #E6F7F8;
+  color: #04B3C0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.settings-icon-wrap.is-warning {
+  background: #FEF3C7;
+  color: #D97706;
+}
+
+.admin-settings-card__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 750;
+  color: #091B33;
+}
+
+.admin-settings-card__subtitle {
+  margin: 3px 0 0 0;
+  font-size: 12.5px;
+  color: #64748B;
+}
+
+.admin-settings-card__body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.settings-form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .settings-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.settings-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.settings-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #091B33;
+}
+
+.settings-input {
+  height: 42px;
+  padding: 0 14px;
+  border: 1px solid #CBD5E1;
+  border-radius: 9px;
+  font-size: 13.5px;
+  color: #0F172A;
+  outline: none;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.settings-input:focus {
+  border-color: #04B3C0;
+  box-shadow: 0 0 0 3px rgba(4, 179, 192, 0.12);
+}
+
+.settings-input-affix {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.settings-input-affix .settings-input {
+  width: 100%;
+  padding-right: 54px;
+}
+
+.settings-affix {
+  position: absolute;
+  right: 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #94A3B8;
+  pointer-events: none;
+}
+
+.settings-textarea {
+  padding: 12px 14px;
+  border: 1px solid #CBD5E1;
+  border-radius: 9px;
+  font-size: 13.5px;
+  color: #0F172A;
+  outline: none;
+  font-family: inherit;
+  resize: vertical;
+  transition: all 0.2s ease;
+}
+
+.settings-textarea:focus {
+  border-color: #04B3C0;
+  box-shadow: 0 0 0 3px rgba(4, 179, 192, 0.12);
+}
+
+.settings-hint {
+  font-size: 11.5px;
+  color: #94A3B8;
+}
+
+/* Toggle rows */
+.settings-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 0;
+  border-top: 1px solid #F1F5F9;
+}
+
+.settings-toggle-row:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.settings-toggle-row.is-danger-row {
+  border-top: 1px solid #FEE2E2;
+  margin-top: 6px;
+  padding-top: 16px;
+}
+
+.toggle-title {
+  display: flex;
+  align-items: center;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #091B33;
+}
+
+.toggle-title.text-danger {
+  color: #DC2626;
+}
+
+.toggle-subtitle {
+  display: block;
+  font-size: 12px;
+  color: #64748B;
+  margin-top: 2px;
+}
+
+/* Accessible Toggle Switch */
+.admin-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.admin-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.admin-switch-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #CBD5E1;
+  transition: 0.25s;
+  border-radius: 24px;
+}
+
+.admin-switch-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.25s;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.admin-switch input:checked + .admin-switch-slider {
+  background-color: #04B3C0;
+}
+
+.admin-switch input:checked + .admin-switch-slider:before {
+  transform: translateX(20px);
+}

@@ -1,0 +1,604 @@
+/* =========================================================
+   SHOPIFY POLARIS MINIMALIST GUEST PROFILE
+   Clean, Understated, Professional SaaS Aesthetic
+   ========================================================= */
+
+.shopify-profile-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4px 0 40px;
+  color: #202223;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  animation: polarisFadeIn 0.15s ease-out;
+}
+
+@keyframes polarisFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   Top Bar / Header
+   ========================================= */
+
+.shopify-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.shopify-top-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.shopify-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  height: 32px;
+  background: #ffffff;
+  border: 1px solid #c9cccf;
+  border-radius: 6px;
+  color: #202223;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.1s ease, border-color 0.1s ease;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+}
+
+.shopify-back-btn:hover {
+  background: #f6f6f7;
+  border-color: #babec3;
+}
+
+.shopify-profile-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.shopify-page-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #202223;
+  letter-spacing: -0.01em;
+}
+
+/* Shopify Polaris Badges */
+.polaris-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.polaris-badge-neutral {
+  background: #f1f2f3;
+  color: #4a4d50;
+  border: 1px solid #e1e3e5;
+}
+
+.polaris-badge-success {
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.polaris-badge-info {
+  background: #f0f9ff;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+}
+
+.polaris-badge-attention {
+  background: #fffbeb;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+/* Top Action Buttons */
+.shopify-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.shopify-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  height: 32px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.1s ease;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+}
+
+.shopify-btn-secondary {
+  background: #ffffff;
+  color: #202223;
+  border: 1px solid #c9cccf;
+}
+
+.shopify-btn-secondary:hover {
+  background: #f6f6f7;
+  border-color: #babec3;
+}
+
+.shopify-btn-primary {
+  background: #202223;
+  color: #ffffff;
+  border: 1px solid #202223;
+}
+
+.shopify-btn-primary:hover {
+  background: #303133;
+}
+
+/* =========================================
+   Shopify 2-Column Grid (Main 68% / Sidebar 32%)
+   ========================================= */
+
+.shopify-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.9fr) minmax(0, 1.1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 990px) {
+  .shopify-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.shopify-main-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.shopify-sidebar-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* =========================================
+   Polaris Card Architecture
+   ========================================= */
+
+.shopify-card {
+  background: #ffffff;
+  border: 1px solid #e1e3e5;
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+.shopify-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid #f1f2f3;
+}
+
+.shopify-card-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #202223;
+}
+
+.shopify-card-section {
+  padding: 16px 18px;
+}
+
+.shopify-card-section + .shopify-card-section {
+  border-top: 1px solid #f1f2f3;
+}
+
+/* =========================================
+   Identity Verification & Document Viewer
+   ========================================= */
+
+.shopify-key-vals {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 600px) {
+  .shopify-key-vals {
+    grid-template-columns: 1fr;
+  }
+}
+
+.shopify-kv-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.shopify-kv-label {
+  font-size: 12px;
+  color: #6d7175;
+  font-weight: 400;
+}
+
+.shopify-kv-val {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #202223;
+}
+
+/* Document Attachment Card (Hidden photo until clicked) */
+.shopify-doc-attachment-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.shopify-doc-attachment-card:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.shopify-doc-attachment-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.shopify-doc-file-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+  flex-shrink: 0;
+}
+
+.shopify-doc-file-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.shopify-doc-file-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.shopify-doc-file-sub {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.shopify-doc-attachment-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.shopify-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #c9cccf;
+  background: #ffffff;
+  border-radius: 6px;
+  color: #5c5f62;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  text-decoration: none;
+}
+
+.shopify-icon-btn:hover {
+  background: #f1f2f3;
+  color: #202223;
+  border-color: #babec3;
+}
+
+.shopify-doc-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 36px 18px;
+  color: #6d7175;
+  text-align: center;
+}
+
+.shopify-doc-empty p {
+  margin: 0;
+  font-size: 13px;
+}
+
+/* =========================================
+   Stay & Reservation History (Table Style)
+   ========================================= */
+
+.shopify-res-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.shopify-res-table th {
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #6d7175;
+  background: #fafbfb;
+  border-bottom: 1px solid #e1e3e5;
+}
+
+.shopify-res-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #f1f2f3;
+  color: #202223;
+  vertical-align: middle;
+}
+
+.shopify-res-table tr:last-child td {
+  border-bottom: none;
+}
+
+.shopify-res-table tr:hover td {
+  background: #fafbfb;
+}
+
+.shopify-booking-ref {
+  font-weight: 600;
+  color: #202223;
+}
+
+.shopify-booking-unit {
+  font-size: 12px;
+  color: #6d7175;
+}
+
+/* =========================================
+   Sidebar Cards
+   ========================================= */
+
+.shopify-customer-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.shopify-customer-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.shopify-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #f1f2f3;
+  color: #4a4d50;
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid #e1e3e5;
+  flex-shrink: 0;
+}
+
+.shopify-customer-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.shopify-customer-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #202223;
+}
+
+.shopify-customer-sub {
+  font-size: 12px;
+  color: #6d7175;
+}
+
+.shopify-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 13px;
+  padding-top: 10px;
+  border-top: 1px solid #f1f2f3;
+}
+
+.shopify-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #202223;
+}
+
+.shopify-contact-item svg {
+  color: #6d7175;
+  flex-shrink: 0;
+}
+
+.shopify-contact-item a {
+  color: #202223;
+  text-decoration: none;
+}
+
+.shopify-contact-item a:hover {
+  text-decoration: underline;
+}
+
+/* Stats Summary */
+.shopify-metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.shopify-metric-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  background: #fafbfb;
+  border: 1px solid #f1f2f3;
+  border-radius: 6px;
+}
+
+.shopify-metric-label {
+  font-size: 11.5px;
+  color: #6d7175;
+}
+
+.shopify-metric-val {
+  font-size: 15px;
+  font-weight: 600;
+  color: #202223;
+}
+
+/* Notes / Tags */
+.shopify-notes-text {
+  font-size: 12.5px;
+  color: #5c5f62;
+  line-height: 1.5;
+  background: #fafbfb;
+  border: 1px solid #f1f2f3;
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+
+.shopify-tags-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* =========================================
+   Fullscreen Lightbox Modal (Minimalist)
+   ========================================= */
+
+.shopify-lightbox-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(18, 18, 18, 0.88);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  animation: polarisFadeIn 0.15s ease-out;
+}
+
+.shopify-lightbox-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: #1a1a1a;
+  border-bottom: 1px solid #2e2e2e;
+  color: #f1f2f3;
+}
+
+.shopify-lightbox-title {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #f1f2f3;
+}
+
+.shopify-lightbox-tools {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.shopify-lightbox-tool-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  color: #f1f2f3;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  text-decoration: none;
+}
+
+.shopify-lightbox-tool-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.shopify-lightbox-stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow: auto;
+}
+
+.shopify-lightbox-img {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  background: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  transition: transform 0.15s ease-out;
+}

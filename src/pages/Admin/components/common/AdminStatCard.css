@@ -1,0 +1,147 @@
+/* ==========================================================================
+   AdminStatCard.css — Reusable KPI Card Styles
+   ========================================================================== */
+
+.admin-stat-card {
+  background: #ffffff;
+  border: 1px solid #E5E7EB;
+  border-radius: 14px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 1px 3px rgba(16, 47, 89, 0.04), 0 1px 2px rgba(16, 47, 89, 0.02);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-stat-card:hover {
+  border-color: #CBD5E1;
+  box-shadow: 0 6px 18px rgba(16, 47, 89, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Subtle top border accent strip */
+.admin-stat-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: transparent;
+  transition: background 0.2s ease;
+}
+
+.admin-stat-card--teal:hover::before {
+  background: #04B3C0;
+}
+.admin-stat-card--emerald:hover::before {
+  background: #10B981;
+}
+.admin-stat-card--blue:hover::before {
+  background: #2563EB;
+}
+.admin-stat-card--purple:hover::before {
+  background: #8B5CF6;
+}
+
+/* Top: Title & Icon */
+.admin-stat-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.admin-stat-card__title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748B;
+  letter-spacing: 0.1px;
+}
+
+.admin-stat-card__icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.admin-stat-card:hover .admin-stat-card__icon-wrap {
+  transform: scale(1.05);
+}
+
+.admin-stat-card--teal .admin-stat-card__icon-wrap {
+  background: #E6F7F8;
+  color: #04B3C0;
+}
+
+.admin-stat-card--emerald .admin-stat-card__icon-wrap {
+  background: #ECFDF5;
+  color: #10B981;
+}
+
+.admin-stat-card--blue .admin-stat-card__icon-wrap {
+  background: #EFF6FF;
+  color: #2563EB;
+}
+
+.admin-stat-card--purple .admin-stat-card__icon-wrap {
+  background: #F5F3FF;
+  color: #8B5CF6;
+}
+
+/* Main Value */
+.admin-stat-card__main {
+  margin-bottom: 12px;
+}
+
+.admin-stat-card__value {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 750;
+  color: #091B33;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+/* Bottom: Trend and Subtitle */
+.admin-stat-card__bottom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 12px;
+}
+
+.admin-stat-card__change {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.admin-stat-card__change.is-positive {
+  background: #E8FFF5;
+  color: #0E9F6E;
+}
+
+.admin-stat-card__change.is-negative {
+  background: #FEE2E2;
+  color: #DC2626;
+}
+
+.admin-stat-card__subtitle {
+  color: #94A3B8;
+  font-weight: 500;
+}

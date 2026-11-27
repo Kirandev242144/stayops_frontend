@@ -1,0 +1,457 @@
+/* ==========================================================================
+   AdminSubscriptions.css — Minimalist Platform Subscriptions & Quota Engine
+   ========================================================================== */
+
+.admin-subscriptions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Page Header ── */
+.admin-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.admin-page-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.admin-page-subtitle {
+  font-size: 13px;
+  color: #64748b;
+  margin: 2px 0 0 0;
+}
+
+.admin-page-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ── 4 Minimalist KPI Metric Cards ── */
+.admin-sub-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .admin-sub-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.admin-sub-metric-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.admin-sub-metric-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+}
+
+.admin-sub-metric-val {
+  font-size: 19px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  margin: 1px 0;
+}
+
+.admin-sub-metric-hint {
+  font-size: 11.5px;
+  color: #94a3b8;
+}
+
+/* ── Segmented Navigation Tabs ── */
+.admin-sub-tabs-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 8px;
+  margin-top: 4px;
+}
+
+.admin-sub-tabs-list {
+  display: flex;
+  align-items: center;
+  background: #f1f5f9;
+  padding: 3px;
+  border-radius: 7px;
+  gap: 3px;
+}
+
+.admin-sub-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #64748b;
+  border-radius: 5px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.admin-sub-tab-btn:hover {
+  color: #0f172a;
+}
+
+.admin-sub-tab-btn--active {
+  background: #ffffff;
+  color: #0f172a;
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.admin-tab-count-pill {
+  font-size: 10.5px;
+  font-weight: 600;
+  background: #e2e8f0;
+  color: #475569;
+  padding: 1px 6px;
+  border-radius: 10px;
+}
+
+.admin-sub-tab-btn--active .admin-tab-count-pill {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.admin-sub-tabs-meta {
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* ── Section Title (Compact & Minimal) ── */
+.admin-section-header-compact {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+.admin-section-title-compact {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0;
+}
+
+.admin-section-subtitle-compact {
+  font-size: 12px;
+  color: #64748b;
+  margin: 0;
+}
+
+/* ── Plan Tiers View ── */
+.admin-plans-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 900px) {
+  .admin-plans-overview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-plan-card-refined {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  transition: border-color 0.15s ease;
+}
+
+.admin-plan-card-refined:hover {
+  border-color: #cbd5e1;
+}
+
+.admin-plan-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.admin-plan-card-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+  display: block;
+}
+
+.admin-plan-card-target {
+  font-size: 11.5px;
+  color: #64748b;
+  display: block;
+  margin-top: 1px;
+}
+
+.admin-plan-card-pricing {
+  margin: 4px 0;
+}
+
+.admin-plan-card-price-primary {
+  font-size: 17px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.admin-plan-card-cycle {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 400;
+  margin-left: 2px;
+}
+
+.admin-plan-card-annual {
+  font-size: 11.5px;
+  color: #64748b;
+  margin-top: 1px;
+}
+
+.admin-plan-quotas-list {
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 6px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-plan-quota-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #475569;
+}
+
+.admin-plan-quota-label {
+  color: #64748b;
+}
+
+.admin-plan-quota-val {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.admin-plan-card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.admin-plan-sub-count {
+  font-size: 12px;
+  color: #475569;
+}
+
+.admin-plan-sub-count strong {
+  color: #0f172a;
+}
+
+.admin-btn-configure-plan {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 5px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.admin-btn-configure-plan:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+/* ── Tenant Quota Ledger Table ── */
+.sub-quota-badge-custom {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #2563eb;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-left: 6px;
+}
+
+.sub-quota-count {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.sub-quota-max {
+  font-size: 11.5px;
+  color: #64748b;
+  font-weight: 400;
+}
+
+.sub-btn-adjust-quota {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  border-radius: 5px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.sub-btn-adjust-quota:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+/* ── Transactions Ledger Section ── */
+.admin-sub-table-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sub-invoice-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.sub-tenant-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.sub-tenant-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.sub-prop-title {
+  font-size: 11.5px;
+  color: #64748b;
+}
+
+.sub-plan-badge-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sub-cycle-tag {
+  font-size: 11px;
+  font-weight: 500;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.sub-amount-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.sub-amount {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.sub-tax-sub {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.sub-gateway-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.sub-gateway {
+  font-size: 12px;
+  color: #334155;
+}
+
+.sub-date {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.sub-btn-view-invoice {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  border-radius: 5px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.sub-btn-view-invoice:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+.spin-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

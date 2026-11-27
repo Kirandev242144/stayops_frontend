@@ -1,0 +1,438 @@
+/* =========================================================
+   RECORD PAYMENT RECEIPT MODAL (MINIMALIST FINTECH STYLE)
+   ========================================================= */
+
+.rpm-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: rpmFadeIn 0.15s ease-out;
+}
+
+@keyframes rpmFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.rpm-modal {
+  width: 100%;
+  max-width: 440px;
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 14px;
+  box-shadow: 
+    0 20px 40px -12px rgba(15, 23, 42, 0.18),
+    0 0 0 1px rgba(15, 23, 42, 0.04);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: rpmSlideUp 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: inherit;
+}
+
+@keyframes rpmSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* HEADER */
+.rpm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 14px;
+  background: #ffffff;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.rpm-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.rpm-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+}
+
+.rpm-guest-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.rpm-guest-name {
+  font-weight: 600;
+  color: #334155;
+}
+
+.rpm-bullet {
+  color: #cbd5e1;
+}
+
+.rpm-booking-id {
+  font-weight: 500;
+  color: #94a3b8;
+}
+
+.rpm-close-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.rpm-close-btn:hover {
+  color: #0f172a;
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+/* BODY */
+.rpm-body {
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: #ffffff;
+}
+
+/* PAID IN FULL ALERT */
+.rpm-paid-alert {
+  padding: 10px 14px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  color: #15803d;
+  font-size: 12.5px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* HERO AMOUNT FIELD */
+.rpm-hero-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rpm-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rpm-micro-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #475569;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.rpm-chip-btn {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.rpm-chip-btn:hover {
+  background: #e0e7ff;
+  border-color: #c7d2fe;
+  color: #1d4ed8;
+}
+
+.rpm-amount-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.rpm-currency-symbol {
+  position: absolute;
+  left: 14px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #64748b;
+  pointer-events: none;
+}
+
+.rpm-amount-input {
+  width: 100%;
+  padding: 10px 14px 10px 34px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #0f172a;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  outline: none;
+  transition: all 0.15s ease;
+  font-family: inherit;
+  -moz-appearance: textfield;
+}
+
+.rpm-amount-input::-webkit-outer-spin-button,
+.rpm-amount-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.rpm-amount-input:focus {
+  background: #ffffff;
+  border-color: #0f172a;
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.08);
+}
+
+.rpm-amount-input-wrap.error .rpm-amount-input {
+  border-color: #ef4444;
+  background: #fef2f2;
+}
+
+.rpm-amount-input-wrap.error .rpm-amount-input:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+}
+
+.rpm-error-msg {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: #dc2626;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+/* 2-COLUMN GRID FOR METHOD & NOTES */
+.rpm-row-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.rpm-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rpm-select {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #0f172a;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.15s ease;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.rpm-select:focus {
+  border-color: #0f172a;
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.06);
+}
+
+.rpm-input {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: #0f172a;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.rpm-input:focus {
+  border-color: #0f172a;
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.06);
+}
+
+.rpm-input::placeholder {
+  color: #94a3b8;
+  font-size: 12.5px;
+}
+
+/* FOLIO AUDIT SUMMARY CARD (MINIMALIST) */
+.rpm-summary-card {
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12.5px;
+}
+
+.rpm-summary-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.rpm-summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #64748b;
+}
+
+.rpm-summary-row span:last-child {
+  font-weight: 600;
+  color: #334155;
+}
+
+.rpm-summary-row.paid-row span:last-child {
+  color: #16a34a;
+}
+
+.rpm-summary-row.now-row span:last-child {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.rpm-summary-divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 4px 0;
+}
+
+.rpm-balance-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2px;
+}
+
+.rpm-balance-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.rpm-badge-settled {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.rpm-badge-due {
+  display: inline-block;
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* FOOTER */
+.rpm-footer {
+  padding: 12px 20px;
+  background: #fafafa;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.rpm-btn-cancel {
+  padding: 8px 16px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.rpm-btn-cancel:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+  border-color: #94a3b8;
+}
+
+.rpm-btn-submit {
+  padding: 8px 18px;
+  background: #0f172a;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rpm-btn-submit:hover:not(:disabled) {
+  background: #1e293b;
+  transform: translateY(-0.5px);
+}
+
+.rpm-btn-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}

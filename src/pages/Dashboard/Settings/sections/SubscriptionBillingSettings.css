@@ -1,0 +1,748 @@
+/* ==========================================================================
+   SubscriptionBillingSettings.css
+   Minimalist & Professional SaaS Billing Interface
+   ========================================================================== */
+
+.sub-settings-root {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  color: #0f172a;
+}
+
+/* ── Section Header ── */
+.sub-section-header {
+  padding-bottom: 4px;
+}
+
+.sub-heading-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+}
+
+.sub-heading-subtitle {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.45;
+}
+
+/* ── Universal Card ── */
+.sub-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* ── Current Plan Overview Card ── */
+.sub-overview-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.sub-overview-top {
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.sub-overview-left {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.sub-plan-badge-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sub-plan-name {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* Subtle dot status badge */
+.sub-status-dot-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.sub-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.sub-status--active {
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.sub-status--active .sub-status-dot {
+  background: #16a34a;
+}
+
+.sub-status--trial {
+  background: #fffbeb;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+.sub-status--trial .sub-status-dot {
+  background: #d97706;
+}
+
+.sub-plan-meta {
+  margin: 0;
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.sub-overview-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Quotas Grid */
+.sub-quotas-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  padding: 14px 24px;
+  gap: 16px;
+}
+
+@media (max-width: 860px) {
+  .sub-quotas-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.sub-quota-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sub-quota-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #64748b;
+}
+
+.sub-quota-val {
+  font-size: 13.5px;
+  color: #1e293b;
+}
+
+.sub-quota-current {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.sub-quota-max {
+  color: #64748b;
+  font-weight: 400;
+}
+
+.sub-quota-gateway,
+.sub-quota-gst {
+  font-size: 13px;
+  font-weight: 500;
+  color: #334155;
+}
+
+/* ── Plan Switcher Section ── */
+.sub-plans-card {
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  border: 1px solid #cbd5e1;
+}
+
+.sub-plans-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.sub-plans-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.sub-plans-desc {
+  margin: 3px 0 0;
+  font-size: 12.5px;
+  color: #64748b;
+}
+
+/* Segmented Cycle Toggle */
+.sub-cycle-toggle {
+  display: inline-flex;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
+  padding: 3px;
+}
+
+.sub-cycle-opt {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 13px;
+  border-radius: 5px;
+  border: none;
+  background: transparent;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.sub-cycle-opt--active {
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
+}
+
+.sub-cycle-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* Plan Cards Grid */
+.sub-plans-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 980px) {
+  .sub-plans-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sub-plan-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 18px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.15s ease;
+}
+
+.sub-plan-card:hover {
+  border-color: #cbd5e1;
+}
+
+.sub-plan-card--recommended {
+  border-color: #04b3c0;
+}
+
+.sub-plan-card--current {
+  background: #fafafa;
+  border-color: #cbd5e1;
+}
+
+.sub-plan-top {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 12px;
+}
+
+.sub-plan-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sub-plan-card-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.sub-recommended-tag {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #0369a1;
+  background: #e0f2fe;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.sub-plan-category {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.sub-plan-pricing {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.sub-plan-amount {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.sub-plan-cycle {
+  font-size: 12.5px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.sub-plan-tax-note {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-left: 2px;
+}
+
+.sub-plan-limit-chip {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #334155;
+  background: #f1f5f9;
+  padding: 5px 9px;
+  border-radius: 5px;
+  margin-bottom: 14px;
+}
+
+.sub-plan-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  flex: 1;
+}
+
+.sub-plan-highlights li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12.5px;
+  color: #475569;
+  line-height: 1.4;
+}
+
+.sub-plan-check {
+  color: #04b3c0;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.sub-plan-footer {
+  margin-top: auto;
+}
+
+.sub-btn-current {
+  display: block;
+  text-align: center;
+  padding: 8px 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #64748b;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  cursor: default;
+}
+
+/* ── Invoices & Receipts Card ── */
+.sub-invoices-card {
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sub-invoices-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sub-invoices-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.sub-invoices-desc {
+  margin: 3px 0 0;
+  font-size: 12.5px;
+  color: #64748b;
+}
+
+.sub-invoices-state {
+  padding: 28px;
+  text-align: center;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.sub-invoices-state--empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 1px dashed #cbd5e1;
+}
+
+.sub-invoices-state--empty p {
+  margin: 0;
+  max-width: 380px;
+  line-height: 1.45;
+}
+
+.sub-empty-icon {
+  color: #94a3b8;
+}
+
+/* Clean Invoices Table */
+.sub-table-wrapper {
+  overflow-x: auto;
+}
+
+.sub-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.sub-table th {
+  text-align: left;
+  padding: 9px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.sub-table td {
+  padding: 12px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.sub-td-inv-num {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.sub-td-muted {
+  color: #64748b;
+  font-size: 12.5px;
+}
+
+.sub-td-strong {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.sub-td-capitalize {
+  text-transform: capitalize;
+}
+
+.sub-td-amount {
+  font-weight: 600;
+  color: #0f172a;
+  display: flex;
+  flex-direction: column;
+}
+
+.sub-amount-sub {
+  font-size: 11px;
+  font-weight: 400;
+  color: #94a3b8;
+}
+
+.sub-status-pill {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.sub-status-pill--paid {
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.sub-btn-view {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.sub-btn-view:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+/* ── Buttons (Minimalist Design System) ── */
+.sub-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  white-space: nowrap;
+}
+
+.sub-btn--primary {
+  background: #0f172a;
+  color: #ffffff;
+  border: 1px solid #0f172a;
+}
+
+.sub-btn--primary:hover {
+  background: #1e293b;
+  border-color: #1e293b;
+}
+
+.sub-btn--secondary {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+}
+
+.sub-btn--secondary:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+}
+
+.sub-btn--subtle {
+  background: transparent;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+.sub-btn--subtle:hover {
+  background: #f8fafc;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+.sub-btn--full {
+  width: 100%;
+}
+
+/* ── Clean Checkout Modal / Sheet ── */
+.sub-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(2px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.sub-checkout-sheet {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.18);
+  width: 100%;
+  max-width: 480px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.sub-sheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 18px 22px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.sub-sheet-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.sub-sheet-subtitle {
+  margin: 3px 0 0;
+  font-size: 12.5px;
+  color: #64748b;
+}
+
+.sub-sheet-close {
+  background: none;
+  border: none;
+  font-size: 22px;
+  line-height: 1;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 0;
+}
+
+.sub-sheet-close:hover {
+  color: #0f172a;
+}
+
+.sub-sheet-body {
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sub-sheet-summary {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.sub-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12.5px;
+  color: #475569;
+}
+
+.sub-summary-row--total {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.sub-summary-line {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 3px 0;
+}
+
+.sub-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sub-form-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.sub-label-optional {
+  font-weight: 400;
+  color: #94a3b8;
+}
+
+.sub-form-input {
+  padding: 8px 11px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #0f172a;
+  outline: none;
+  transition: border-color 0.12s ease;
+}
+
+.sub-form-input:focus {
+  border-color: #0f172a;
+}
+
+.sub-form-hint {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.sub-security-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  color: #64748b;
+  padding-top: 2px;
+}
+
+.sub-sheet-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 14px 22px;
+  border-top: 1px solid #e2e8f0;
+  background: #f8fafc;
+}

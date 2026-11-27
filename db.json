@@ -1,0 +1,394 @@
+{
+    "categories": [
+        {
+            "id": "getting-started",
+            "title": "Getting Started & Onboarding",
+            "description": "Set up your property, add room inventory, invite caretaker staff, and connect your first OTA channel in under 30 minutes.",
+            "icon": "FiCheckCircle",
+            "color": "#04B3C0",
+            "articleCount": 3,
+            "popular": true,
+            "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80"
+          },
+          {
+            "id": "caretaker-ops",
+            "title": "Caretaker Operations & Ground Workflows",
+            "description": "Low-text, Android-first mobile workflows for housekeeping photo evidence, guest check-in/out, petty cash logging, and meal billing.",
+            "icon": "FiSmartphone",
+            "color": "#FF6B35",
+            "articleCount": 4,
+            "popular": true,
+            "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80"
+          },
+          {
+            "id": "channel-manager",
+            "title": "Channel Manager & OTA Sync",
+            "description": "Two-way real-time sync with Airbnb, Booking.com, Agoda, and MakeMyTrip. Row-level locking prevents double-bookings across all channels.",
+            "icon": "FiRefreshCw",
+            "color": "#8B5CF6",
+            "articleCount": 3,
+            "popular": true,
+            "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
+          },
+          {
+            "id": "whatsapp-storefront",
+            "title": "WhatsApp Commerce & Direct Booking",
+            "description": "Meta Cloud API powered inquiry-to-booking automation, Razorpay/Cashfree payment links, Click-to-Chat QR codes, and lite web storefronts.",
+            "icon": "FiMessageSquare",
+            "color": "#10B981",
+            "articleCount": 3,
+            "popular": true,
+            "image": "https://images.unsplash.com/photo-1534536281715-e28d76689b4d?auto=format&fit=crop&w=800&q=80"
+          },
+          {
+            "id": "owner-dashboard",
+            "title": "Owner PMS & Revenue Dashboard",
+            "description": "Multi-calendar views, guest master folio, net revenue & ADR reports, expense tracker, and drag-to-block room management.",
+            "icon": "FiBarChart2",
+            "color": "#EC4899",
+            "articleCount": 3,
+            "popular": true,
+            "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
+          },
+          {
+            "id": "billing-subscriptions",
+            "title": "Billing, Plans & Entitlements",
+            "description": "Lite (₹1,499), Pro Growth (₹2,999), and Multi-Property Hub (₹5,999) plan details, room caps, annual discounts, and GST invoicing.",
+            "icon": "FiCreditCard",
+            "color": "#F59E0B",
+            "articleCount": 3,
+            "popular": false,
+            "image": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80"
+          },
+          {
+            "id": "direct-storefront",
+            "title": "Direct Storefront & Custom Domains",
+            "description": "Auto-generated property web pages, hero image galleries, SEO metadata, embedded Razorpay checkout widget, and CNAME custom domain mapping.",
+            "icon": "FiGlobe",
+            "color": "#06B6D4",
+            "articleCount": 2,
+            "popular": false,
+            "image": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80"
+          },
+          {
+            "id": "security-rbac",
+            "title": "Security, RBAC & Audit Logs",
+            "description": "Tenant-isolated database architecture, role-based access control for owners/managers/caretakers, immutable audit trails, and JWT session security.",
+            "icon": "FiShield",
+            "color": "#3B82F6",
+            "articleCount": 3,
+            "popular": false,
+            "image": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80"
+          }
+      
+    ],
+  
+    "articles": [
+        {
+            "id": "property-setup-wizard",
+            "categoryId": "getting-started",
+            "title": "Creating Your First Property & Adding Room Inventory",
+            "summary": "Step-by-step walkthrough of the property setup wizard — add address, upload hero photos, define room types, and set base rates.",
+            "readTime": "4 min read",
+            "views": 4200,
+            "helpfulCount": 1120,
+            "updatedAt": "July 2026",
+            "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80",
+            "content": "\n # Creating Your First Property\n \n After signing up for StayOps India, the setup wizard guides you through property configuration in three simple steps.\n \n ## Step 1 — Property Details\n \n 1. **Property Name & Type**: Enter your homestay or villa name (e.g. *Sunbird Villa, Coorg*). Select type: Homestay, Villa, Apartment, or Farmstay.\n 2. **Address & Map Pin**: Type your address or drop a pin on the embedded Google Map. This powers your storefront location card.\n 3. **Hero Photos**: Upload 5–10 high-resolution images. The first image becomes your storefront hero banner. Supported formats: JPG, PNG, WebP (max 10 MB each).\n \n > [!TIP]\n > Use landscape orientation photos shot in natural daylight. Properties with 8+ photos receive 40% more direct inquiries according to StayOps analytics.\n \n ## Step 2 — Room Inventory\n \n 1. Tap **Add Room Type** (e.g. *Deluxe Double*, *Garden Suite*, *Dormitory Bed*).\n 2. Set **quantity** (how many physical rooms of this type), **max occupancy**, and **base rate** (₹/night).\n 3. Add room-specific amenities: AC, Wi-Fi, TV, Balcony, Attached Bathroom, etc.\n \n > [!IMPORTANT]\n > Your subscription plan determines room caps: Lite allows up to 3 rooms, Pro Growth is unlimited, Multi-Property Hub supports up to 5 properties.\n \n ## Step 3 — Publish\n \n Review your listing preview, then tap **Publish Property**. StayOps auto-generates your storefront URL:\n - Lite Plan: `yourproperty.stayops.in`\n - Pro Growth & above: Map your own custom domain (e.g. `www.coorgheavenlystay.com`)\n \n \"Setting up your first property takes under 15 minutes. Most owners complete it during their morning chai.\"\n       "
+          },
+          {
+            "id": "invite-caretaker-staff",
+            "categoryId": "getting-started",
+            "title": "Inviting Caretakers & Assigning Property Access",
+            "summary": "How to create staff accounts for on-ground caretakers and house managers with role-scoped mobile app access.",
+            "readTime": "3 min read",
+            "views": 2850,
+            "helpfulCount": 720,
+            "updatedAt": "July 2026",
+            "image": "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=80",
+            "content": "\n # Inviting Your Ground Staff\n \n StayOps separates roles so your caretaker sees only what they need — task lists, housekeeping checklists, and check-in flows — without access to financial data.\n \n ## How to Invite a Caretaker\n \n 1. Go to **Settings → Staff Management → Invite Staff**.\n 2. Enter the caretaker's **mobile number** (they'll receive an SMS with download link + OTP login).\n 3. Select role: **Caretaker** or **House Manager**.\n 4. Assign them to one or more properties.\n \n > [!IMPORTANT]\n > Caretakers can ONLY see properties assigned to them. Financial data (revenue, ADR, payouts) is completely hidden from their view.\n \n ## What Your Caretaker Sees After Login\n \n The Caretaker App opens to a **task-based home screen** showing:\n - Today's Check-ins (arriving guests)\n - Today's Check-outs (departing guests)\n - Rooms Needing Cleaning (color-coded by priority: red = urgent, yellow = standard)\n \n \"Your caretaker Raju in Coorg doesn't need to see your ₹2.4 lakh monthly revenue. He needs to see which rooms to clean by 2 PM.\"\n \n ## Removing or Deactivating Staff\n \n Go to **Settings → Staff Management**, tap on the staff member, and select **Deactivate**. Their mobile session terminates immediately and all JWT tokens are revoked.\n       "
+          },
+          {
+            "id": "connect-first-ota",
+            "categoryId": "getting-started",
+            "title": "Connecting Your First OTA Channel (Airbnb / Booking.com)",
+            "summary": "Link your Airbnb or Booking.com listing to StayOps for automatic two-way calendar and rate synchronization.",
+            "readTime": "5 min read",
+            "views": 3600,
+            "helpfulCount": 940,
+            "updatedAt": "July 2026",
+            "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+            "content": "\n # Connecting Your First OTA\n \n StayOps Channel Manager supports two sync modes depending on the OTA:\n \n - **API Mode (Real-Time)**: Airbnb, Booking.com — instant sync within 3 seconds\n - **iCal Mode (Polling)**: Agoda, MakeMyTrip/Goibibo — syncs every 5 minutes\n \n ## Connecting Airbnb (API Mode)\n \n 1. Navigate to **Channel Manager → Add Channel → Airbnb**.\n 2. Click **Connect Airbnb Account** — this opens an OAuth consent screen.\n 3. Log into your Airbnb host account and grant StayOps calendar + booking access.\n 4. Map your StayOps room types to your Airbnb listing rooms.\n 5. Click **Enable Sync** — existing Airbnb bookings will auto-import within 60 seconds.\n \n > [!TIP]\n > Keep your Airbnb API connection active by not changing your Airbnb password without re-authenticating in StayOps.\n \n ## Connecting MakeMyTrip (iCal Mode)\n \n 1. Navigate to **Channel Manager → Add Channel → MakeMyTrip**.\n 2. Copy the **iCal export URL** from your MakeMyTrip extranet.\n 3. Paste it into StayOps and set the poll interval (default: every 5 minutes).\n 4. StayOps also generates an iCal feed URL — paste this back into MakeMyTrip's calendar import section.\n \n > [!NOTE]\n > iCal sync is one-directional per feed. StayOps creates a two-way bridge by maintaining both an import and export feed.\n \n \"Once your first channel is connected, every booking that comes in automatically blocks dates across ALL your channels. No more manual calendar juggling.\"\n       "
+          },
+          {
+            "id": "caretaker-photo-ready-status",
+            "categoryId": "caretaker-ops",
+            "title": "Housekeeping Checklist & Required Photo Verification",
+            "summary": "Why a room cannot be marked 'Ready' without attaching photo evidence — and how to complete the full cleaning workflow.",
+            "readTime": "3 min read",
+            "views": 1420,
+            "helpfulCount": 389,
+            "updatedAt": "July 2026",
+            "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80",
+            "content": "\n # Housekeeping Photo Verification\n \n Remote property owners live in metro cities while their homestays in Coorg, Manali, or Lonavala are run by ground staff. Photo evidence bridges the trust gap and provides real-time operational visibility.\n \n ## Room Status Lifecycle\n \n The room flows through these stages:\n - **Dirty** → Guest checked out, room needs cleaning\n - **In Progress** → Caretaker has started cleaning\n - **Photo Uploaded** → At least 1 photo per section captured\n - **Ready** → Owner notified, room available for next guest\n \n > [!IMPORTANT]\n > The StayOps app BLOCKS the \"Mark as Ready\" button until at least 1 photo per room section (bed area, bathroom) is uploaded. This is a system-level enforcement, not optional.\n \n \"A picture of a freshly made bed is worth a thousand WhatsApp messages between owner and caretaker.\"\n \n ## Step-by-Step Workflow\n \n 1. **Open the Caretaker App** → Tap your assigned property from the home screen.\n 2. **Select the Room** → Tap the room marked **Dirty** or **In Progress**.\n 3. **Complete Checklist Items**:\n     - Fresh bedsheets and pillow covers installed\n     - Bathroom sanitized & towels replaced\n     - Water jug filled & complimentary tea tray replenished\n     - Dustbin emptied, floor mopped\n 4. **Capture Photos** → Tap the camera icon, snap the made bed and clean bathroom.\n 5. **Mark as Ready** → Button unlocks after photo upload. Owner gets an instant push notification.\n \n > [!TIP]\n > If your internet is weak, the app saves photos locally and syncs them automatically when connectivity resumes. Don't worry about losing your work!\n       "
+          },
+          {
+            "id": "guest-checkin-checkout-flow",
+            "categoryId": "caretaker-ops",
+            "title": "Guest Check-In & Check-Out Procedures",
+            "summary": "Verify arriving guests via OTP or booking reference, capture ID scans, generate welcome packets, and process departures.",
+            "readTime": "4 min read",
+            "views": 1850,
+            "helpfulCount": 485,
+            "updatedAt": "July 2026",
+            "image": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80",
+            "content": "\n # Guest Check-In & Check-Out\n \n The caretaker app guides you through a structured process for both arrivals and departures, ensuring no steps are missed.\n \n ## Check-In Flow\n \n 1. **Guest Arrives** → Open the **Today's Check-ins** section on your home screen.\n 2. **Verify Identity** → Ask the guest for their booking reference number OR the OTP sent to their phone.\n 3. **Scan Guest ID** → Use the app's camera to capture the guest's Aadhaar card or passport. This is stored securely and visible only to the property owner.\n 4. **Generate Welcome Packet** → The app auto-generates a digital welcome card with Wi-Fi password, house rules, emergency contacts, and local area recommendations.\n 5. **Confirm Check-In** → Tap **Mark as Checked In**. The owner receives a push notification with the guest's name, photo, and check-in timestamp.\n \n > [!TIP]\n > Pro Tip: Some owners configure a WhatsApp welcome message that auto-sends to the guest when you mark them as checked in. Ask your property owner if this is enabled!\n \n \"Checking in a guest takes under 2 minutes. The app handles the paperwork so you can focus on the hospitality.\"\n \n ## Check-Out Flow\n \n 1. **Guest Departs** → Open **Today's Check-outs**.\n 2. **Room Inspection** → Walk through the room and note any damages or missing items.\n 3. **Confirm Check-Out** → Tap **Mark as Checked Out**. This automatically:\n     - Changes room status to **Dirty** (triggers housekeeping workflow)\n     - Finalizes the guest's master folio (all meals, add-ons, petty cash)\n     - Sends a post-stay feedback request to the guest via WhatsApp (if configured)\n       "
+          },
+          {
+            "id": "petty-cash-meal-logging",
+            "categoryId": "caretaker-ops",
+            "title": "Logging Petty Cash Spends & Guest Meal Billing",
+            "summary": "Record grocery purchases, fuel, meal charges, and transport expenses with receipt photo uploads for owner approval.",
+            "readTime": "3 min read",
+            "views": 980,
+            "helpfulCount": 275,
+            "updatedAt": "July 2026",
+            "image": "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80",
+            "content": "\n # Petty Cash & Meal Billing\n \n Ground staff handle daily cash for groceries, cooking gas, fuel, and guest meals. StayOps provides a simple ledger that keeps everything transparent between caretaker and owner.\n \n ## Logging a Petty Cash Expense\n \n 1. Open the app → Tap **Petty Cash** from the bottom menu.\n 2. Tap **+ Add Expense**.\n 3. Enter: Amount (e.g. ₹450), Category (Groceries / Fuel / Supplies / Other), Description (e.g. \"Vegetables & milk for guest breakfast\").\n 4. **Snap a receipt photo** → This is mandatory. No receipt = no approval.\n 5. Submit → Owner receives a push notification to Approve or Reject.\n \n > [!NOTE]\n > All petty cash entries require a receipt photo upload. This is a system requirement and cannot be bypassed.\n \n \"Your owner sitting in Bangalore can approve your ₹350 vegetable bill from Madikeri within seconds.\"\n \n ## Recording Guest Meal Charges\n \n 1. Tap **Active Stays** on the home screen.\n 2. Select the guest's room (e.g. *Villa Sunbird — Room 102*).\n 3. Tap **Add Meal Charge**.\n 4. Enter items or lump-sum amount (e.g. ₹850 for Dinner — Chicken curry, rice, dal, salad).\n 5. The charge appends to the guest's **master folio** automatically and shows up on their checkout invoice.\n \n ## Daily Ledger View\n \n The **Petty Cash Ledger** shows a running daily total with all entries, receipt thumbnails, and approval status (Pending / Approved / Rejected). Weekly auto-reconciliation prompts help you and the owner stay aligned.\n       "
+          },
+          {
+            "id": "offline-sync-android-app",
+            "categoryId": "caretaker-ops",
+            "title": "Offline Mode & Background Sync for Low Connectivity Areas",
+            "summary": "How the Android-first caretaker app works without internet — local caching, photo queue, and automatic background sync.",
+            "readTime": "2 min read",
+            "views": 1120,
+            "helpfulCount": 310,
+            "updatedAt": "July 2026",
+            "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80",
+            "content": "\n # Working Offline\n \n Many Indian homestays are in remote hill stations or rural areas with spotty 2G/3G connectivity. The StayOps Caretaker App is built Android-first with full offline support.\n \n ## What Works Offline\n \n - ✅ Viewing today's check-ins and check-outs\n - ✅ Completing housekeeping checklists\n - ✅ Taking photos (stored locally)\n - ✅ Logging petty cash entries\n - ✅ Recording meal charges\n \n > [!TIP]\n > All your work is saved locally on your phone. Nothing is lost even if you have zero signal all day.\n \n ## How Background Sync Works\n \n 1. You complete your tasks normally — the app saves everything to your phone's local storage.\n 2. A small **sync indicator** (circular arrow icon) shows how many items are queued.\n 3. When your phone reconnects to Wi-Fi or mobile data, the app automatically uploads everything in the background.\n 4. Once synced, the owner sees all your updates with the original timestamps (not the sync time).\n \n \"Your caretaker in a Himalayan homestay can complete their entire morning routine offline. When they walk to the village market and get 4G signal, everything syncs in seconds.\"\n       "
+          },
+          {
+            "id": "ical-api-sync-resolution",
+            "categoryId": "channel-manager",
+            "title": "API vs iCal Sync Modes — How Real-Time OTA Sync Works",
+            "summary": "Understanding the two sync modes: real-time API for Airbnb/Booking.com and iCal polling for Agoda/MakeMyTrip.",
+            "readTime": "5 min read",
+            "views": 2150,
+            "helpfulCount": 612,
+            "updatedAt": "July 2026",
+            "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+            "content": "\n # API vs iCal Sync Modes\n \n StayOps Channel Manager uses two different sync strategies depending on what each OTA platform supports.\n \n ## API Mode (Real-Time) — Airbnb & Booking.com\n \n These platforms provide direct developer APIs, enabling:\n - **Instant inventory lock** within 3 seconds of a booking\n - **Webhook notifications** for booking creation, modification, and cancellation\n - **Two-way rate push** — set your base rate in StayOps, and it pushes to Airbnb/Booking.com automatically\n - **Minimum stay rules** synced across platforms\n \n > [!TIP]\n > Keep your Airbnb and Booking.com API keys up to date in Settings → Channel Manager → API Credentials. Expired keys will fallback to iCal mode.\n \n ## iCal Mode (Polling) — Agoda & MakeMyTrip\n \n These platforms support calendar feeds but not real-time APIs:\n - StayOps **imports** their iCal feed every 5 minutes (configurable: 5, 10, 15, or 30 min)\n - StayOps **exports** its own iCal feed that you paste into the OTA's calendar import\n - This creates a two-way bridge, but with a small delay window\n \n > [!IMPORTANT]\n > The 5-minute polling gap means there's a theoretical window for double-bookings on iCal channels. StayOps handles this with timestamp-based conflict resolution (see the Double-Booking Prevention article).\n \n \"API mode is like a live phone call — instant. iCal mode is like email — reliable but with a few minutes delay.\"\n       "
+          },
+          {
+            "id": "double-booking-prevention",
+            "categoryId": "channel-manager",
+            "title": "Double-Booking Prevention & Conflict Resolution Logic",
+            "summary": "How row-level database locking and millisecond timestamp comparison prevent overlapping reservations across OTAs.",
+            "readTime": "4 min read",
+            "views": 3200,
+            "helpfulCount": 890,
+            "updatedAt": "July 2026",
+            "image": "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=1200&q=80",
+            "content": "\n # Double-Booking Prevention\n \n The biggest fear of every multi-channel property owner: two guests booked the same room for the same dates on different platforms. StayOps eliminates this with database-level locking.\n \n ## How Row-Level Locking Works\n \n 1. **Booking Arrives** from any channel (Airbnb, Booking.com, direct, WhatsApp).\n 2. StayOps issues a **database row-level lock** on the specific room-date combination.\n 3. Within 3 seconds, a **Block event** is pushed to ALL connected channels.\n 4. Any subsequent booking attempt for the same room-dates is rejected.\n \n \"Think of it like a traffic signal. The first car (booking) gets the green light. All other cars on all other roads (OTAs) instantly get a red light.\"\n \n ## Conflict Resolution for iCal Channels\n \n Since iCal has a 5-minute polling gap, two bookings could theoretically arrive within that window. StayOps handles this:\n \n 1. **Timestamp Comparison** — Bookings are compared down to the millisecond.\n 2. **Earlier booking wins** — The first confirmed booking is accepted.\n 3. **Later booking auto-rejected** — The guest receives an automated message with alternative available dates.\n 4. **Owner notified** — A conflict alert appears in your dashboard with full details.\n \n > [!NOTE]\n > In 18 months of operation, less than 0.2% of bookings across StayOps properties have triggered the conflict resolution flow. The system works.\n       "
+          },
+          {
+            "id": "rate-push-blocked-dates",
+            "categoryId": "channel-manager",
+            "title": "Pushing Rates & Blocking Dates Across All Channels",
+            "summary": "Set your base rate once in StayOps and push it to every connected OTA. Block dates for personal use or maintenance.",
+            "readTime": "3 min read",
+            "views": 1750,
+            "helpfulCount": 480,
+            "updatedAt": "July 2026",
+            "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80",
+            "content": "\n # Rate Push & Date Blocking\n \n Managing different rates on 4 different OTA extranets is a nightmare. StayOps lets you set your rate once and push it everywhere.\n \n ## Setting & Pushing Rates\n \n 1. Go to **PMS Dashboard → Room Types → Select Room**.\n 2. Set your **Base Rate** (₹/night).\n 3. Optionally set **Weekend Rate**, **Holiday Rate**, and **Long Stay Discount** (7+ nights).\n 4. Toggle **Push to Channels** → StayOps sends the updated rate to all connected OTAs.\n \n > [!TIP]\n > Use the bulk rate calendar to set different rates for specific date ranges (e.g. ₹8,000/night during Diwali week, ₹4,500/night on weekdays in January).\n \n ## Blocking Dates\n \n Need to block rooms for personal use, maintenance, or a private event?\n \n 1. Go to the **Multi-Calendar View**.\n 2. **Drag across the dates** you want to block on the specific room row.\n 3. Select reason: Personal Use, Maintenance, or Other.\n 4. The block propagates to ALL channels within the sync window (instant for API, up to 5 min for iCal).\n \n \"Block your villa for your anniversary weekend with one drag gesture. Airbnb, Booking.com, Agoda — all blocked automatically.\"\n       "
+          },
+          {
+            "id": "whatsapp-inquiry-booking",
+            "categoryId": "whatsapp-storefront",
+            "title": "WhatsApp Inquiry-to-Booking Automation Flow",
+            "summary": "The complete 6-step flow: guest message → date capture → availability check → photo quote → Razorpay payment → voucher generation.",
+            "readTime": "5 min read",
+            "views": 1890,
+            "helpfulCount": 540,
+            "updatedAt": "July 2026",
+            "image": "https://images.unsplash.com/photo-1534536281715-e28d76689b4d?auto=format&fit=crop&w=1200&q=80",
+            "content": "\n # WhatsApp Inquiry-to-Booking Flow\n \n Indian homestays receive over 60% of direct inquiries via WhatsApp. StayOps integrates with Meta Cloud API (official WhatsApp Business API) to automate the entire journey from first message to confirmed booking.\n \n ## The 6-Step Automation\n \n 1. **Guest Sends Message** → They scan your Click-to-Chat QR code (on Instagram, Google Business, or printed brochure) or click your WhatsApp link.\n \n 2. **Bot Captures Details** → The automated assistant asks:\n     - \"What dates are you looking for?\"\n     - \"How many guests (adults + children)?\"\n     - \"Any room preference?\"\n \n 3. **Live Availability Check** → Bot queries your PMS calendar in real-time. If the dates are blocked or booked, it suggests the nearest available dates.\n \n 4. **Photo Quote Card** → Bot sends a rich media card with:\n     - Property photos (auto-selected from your gallery)\n     - Itemized price breakdown (room rate × nights + taxes)\n     - Amenity highlights\n \n 5. **Payment Link** → A secure Razorpay (or Cashfree) payment link is generated and sent inline in the chat.\n \n 6. **Booking Confirmed** → On successful payment:\n     - Booking auto-created in PMS\n     - All OTA calendars updated (dates blocked)\n     - Confirmation voucher sent to guest via WhatsApp\n     - Owner + caretaker notified\n \n > [!TIP]\n > Place your Click-to-Chat QR code everywhere: Instagram bio link, Google Business Profile, printed brochures at local tourist spots, and even on the welcome card at your property for repeat bookings.\n \n \"From first WhatsApp message to confirmed booking with payment — average time: 4 minutes.\"\n       "
+          },
+          {
+            "id": "whatsapp-message-templates",
+            "categoryId": "whatsapp-storefront",
+            "title": "WhatsApp Message Templates & Automated Notifications",
+            "summary": "Pre-approved message templates for booking confirmations, check-in reminders, payment receipts, and post-stay feedback.",
+            "readTime": "3 min read",
+            "views": 1340,
+            "helpfulCount": 380,
+            "updatedAt": "July 2026",
+            "image": "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?auto=format&fit=crop&w=1200&q=80",
+            "content": "\n # WhatsApp Message Templates\n \n Meta requires pre-approved templates for outbound WhatsApp Business messages. StayOps provides 7 ready-to-use templates that you can customize.\n \n ## Available Templates\n \n 1. **Welcome Greeting** — Sent when a guest first messages your WhatsApp number.\n 2. **Availability Response** — Confirms dates are available or suggests alternatives.\n 3. **Quote Card** — Property photos + itemized pricing.\n 4. **Payment Link** — Razorpay/Cashfree secure payment URL.\n 5. **Booking Confirmation** — Voucher with booking ID, dates, guest count, and property address.\n 6. **Check-In Reminder (T-1 Day)** — Sent 24 hours before arrival with directions, Wi-Fi password, and caretaker contact.\n 7. **Post-Stay Feedback** — Sent after checkout asking for a Google Review or direct feedback.\n \n > [!NOTE]\n > Templates must be approved by Meta before use. StayOps pre-submits these templates during your account setup. Custom template approval takes 24-48 hours.\n \n ## Customizing Templates\n \n Go to **Settings → WhatsApp → Message Templates** to:\n - Edit the greeting message text\n - Add your property's specific check-in instructions\n - Include local area recommendations in the pre-arrival message\n - Customize the feedback request with your Google Review link\n \n \"The T-1 day check-in reminder alone has reduced 'Where is your property?' calls by 70% for our early adopters.\"\n       "
+          },
+          {
+            "id": "direct-storefront-setup",
+            "categoryId": "whatsapp-storefront",
+            "title": "Setting Up Your Direct Booking Storefront Page",
+            "summary": "Auto-generate a mobile-optimized property page with photo gallery, amenities, location map, and embedded Razorpay checkout.",
+            "readTime": "3 min read",
+            "views": 2100,
+            "helpfulCount": 590,
+            "updatedAt": "July 2026",
+            "image": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=80",
+            "content": "\n # Direct Booking Storefront\n \n Stop paying 15-20% OTA commissions for guests who already know your property. StayOps auto-generates a beautiful, mobile-optimized property page that lets guests book and pay directly.\n \n ## What Your Storefront Includes\n \n - **Hero Image Gallery** — Full-width slideshow from your uploaded photos\n - **Room Types & Pricing** — Live availability calendar with real-time rates\n - **Amenity Icons** — Wi-Fi, AC, Pool, Parking, Kitchen, etc.\n - **Location Map** — Embedded Google Maps with directions\n - **Book Now Widget** — Date picker + guest count + instant Razorpay checkout (no redirect)\n - **SEO Metadata** — Auto-generated title tags, meta descriptions, and Open Graph tags\n \n ## Your Storefront URL\n \n - **Lite Plan**: `sunbird-villa.stayops.in` (auto-generated subdomain)\n - **Pro Growth & above**: Map your own domain via CNAME (e.g. `www.coorgheavenlystay.com`)\n \n > [!TIP]\n > Share your storefront link in your Instagram bio, WhatsApp status, Google Business Profile, and email signature. Every direct booking saves you 15-20% in OTA commissions.\n \n \"One property owner in Goa saved ₹3.2 lakhs in OTA commissions in 6 months by routing just 30% of bookings through their StayOps storefront.\"\n       "
+          },
+          {
+            "id": "multi-calendar-view",
+            "categoryId": "owner-dashboard",
+            "title": "Multi-Calendar View & Drag-to-Block Room Management",
+            "summary": "Unified timeline view across all rooms and channels with drag-to-block holds and booking detail drawers.",
+            "readTime": "4 min read",
+            "views": 2800,
+            "helpfulCount": 750,
+            "updatedAt": "July 2026",
+            "image": "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=1200&q=80",
+            "content": "\n # Multi-Calendar View\n \n The calendar is the heart of your PMS dashboard. It shows every room, every booking, and every blocked date across all channels in a single unified timeline.\n \n ## Understanding the Calendar\n \n - **Rows** = Your room types (Deluxe Double, Garden Suite, etc.)\n - **Columns** = Dates (scrollable left/right, default: 30-day view)\n - **Color Blocks** = Bookings (color-coded by source channel)\n   - 🟢 Green = Direct booking (WhatsApp/Storefront)\n   - 🔵 Blue = Airbnb\n   - 🟣 Purple = Booking.com\n   - 🟠 Orange = Agoda/MakeMyTrip\n   - ⬛ Grey = Manual block (personal use/maintenance)\n \n ## Drag-to-Block\n \n Need to block dates? Simply **click and drag** across the date range on any room row. Select a reason (Personal Use, Maintenance, Other) and confirm. The block syncs to all OTAs automatically.\n \n ## Booking Detail Drawer\n \n Click any booking block to open the **slide-over detail panel** showing:\n - Guest name, phone, headcount, special requests\n - Source channel and booking ID\n - Payment status (Paid / Partial / Pending)\n - Operational logs (housekeeping status, check-in/out timestamps)\n - Guest master folio (all charges)\n \n \"I check my calendar every morning with my coffee. Green blocks make me happy — that's direct revenue with zero commission.\"\n       "
+          },
+          {
+            "id": "revenue-dashboard-adr",
+            "categoryId": "owner-dashboard",
+            "title": "Revenue Dashboard — Net Revenue, ADR & Occupancy Reports",
+            "summary": "Track net revenue after OTA commissions, average daily rate, RevPAR, occupancy percentage, and channel contribution breakdown.",
+            "readTime": "4 min read",
+            "views": 3400,
+            "helpfulCount": 920,
+            "updatedAt": "July 2026",
+            "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+            "content": "\n # Revenue Dashboard\n \n The Revenue Dashboard gives you a clear financial picture of your property performance. No more maintaining Excel sheets.\n \n ## Key Metrics\n \n - **Net Revenue** — Total revenue after subtracting OTA commissions. Direct bookings show 100% revenue.\n - **ADR (Average Daily Rate)** — Total room revenue ÷ number of rooms sold.\n - **RevPAR (Revenue Per Available Room)** — Total revenue ÷ total available room-nights. Shows how well you're utilizing capacity.\n - **Occupancy %** — Rooms sold ÷ total rooms available × 100.\n - **Channel Contribution** — Pie chart showing what % of bookings came from each channel (Airbnb, Booking.com, Direct, WhatsApp, etc.)\n \n ## Date Range Filters\n \n View reports for: Today, This Week, This Month, Last Month, Custom Range, or Year-to-Date.\n \n > [!TIP]\n > The Channel Contribution pie chart is your most powerful tool for reducing OTA dependency. If 80% of your bookings come from Airbnb, focus on growing your direct channel (storefront + WhatsApp) to reduce commission costs.\n \n \"One villa owner in Lonavala discovered that 40% of their Booking.com guests had actually found them on Instagram first. They redirected those guests to their direct storefront and saved ₹1.8 lakhs in 3 months.\"\n \n ## Expense Tracker\n \n Below the revenue metrics, the **Expense Tracker** shows:\n - Approved petty cash disbursements (with receipt photos)\n - Monthly utility summaries (electricity, water, gas)\n - Vendor payments (laundry, gardening, pool maintenance)\n - Net profit calculation (Revenue - Expenses - OTA Commissions)\n       "
+          },
+          {
+            "id": "guest-folio-invoice",
+            "categoryId": "owner-dashboard",
+            "title": "Guest Master Folio & Invoice Generation",
+            "summary": "Consolidated per-stay invoices with room charges, meal add-ons, transport, and petty cash pass-throughs. PDF export and WhatsApp share.",
+            "readTime": "3 min read",
+            "views": 1600,
+            "helpfulCount": 420,
+            "updatedAt": "July 2026",
+            "image": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80",
+            "content": "\n # Guest Master Folio\n \n Every guest stay generates a **master folio** — a consolidated invoice that captures every charge during their stay.\n \n ## What's Included in the Folio\n \n - **Room Charges** — Base rate × number of nights\n - **Meal Add-Ons** — Breakfast, lunch, dinner charges logged by caretaker\n - **Transport** — Airport pickup, local sightseeing, taxi charges\n - **Activities** — Trekking, plantation tour, cooking class bookings\n - **Petty Cash Pass-Throughs** — Specific guest requests (e.g. special groceries)\n - **Taxes** — GST calculated automatically based on room rate slab\n \n ## Viewing & Sharing the Folio\n \n 1. Go to **Bookings → Select Booking → View Folio**.\n 2. Review all line items.\n 3. Options:\n     - **Export as PDF** — Generates a professional invoice with your property logo\n     - **Share via WhatsApp** — Sends the PDF directly to the guest's WhatsApp\n     - **Email** — Sends to the guest's email address on file\n \n > [!NOTE]\n > The folio is finalized when the caretaker marks the guest as checked out. After finalization, no more charges can be added (but corrections can be requested through the owner dashboard).\n \n \"No more handwritten bills or mental math at checkout. The folio calculates everything including GST automatically.\"\n       "
+          },
+          {
+            "id": "subscription-plans-limits",
+            "categoryId": "billing-subscriptions",
+            "title": "Subscription Tiers — Lite, Pro Growth & Multi-Property Hub",
+            "summary": "Complete comparison of Lite (₹1,499/mo), Pro Growth (₹2,999/mo), and Multi-Property Hub (₹5,999/mo) with room caps and feature matrix.",
+            "readTime": "4 min read",
+            "views": 3100,
+            "helpfulCount": 890,
+            "updatedAt": "July 2026",
+            "image": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80",
+            "content": "\n # Subscription Plans\n \n StayOps India operates on a pure SaaS subscription model — **zero booking commissions**. Unlike OTAs that take 15-20% per booking, you pay a flat monthly fee.\n \n ## Plan Comparison\n \n - **Lite Plan — ₹1,499/month**\n   - 1 property, maximum 3 rooms\n   - iCal-only OTA sync (5-minute polling)\n   - Auto-generated subdomain (yourproperty.stayops.in)\n   - Basic WhatsApp (inquiry capture only, no bot automation)\n   - Caretaker app with housekeeping checklists\n \n - **Pro Growth — ₹2,999/month**\n   - 1 property, unlimited rooms\n   - Real-time API sync (Airbnb + Booking.com)\n   - Custom domain mapping (e.g. www.yourvilla.com)\n   - Full WhatsApp bot with automated booking + Razorpay payment links\n   - Guest master folio with PDF export\n   - Revenue dashboard with ADR & occupancy reports\n \n - **Multi-Property Hub — ₹5,999/month**\n   - Up to 5 properties\n   - Centralized multi-property dashboard\n   - Portfolio-level roll-up reports\n   - Staff management hub (assign caretakers across properties)\n   - Priority support with dedicated account manager\n \n > [!TIP]\n > Annual billing saves you 2 months! Pro Growth Annual is ₹29,990/year instead of ₹35,988 (saving ₹5,998).\n \n \"Zero commission means every rupee your guest pays goes to YOU, not to an OTA middleman.\"\n       "
+          },
+          {
+            "id": "room-cap-upgrade-flow",
+            "categoryId": "billing-subscriptions",
+            "title": "Room & Property Cap Limits — What Happens at the Cap?",
+            "summary": "Understanding soft alerts at 80% usage, hard blocks at cap limits, and the inline upgrade prompt flow.",
+            "readTime": "2 min read",
+            "views": 1200,
+            "helpfulCount": 340,
+            "updatedAt": "July 2026",
+            "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+            "content": "\n # Room & Property Cap Enforcement\n \n Each plan has limits on the number of rooms (Lite: 3 rooms) or properties (Hub: 5 properties). Here's what happens as you approach and hit those limits.\n \n ## Soft Alert — 80% Usage\n \n When you've used 80% of your allowance (e.g. 2 out of 3 rooms on Lite), you'll see:\n - A yellow banner on your dashboard\n - A notification suggesting you explore the next plan tier\n \n ## Hard Block — At Cap\n \n When you try to add a room beyond your limit:\n - The \"Add Room\" button is disabled\n - An **inline upgrade prompt** appears showing the next plan's benefits and pricing\n - One-click upgrade via Razorpay — your new plan activates instantly\n \n > [!NOTE]\n > Upgrading is instant. Downgrading takes effect at the end of your current billing cycle to avoid disruption.\n \n \"We designed the upgrade flow to feel helpful, not annoying. You'll see the prompt exactly when you need it.\"\n       "
+          },
+          {
+            "id": "gst-invoicing-razorpay",
+            "categoryId": "billing-subscriptions",
+            "title": "GST-Compliant Invoicing & Razorpay Subscription Billing",
+            "summary": "Automatic monthly GST invoices via Razorpay recurring subscriptions with GSTIN support and downloadable tax documents.",
+            "readTime": "2 min read",
+            "views": 890,
+            "helpfulCount": 210,
+            "updatedAt": "July 2026",
+            "image": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80",
+            "content": "\n # GST Invoicing & Subscription Billing\n \n StayOps uses Razorpay Subscriptions for automated monthly billing. Every invoice is GST-compliant.\n \n ## How Billing Works\n \n 1. When you subscribe, Razorpay creates a recurring mandate on your payment method (credit card, debit card, or UPI autopay).\n 2. On your billing date each month, Razorpay auto-charges the subscription amount.\n 3. A GST-compliant invoice is auto-generated and sent to your registered email.\n 4. All invoices are downloadable from **Settings → Billing → Invoice History**.\n \n ## Adding Your GSTIN\n \n If you have a GST registration:\n 1. Go to **Settings → Billing → Tax Details**.\n 2. Enter your GSTIN number.\n 3. Future invoices will include your GSTIN, enabling you to claim input tax credit.\n \n > [!NOTE]\n > StayOps charges 18% GST on all subscription plans (as per Indian IT services tax rules). This is included in the displayed price.\n \n \"Your CA will love you. Every invoice is auto-generated, GST-compliant, and downloadable as PDF.\"\n       "
+          },
+          {
+            "id": "custom-domain-mapping",
+            "categoryId": "direct-storefront",
+            "title": "Mapping Your Custom Domain (CNAME Setup Guide)",
+            "summary": "Connect your own domain (e.g. www.coorgheavenlystay.com) to your StayOps storefront using CNAME DNS records.",
+            "readTime": "3 min read",
+            "views": 1450,
+            "helpfulCount": 385,
+            "updatedAt": "July 2026",
+            "image": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=80",
+            "content": "\n # Custom Domain Mapping\n \n Available on Pro Growth (₹2,999/mo) and Multi-Property Hub (₹5,999/mo) plans. Map your own domain to your StayOps storefront for a professional branded experience.\n \n ## Setup Steps\n \n 1. **Purchase a domain** from any registrar (GoDaddy, Namecheap, Google Domains, Hostinger).\n 2. In StayOps, go to **Settings → Storefront → Custom Domain**.\n 3. Enter your domain (e.g. `www.coorgheavenlystay.com`).\n 4. StayOps provides a **CNAME record value** (e.g. `storefronts.stayops.in`).\n 5. Go to your domain registrar's DNS settings and add:\n     - Type: CNAME\n     - Host: www\n     - Value: storefronts.stayops.in\n 6. Wait 15-30 minutes for DNS propagation.\n 7. Return to StayOps and click **Verify Domain**.\n \n > [!TIP]\n > Use both `www.yourdomain.com` and `yourdomain.com` (root domain). StayOps handles the redirect automatically.\n \n \"Your guests see www.coorgheavenlystay.com — professional, branded, and commission-free.\"\n       "
+          },
+          {
+            "id": "storefront-seo-optimization",
+            "categoryId": "direct-storefront",
+            "title": "SEO Optimization for Your Direct Storefront",
+            "summary": "Auto-generated title tags, meta descriptions, Open Graph tags, and Google Search tips to rank your property page.",
+            "readTime": "3 min read",
+            "views": 1100,
+            "helpfulCount": 290,
+            "updatedAt": "July 2026",
+            "image": "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=1200&q=80",
+            "content": "\n # SEO for Your Storefront\n \n StayOps auto-generates SEO metadata from your property details, but a few tweaks can significantly improve your Google ranking.\n \n ## What's Auto-Generated\n \n - **Title Tag**: \"[Property Name] — Book Direct | [Location]\"\n - **Meta Description**: Your property description (first 160 characters)\n - **Open Graph Tags**: Hero image + title + description for social media sharing\n - **Structured Data**: Schema.org LodgingBusiness markup for rich Google results\n \n ## Tips to Improve Rankings\n \n 1. **Write a unique property description** — Don't copy from Airbnb. Google penalizes duplicate content.\n 2. **Use location keywords naturally** — \"Luxury homestay in Coorg with coffee plantation views\" beats \"Nice homestay.\"\n 3. **Add your Google Business Profile** — Link your storefront URL as your website.\n 4. **Collect Google Reviews** — StayOps sends post-stay feedback requests that link directly to your Google Review page.\n 5. **Share on social media** — Every Instagram post should link to your storefront, not your Airbnb listing.\n \n > [!TIP]\n > Register your storefront with Google Search Console for detailed search performance data and indexing status.\n \n \"One Jaipur haveli owner went from zero Google visibility to Page 1 for 'heritage homestay Jaipur' in 4 months by following these SEO tips.\"\n       "
+          },
+          {
+            "id": "role-access-control-rbac",
+            "categoryId": "security-rbac",
+            "title": "Role-Based Access Control (RBAC) & Permission Scoping",
+            "summary": "How StayOps enforces different access levels for Owners, Managers, Caretakers, and Guests with tenant-isolated data.",
+            "readTime": "3 min read",
+            "views": 750,
+            "helpfulCount": 195,
+            "updatedAt": "July 2026",
+            "image": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=80",
+            "content": "\n # Role-Based Access Control (RBAC)\n \n Different people in your property operation need different views. Your caretaker doesn't need to see revenue reports. Your manager doesn't need bank payout details. StayOps enforces this at the system level.\n \n ## The Four Roles\n \n - **Property Owner** — Full access to everything:\n   - Financial metrics (net revenue, ADR, RevPAR)\n   - Bank payout details and expense approvals\n   - Billing settings and subscription management\n   - Staff management (invite/remove caretakers)\n   - All operational data\n \n - **Property Manager** — Operations access, limited financials:\n   - Multi-property scheduling and calendar management\n   - Staff assignment and task oversight\n   - Guest communications\n   - ❌ No bank payout details or billing settings\n \n - **Caretaker / Ground Staff** — Task-only mobile view:\n   - Today's check-ins/check-outs\n   - Housekeeping checklists with photo upload\n   - Petty cash logging and meal entry\n   - ❌ No financial data, no revenue reports, no booking prices\n \n - **Guest** — Read-only access:\n   - Booking voucher and confirmation details\n   - Check-in portal with directions and Wi-Fi info\n   - ❌ No operational or financial visibility\n \n > [!IMPORTANT]\n > Financial reports (net revenue, bank payouts) are STRICTLY hidden from Caretaker and Manager roles. This is enforced at the database query level, not just the UI level.\n \n \"Your caretaker Raju sees rooms to clean. Your manager Priya sees the calendar. Only you see the money.\"\n       "
+          },
+          {
+            "id": "tenant-data-isolation",
+            "categoryId": "security-rbac",
+            "title": "Multi-Tenant Data Isolation & Database Security",
+            "summary": "How StayOps ensures your property data is completely isolated from every other property owner on the platform.",
+            "readTime": "3 min read",
+            "views": 620,
+            "helpfulCount": 165,
+            "updatedAt": "July 2026",
+            "image": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=1200&q=80",
+            "content": "\n # Multi-Tenant Data Isolation\n \n When you use a SaaS platform, your data sits on shared infrastructure alongside other customers. StayOps ensures your data is completely walled off from every other property owner.\n \n ## How Isolation Works\n \n - Every database query is automatically scoped to your **tenant ID** (your owner account).\n - Cross-tenant queries are **architecturally impossible** — the application layer physically cannot request another owner's data.\n - Even StayOps support staff access your data only through an audited, time-limited support tunnel.\n \n \"Think of it like individual safe deposit boxes in a bank vault. Everyone uses the same bank, but no one can open your box.\"\n \n ## Session Security\n \n - **JWT-based sessions** — Your login creates an encrypted token that expires after 24 hours of inactivity.\n - **Forced re-authentication** — Sensitive operations (billing changes, staff removal, bank detail updates) require you to re-enter your password.\n - **Device tracking** — View all active sessions in Settings → Security → Active Sessions. Terminate any suspicious session with one click.\n \n > [!NOTE]\n > StayOps will never ask for your password via email or WhatsApp. If you receive such a request, report it to security@stayops.in immediately.\n       "
+          },
+          {
+            "id": "audit-logs-compliance",
+            "categoryId": "security-rbac",
+            "title": "Immutable Audit Logs & Compliance Trail",
+            "summary": "Every booking change, status update, and petty cash approval is logged with timestamp, actor, and before/after snapshot.",
+            "readTime": "2 min read",
+            "views": 480,
+            "helpfulCount": 130,
+            "updatedAt": "July 2026",
+            "image": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=80",
+            "content": "\n # Immutable Audit Logs\n \n Every data change in StayOps is permanently recorded. This creates a tamper-proof trail for dispute resolution, compliance, and operational accountability.\n \n ## What Gets Logged\n \n - **Booking Changes** — Creation, modification, cancellation (with reason)\n - **Room Status Updates** — Dirty → In Progress → Ready (with photo timestamps)\n - **Check-In/Check-Out** — Exact timestamps and who performed the action\n - **Petty Cash** — Submission, approval, rejection (with actor and amounts)\n - **Staff Changes** — Invitation, role modification, deactivation\n - **Rate & Availability Changes** — Who changed what rate, when, and on which channel\n \n ## Log Entry Format\n \n Each entry captures:\n - **Timestamp** — Exact date and time (down to the second)\n - **Actor** — Who performed the action (name, role, email)\n - **Action** — What was done (created, updated, deleted)\n - **Before/After Snapshot** — The exact data before and after the change\n \n > [!NOTE]\n > Audit logs are immutable — they cannot be edited or deleted by anyone, including Super Admins. This ensures complete accountability.\n \n \"When a guest disputes a charge, you can show them the exact timestamp when the meal was logged, who logged it, and the receipt photo. Case closed.\"\n       "
+          }
+    ],
+    "petty_cash_accounts": [
+      {
+        "id": "1",
+        "propertyId": "1",
+        "propertyName": "Sri Nature",
+        "currentBalance": 10000,
+        "updatedAt": "2026-09-13T10:00:00.000Z"
+      },
+      {
+        "id": "2",
+        "propertyId": "2",
+        "propertyName": "rangitha ranga",
+        "currentBalance": 5000,
+        "updatedAt": "2026-09-13T10:00:00.000Z"
+      }
+    ],
+    "petty_cash_transactions": []
+}
+  

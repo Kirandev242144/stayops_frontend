@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* ── RESORT & VILLA THEME TEMPLATE ── */
+.sf-template-resort {
+  --sf-font-serif: 'Cormorant Garamond', Georgia, serif;
+  --sf-font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --sf-radius-lg: 16px;
+  --sf-radius-md: 12px;
+  --sf-radius-sm: 8px;
+  --sf-radius-pill: 30px;
+  font-family: var(--sf-font-sans);
+  background-color: #FAF9F6;
+  color: #1C2826;
+}
+
+.sf-template-resort .sf-hero {
+  align-items: center;
+  text-align: center;
+  padding: 160px 24px 120px 24px;
+}
+
+.sf-template-resort .sf-hero-content {
+  margin: 0 auto;
+  text-align: center;
+  max-width: 720px;
+}
+
+.sf-template-resort .sf-hero-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 3.8rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-bottom: 16px;
+}
+
+.sf-template-resort .sf-hero-tagline {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.sf-template-resort .sf-hero-actions-row {
+  justify-content: center;
+}
+
+.sf-template-resort .sf-hero-browse-btn,
+.sf-template-resort .sf-nav-btn {
+  border-radius: 30px !important;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  padding: 14px 36px;
+  background-color: var(--sf-primary, #2C533F) !important;
+  color: #FFFFFF !important;
+  border: none;
+}
+
+.sf-template-resort .sf-room-card,
+.sf-template-resort .sf-search-bar-card,
+.sf-template-resort .sf-modal-box {
+  border-radius: 16px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.sf-template-resort .sf-logo-badge {
+  border-radius: 50% !important;
+}
+
+/* Resort About Section Overrides */
+.sf-template-resort .sf-about-section {
+  background-color: #F7F5F0;
+}
+
+.sf-template-resort .sf-about-badge {
+  border-radius: 20px !important;
+  border-color: var(--sf-primary, #2C533F);
+  color: var(--sf-primary, #2C533F);
+  background: rgba(44, 83, 63, 0.08);
+}
+
+.sf-template-resort .sf-about-image-wrapper,
+.sf-template-resort .sf-about-image-badge {
+  border-radius: 16px !important;
+}
+
+.sf-template-resort .sf-about-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  font-size: 3.2rem;
+}
+
+.sf-template-resort .sf-about-paragraph {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}

@@ -1,0 +1,273 @@
+/* ===================================================
+   STAYOPS DASHBOARD NAVBAR
+=================================================== */
+
+.dashboard-navbar {
+  height: 58px;
+
+  position: fixed;
+  top: 0;
+  left: 240px;
+  right: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 28px;
+
+  background: #ffffff;
+  border-bottom: 1px solid #E5E7EB;
+
+  z-index: 90;
+  box-sizing: border-box;
+
+  transition: left 0.2s ease;
+}
+
+/* ==========================
+   Greeting
+========================== */
+
+.navbar-greeting h2{
+    margin:0;
+
+    font-size:1rem;
+    font-weight:600;
+
+    color:#111827;
+}
+
+/* ==========================
+   Right Side
+========================== */
+
+.navbar-actions{
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+
+/* ==========================
+   Action Buttons
+========================== */
+
+.navbar-buttons{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+/* Primary Button */
+
+.navbar-btn.primary{
+    height:38px;
+
+    padding:0 20px;
+
+    border:none;
+    border-radius:10px;
+
+    background:#09B7C8;
+
+    color:#fff;
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    cursor:pointer;
+
+    font-size:14px;
+    font-weight:600;
+
+    transition:.2s;
+}
+
+.navbar-btn.primary:hover{
+    background:#06A5B5;
+}
+
+/* Icon Buttons */
+
+.navbar-btn.icon{
+    width:38px;
+    height:38px;
+
+    border:1px solid #E5E7EB;
+    border-radius:10px;
+
+    background:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    cursor:pointer;
+
+    position:relative;
+
+    transition:.2s;
+}
+
+.navbar-btn.icon:hover{
+    background:#F8FAFC;
+}
+
+.navbar-btn svg{
+    font-size:18px;
+}
+
+/* Notification */
+
+.notification-dot{
+    width:8px;
+    height:8px;
+
+    background:#EF4444;
+
+    border-radius:50%;
+
+    position:absolute;
+    top:10px;
+    right:10px;
+}
+
+/* ==========================
+   User Profile
+========================== */
+
+/* ==========================
+   User Profile
+========================== */
+
+.user-profile {
+    height: 44px;
+    min-width: 164px;
+
+    padding: 4px 10px 4px 8px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    background: #FFFFFF;
+
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+.user-profile:hover {
+    background: #F8FAFC;
+}
+
+
+/* Avatar */
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #08B5CC;
+
+    color: #FFFFFF;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* User Information */
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+.user-info h4 {
+    margin: 0;
+
+    font-size: 13px;
+    line-height: 16px;
+
+    font-weight: 600;
+
+    color: #111827;
+
+    white-space: nowrap;
+}
+
+.user-info span {
+    margin: 0;
+
+    font-size: 11px;
+    line-height: 14px;
+
+    color: #98A2B3;
+}
+
+
+/* Chevron */
+
+.user-chevron {
+    flex-shrink: 0;
+
+    width: 16px;
+    height: 16px;
+
+    color: #667085;
+}
+
+.user-avatar{
+    width:32px;
+    height:32px;
+
+    border-radius:50%;
+
+    background:#06B6D4;
+
+    color:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-weight:700;
+}
+
+.user-info h4{
+    margin:0;
+
+    font-size:14px;
+    font-weight:600;
+
+    color:#111827;
+}
+
+.user-info span{
+    font-size:12px;
+
+    color:#9CA3AF;
+}
+.dashboard-navbar.navbar-collapsed {
+  left: 72px;
+}

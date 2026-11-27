@@ -1,0 +1,29 @@
+/* EditPropertyModal.css */
+
+.epm-modal-card {
+  width: 680px;
+  max-width: 95vw;
+}
+
+.epm-tab-bar {
+  display: flex;
+  gap: 8px;
+  padding: 12px 24px 12px;
+  border-bottom: 1px solid #E2E8F0;
+  background: #F8FAFC;
+}
+
+.epm-tab-icon {
+  margin-right: 4px;
+}
+
+.epm-section-title {
+  margin-top: 10px;
+}
+
+button {
+display: flex;
+flex-direction: row;
+align-items: center;
+gap: 8px;
+}

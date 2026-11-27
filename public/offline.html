@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Offline — StayOps</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #f6f6f7;
+      color: #202223;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      text-align: center;
+    }
+    .offline-card {
+      background: #ffffff;
+      border: 1px solid #c9cccf;
+      border-radius: 16px;
+      padding: 40px 28px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+    }
+    .icon-wrap {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(0, 128, 96, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px auto;
+    }
+    .icon-wrap svg {
+      width: 32px;
+      height: 32px;
+      color: #008060;
+    }
+    h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #202223;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 14px;
+      color: #6d7175;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+    .btn-retry {
+      background: #008060;
+      color: #ffffff;
+      border: none;
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.15s ease;
+    }
+    .btn-retry:hover {
+      background: #006e52;
+    }
+  </style>
+</head>
+<body>
+  <div class="offline-card">
+    <div class="icon-wrap">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 4.243a9 9 0 01-1.414-1.414m-1.414-1.414A9 9 0 015.636 5.636m12.728 0L3 21"></path>
+      </svg>
+    </div>
+    <h1>You are currently offline</h1>
+    <p>StayOps needs an active internet connection to synchronize live room movements, bookings, and payments.</p>
+    <button class="btn-retry" onclick="reconnect()">
+      <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+      </svg>
+      Try Reconnecting
+    </button>
+  </div>
+  <script>
+    async function reconnect() {
+      try {
+        if ('serviceWorker' in navigator) {
+          const regs = await navigator.serviceWorker.getRegistrations();
+          for (const reg of regs) {
+            await reg.unregister();
+          }
+        }
+        if ('caches' in window) {
+          const keys = await caches.keys();
+          for (const k of keys) {
+            await caches.delete(k);
+          }
+        }
+      } catch (e) {
+        console.warn('Cache purge error:', e);
+      }
+      window.location.href = '/' + '?nocache=' + Date.now();
+    }
+  </script>
+</body>
+</html>

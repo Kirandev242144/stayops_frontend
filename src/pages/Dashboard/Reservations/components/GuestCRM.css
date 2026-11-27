@@ -1,0 +1,629 @@
+/* ==========================================================================
+   STAYOPS GUEST DIRECTORY & CRM STYLES
+   Minimalist, Clean, High-End SaaS Aesthetic
+   ========================================================================== */
+
+.gcrm-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  animation: gcrmFadeIn 0.18s ease-out;
+}
+
+@keyframes gcrmFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================
+   HEADER SECTION
+   ========================================== */
+.gcrm-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 4px 0 8px 0;
+}
+
+.gcrm-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.gcrm-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748B;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 2px;
+  transition: color 0.15s ease;
+  width: fit-content;
+}
+
+.gcrm-back-btn:hover {
+  color: #0F172A;
+}
+
+.gcrm-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.gcrm-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #0F172A;
+  letter-spacing: -0.3px;
+}
+
+.gcrm-total-badge {
+  font-size: 11px;
+  font-weight: 600;
+  background: #F1F5F9;
+  color: #475569;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  border: 1px solid #E2E8F0;
+}
+
+.gcrm-subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: #64748B;
+  line-height: 1.4;
+}
+
+.gcrm-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.gcrm-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  color: #0F172A;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.gcrm-btn-secondary:hover {
+  background: #F8FAFC;
+  border-color: #CBD5E1;
+}
+
+.gcrm-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #0F172A;
+  border: 1px solid #0F172A;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.1);
+}
+
+.gcrm-btn-primary:hover {
+  background: #1E293B;
+  border-color: #1E293B;
+}
+
+/* ==========================================
+   METRICS / KPI STATS GRID
+   ========================================== */
+.gcrm-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.gcrm-stat-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.gcrm-stat-card:hover {
+  border-color: #CBD5E1;
+  box-shadow: 0 3px 6px rgba(15, 23, 42, 0.05);
+}
+
+.gcrm-stat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gcrm-stat-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #64748B;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.gcrm-stat-icon {
+  font-size: 15px;
+  color: #94A3B8;
+}
+
+.gcrm-stat-value {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #0F172A;
+  letter-spacing: -0.3px;
+}
+
+.gcrm-stat-meta {
+  font-size: 11.5px;
+  color: #64748B;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.gcrm-stat-badge {
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: #ECFDF5;
+  color: #047857;
+}
+
+/* ==========================================
+   TOOLBAR & FILTER BAR
+   ========================================== */
+.gcrm-filter-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+}
+
+.gcrm-search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 7px 12px;
+  width: 340px;
+  max-width: 100%;
+  transition: all 0.15s ease;
+}
+
+.gcrm-search-box:focus-within {
+  background: #FFFFFF;
+  border-color: #0F172A;
+  box-shadow: 0 0 0 1px #0F172A;
+}
+
+.gcrm-search-icon {
+  font-size: 14px;
+  color: #94A3B8;
+  flex-shrink: 0;
+}
+
+.gcrm-search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 13px;
+  color: #0F172A;
+  width: 100%;
+}
+
+.gcrm-search-input::placeholder {
+  color: #94A3B8;
+}
+
+.gcrm-search-clear {
+  background: transparent;
+  border: none;
+  color: #94A3B8;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.gcrm-search-clear:hover {
+  color: #0F172A;
+}
+
+.gcrm-filter-tabs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.gcrm-filter-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.gcrm-tab-pill {
+  padding: 6px 12px;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #64748B;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.gcrm-tab-pill:hover {
+  background: #F1F5F9;
+  color: #0F172A;
+}
+
+.gcrm-tab-pill.active {
+  background: #F1F5F9;
+  color: #0F172A;
+  font-weight: 600;
+  border-color: #E2E8F0;
+}
+
+.gcrm-tab-count {
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: #E2E8F0;
+  color: #475569;
+}
+
+.gcrm-tab-pill.active .gcrm-tab-count {
+  background: #CBD5E1;
+  color: #0F172A;
+}
+
+/* ==========================================
+   TABLE CARD & DIRECTORY
+   ========================================== */
+.gcrm-table-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+.gcrm-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.gcrm-table-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+.gcrm-table-scroll::-webkit-scrollbar-thumb {
+  background: #E2E8F0;
+  border-radius: 3px;
+}
+
+.gcrm-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+}
+
+.gcrm-table th {
+  background: #F8FAFC;
+  color: #64748B;
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  padding: 12px 18px;
+  border-bottom: 1px solid #E2E8F0;
+  white-space: nowrap;
+}
+
+.gcrm-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #F1F5F9;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.gcrm-table tr:last-child td {
+  border-bottom: none;
+}
+
+.gcrm-table tr:hover td {
+  background: #F8FAFC80;
+}
+
+/* Guest Identity Cell */
+.gcrm-guest-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.gcrm-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.gcrm-guest-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.gcrm-guest-name-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.gcrm-guest-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #0F172A;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.gcrm-guest-name:hover {
+  color: #2563EB;
+}
+
+.gcrm-badge-returning {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: #ECFDF5;
+  color: #047857;
+  border: 1px solid #A7F3D0;
+  white-space: nowrap;
+}
+
+.gcrm-guest-id {
+  font-size: 11px;
+  color: #94A3B8;
+}
+
+/* Text Elements */
+.gcrm-text-bold {
+  font-weight: 600;
+  color: #0F172A;
+}
+
+.gcrm-text-muted {
+  color: #64748B;
+}
+
+.gcrm-contact-link {
+  color: #334155;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.gcrm-contact-link:hover {
+  color: #0F172A;
+  text-decoration: underline;
+}
+
+.gcrm-stays-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #F1F5F9;
+  color: #334155;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ID Status Badges */
+.gcrm-id-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 11.5px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.gcrm-id-badge.verified {
+  background: #ECFDF5;
+  color: #047857;
+  border: 1px solid #A7F3D0;
+}
+
+.gcrm-id-badge.pending {
+  background: #FFFBEB;
+  color: #92400E;
+  border: 1px solid #FDE68A;
+}
+
+.gcrm-btn-view-id {
+  background: transparent;
+  border: none;
+  color: #2563EB;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0 4px;
+  text-decoration: underline;
+  transition: color 0.15s ease;
+}
+
+.gcrm-btn-view-id:hover {
+  color: #1D4ED8;
+}
+
+/* Row Action Buttons */
+.gcrm-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  color: #0F172A;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.gcrm-action-btn:hover {
+  background: #F8FAFC;
+  border-color: #CBD5E1;
+}
+
+/* Table Footer Summary */
+.gcrm-table-footer {
+  padding: 12px 18px;
+  background: #FAFAFA;
+  border-top: 1px solid #F1F5F9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #64748B;
+}
+
+/* Empty State */
+.gcrm-empty-state {
+  padding: 50px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gcrm-empty-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  color: #94A3B8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.gcrm-empty-state h4 {
+  margin: 0 0 4px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0F172A;
+}
+
+.gcrm-empty-state p {
+  margin: 0 0 16px 0;
+  font-size: 13px;
+  color: #64748B;
+  max-width: 320px;
+}
+
+/* ==========================================
+   RESPONSIVE STYLES
+   ========================================== */
+@media (max-width: 1024px) {
+  .gcrm-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .gcrm-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .gcrm-header-actions {
+    flex-direction: column;
+  }
+  .gcrm-btn-secondary,
+  .gcrm-btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+  .gcrm-stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .gcrm-search-box {
+    width: 100%;
+  }
+}

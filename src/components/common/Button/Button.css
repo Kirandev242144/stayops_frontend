@@ -1,0 +1,71 @@
+/* ==========================================================================
+   BUTTON.CSS — Reusable button styles (Figma Pill Design)
+   ========================================================================== */
+
+/* Base button — shared by ALL button variants */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius-full);       /* Pill-shaped corners matching Figma */
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--text-md);               /* 14px */
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+/* PRIMARY — Filled blue button (Login / Get Started) */
+.btn-primary {
+  background-color: var(--color-primary);  /* #3B71FE */
+  color: var(--color-white);               /* White text */
+  border-color: var(--color-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 201, 252, 0.25);
+}
+
+/* OUTLINE — Blue border outline button (Book Demo) */
+.btn-outline {
+  color: var(--color-primary);             /* Blue text matching Figma */
+  border-color: var(--color-primary);        /* Blue border matching Figma */
+}
+
+.btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0);
+  border-color: #01204F;
+  color: #01204F;
+  transform: translateY(-1px);
+}
+
+/* SECONDARY — Subtle gray button */
+.btn-secondary {
+  background-color: var(--gray-50);
+  color: var(--gray-700);
+  border-color: var(--color-line);
+}
+
+.btn-secondary:hover {
+  background-color: var(--gray-50);
+  border-color: var(--gray-200);
+}
+
+/* Size variants */
+.btn-sm {
+  padding: 0.7rem 1.25rem;
+  font-size: 14px;
+}
+
+.btn-lg {
+  padding: 0.85rem 2rem;
+  font-size: var(--text-lg);               /* 16px */
+}

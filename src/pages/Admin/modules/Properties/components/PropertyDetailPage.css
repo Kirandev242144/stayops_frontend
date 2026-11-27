@@ -1,0 +1,895 @@
+/* ==========================================================================
+   PropertyDetailPage.css — Minimalist Enterprise PMS SaaS Detail View
+   ========================================================================== */
+
+.pdp-root {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-height: 0;
+}
+
+/* ── Top Bar ── */
+.pdp-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  margin-bottom: 4px;
+}
+
+.pdp-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pdp-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748B;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 0;
+  transition: color 0.15s ease;
+}
+
+.pdp-back-btn:hover {
+  color: #04B3C0;
+}
+
+/* ── Dropdown Menu ── */
+.pdp-actions-wrap {
+  position: relative;
+}
+
+.pdp-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(9, 27, 51, 0.08);
+  min-width: 200px;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.pdp-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #334155;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+  transition: background 0.12s;
+}
+
+.pdp-dropdown-item:hover {
+  background: #F8FAFC;
+}
+
+.pdp-dropdown-item--danger {
+  color: #DC2626;
+}
+
+.pdp-dropdown-item--danger:hover {
+  background: #FEF2F2;
+}
+
+.pdp-dropdown-item--success {
+  color: #059669;
+}
+
+.pdp-dropdown-item--success:hover {
+  background: #ECFDF5;
+}
+
+/* ── Hero Overview Header Card ── */
+.pdp-hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  background: #ffffff;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 24px 28px;
+  margin-bottom: 16px;
+}
+
+.pdp-hero--skeleton {
+  min-height: 110px;
+}
+
+.pdp-hero-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.pdp-hero-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: #F0FDF4;
+  color: #16A34A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid #DCFCE7;
+}
+
+.pdp-hero-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pdp-hero-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pdp-hero-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: #091B33;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.pdp-code-tag {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: #475569;
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  padding: 2px 7px;
+  border-radius: 6px;
+}
+
+.pdp-category-pill {
+  font-size: 12px;
+  font-weight: 500;
+  color: #04B3C0;
+  background: #E6F7F8;
+  padding: 3px 9px;
+  border-radius: 20px;
+}
+
+.pdp-hero-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #64748B;
+  flex-wrap: wrap;
+}
+
+.pdp-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.pdp-meta-sep {
+  color: #CBD5E1;
+}
+
+.pdp-status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pdp-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.pdp-status-text {
+  font-weight: 500;
+  color: #334155;
+}
+
+.pdp-storefront-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #475569;
+  font-size: 12px;
+}
+
+/* ── Hero Right: Owner Quick Card ── */
+.pdp-hero-right {
+  flex-shrink: 0;
+}
+
+.pdp-owner-card {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 220px;
+}
+
+.pdp-owner-card__label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748B;
+}
+
+.pdp-owner-card__name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #091B33;
+}
+
+.pdp-owner-card__plan {
+  font-size: 12px;
+  font-weight: 500;
+  color: #04B3C0;
+  margin-bottom: 4px;
+}
+
+.pdp-owner-card__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #04B3C0;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  transition: gap 0.15s ease;
+}
+
+.pdp-owner-card__btn:hover {
+  color: #038d97;
+  gap: 7px;
+}
+
+/* ── KPI Summary Cards ── */
+.pdp-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.pdp-kpi-card {
+  background: #ffffff;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pdp-kpi-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748B;
+}
+
+.pdp-kpi-value {
+  font-size: 26px;
+  font-weight: 700;
+  color: #091B33;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.pdp-kpi-value--date {
+  font-size: 18px;
+  padding-top: 4px;
+}
+
+.pdp-kpi-sub {
+  font-size: 12px;
+  color: #94A3B8;
+}
+
+/* ── Tabs ── */
+.pdp-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-bottom: 1px solid #E2E8F0;
+  margin-bottom: 24px;
+  overflow-x: auto;
+}
+
+.pdp-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748B;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  margin-bottom: -1px;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.pdp-tab:hover {
+  color: #091B33;
+}
+
+.pdp-tab--active {
+  color: #04B3C0;
+  font-weight: 600;
+  border-bottom-color: #04B3C0;
+}
+
+/* ── Tab Content Panels ── */
+.pdp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.pdp-card {
+  background: #ffffff;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 22px 24px;
+}
+
+.pdp-card--full {
+  grid-column: 1 / -1;
+}
+
+.pdp-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #091B33;
+  margin: 0 0 4px 0;
+}
+
+.pdp-card-subtitle {
+  font-size: 13px;
+  color: #64748B;
+  margin: 0 0 20px 0;
+  line-height: 1.5;
+}
+
+.pdp-card-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.pdp-card-header-row .pdp-card-subtitle {
+  margin-bottom: 0;
+}
+
+.pdp-readonly-pill {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748B;
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  padding: 4px 10px;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+
+/* ── Definition List (Key-Value) ── */
+.pdp-dlist {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  gap: 10px;
+}
+
+.pdp-dlist-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 9px 0;
+  border-bottom: 1px solid #F8FAFC;
+  font-size: 13px;
+}
+
+.pdp-dlist-row:last-child {
+  border-bottom: none;
+}
+
+.pdp-dlist-row dt {
+  color: #64748B;
+  font-weight: 500;
+  width: 150px;
+  flex-shrink: 0;
+}
+
+.pdp-dlist-row dd {
+  color: #091B33;
+  font-weight: 500;
+  margin: 0;
+  text-align: right;
+  word-break: break-word;
+}
+
+.pdp-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  color: #475569;
+}
+
+.pdp-desc-text {
+  text-align: left !important;
+  color: #475569 !important;
+  font-weight: 400 !important;
+  line-height: 1.5;
+}
+
+.pdp-permit-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #059669;
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+/* ── Contacts Grid ── */
+.pdp-contacts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.pdp-contact-box {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.pdp-contact-role {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748B;
+  margin-bottom: 6px;
+}
+
+.pdp-contact-val {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #091B33;
+}
+
+.pdp-contact-val a {
+  color: #091B33;
+  text-decoration: none;
+}
+
+.pdp-contact-val a:hover {
+  color: #04B3C0;
+  text-decoration: underline;
+}
+
+/* ── Owner Hero & SaaS Notice ── */
+.pdp-owner-hero {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+}
+
+.pdp-owner-hero__avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #E6F7F8;
+  color: #04B3C0;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 2px solid #C4EFF2;
+}
+
+.pdp-owner-hero__details {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+
+.pdp-owner-hero__name {
+  font-size: 17px;
+  font-weight: 700;
+  color: #091B33;
+}
+
+.pdp-owner-hero__email {
+  font-size: 13px;
+  color: #64748B;
+}
+
+.pdp-owner-hero__plan-tag {
+  font-size: 12px;
+  font-weight: 600;
+  color: #04B3C0;
+  margin-top: 2px;
+}
+
+.pdp-owner-jump-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.pdp-saas-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+
+.pdp-saas-notice-icon {
+  color: #04B3C0;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.pdp-saas-notice strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #091B33;
+  margin-bottom: 4px;
+}
+
+.pdp-saas-notice p {
+  margin: 0;
+  font-size: 13px;
+  color: #64748B;
+  line-height: 1.5;
+}
+
+/* ── Rooms Table ── */
+.pdp-rooms-table-wrap {
+  overflow-x: auto;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  margin-bottom: 24px;
+}
+
+.pdp-rooms-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.pdp-rooms-table th {
+  background: #F8FAFC;
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: #475569;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.pdp-rooms-table td {
+  padding: 14px 16px;
+  color: #334155;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.pdp-rooms-table tr:last-child td {
+  border-bottom: none;
+}
+
+.pdp-tariff-cell {
+  font-weight: 600;
+  color: #091B33;
+}
+
+.pdp-single-inventory-box {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 24px;
+}
+
+.pdp-single-inv-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #091B33;
+  margin-bottom: 4px;
+}
+
+.pdp-single-inv-desc {
+  font-size: 13px;
+  color: #64748B;
+}
+
+/* ── Amenities ── */
+.pdp-amenities-section {
+  padding-top: 4px;
+}
+
+.pdp-subheading {
+  font-size: 13px;
+  font-weight: 600;
+  color: #091B33;
+  margin: 0 0 12px 0;
+}
+
+.pdp-amenities-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pdp-amenity-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #334155;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.pdp-amenity-tag svg {
+  color: #0E9F6E;
+}
+
+/* ── Storefront Box & OTA Sync ── */
+.pdp-storefront-box {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.pdp-storefront-url {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #04B3C0;
+  word-break: break-all;
+}
+
+.pdp-storefront-open-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.pdp-channel-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 20px;
+}
+
+.pdp-channel-badge--active {
+  color: #065F46;
+  background: #D1FAE5;
+}
+
+.pdp-channel-badge--ready {
+  color: #1E40AF;
+  background: #DBEAFE;
+}
+
+.pdp-ota-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pdp-ota-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.pdp-ota-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pdp-ota-info strong {
+  font-size: 14px;
+  color: #091B33;
+}
+
+.pdp-ota-info span {
+  font-size: 12px;
+  color: #64748B;
+}
+
+/* ── Audit Timeline ── */
+.pdp-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  padding-left: 18px;
+}
+
+.pdp-timeline::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 5px;
+  width: 2px;
+  background: #E2E8F0;
+}
+
+.pdp-timeline-item {
+  position: relative;
+}
+
+.pdp-timeline-dot {
+  position: absolute;
+  left: -18px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #04B3C0;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 1px #CBD5E1;
+}
+
+.pdp-timeline-content {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 12px 16px;
+}
+
+.pdp-timeline-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.pdp-timeline-action {
+  font-size: 12px;
+  font-weight: 600;
+  color: #091B33;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.pdp-timeline-time {
+  font-size: 11px;
+  color: #94A3B8;
+}
+
+.pdp-timeline-detail {
+  font-size: 13px;
+  color: #475569;
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.pdp-timeline-actor {
+  font-size: 11px;
+  color: #64748B;
+}
+
+/* ── Error Banner ── */
+.pdp-error-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  border-radius: 12px;
+  padding: 16px 20px;
+  color: #991B1B;
+}
+
+.pdp-error-banner p {
+  margin: 2px 0 0 0;
+  font-size: 13px;
+  color: #B91C1C;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .pdp-hero {
+    flex-direction: column;
+  }
+  .pdp-hero-right {
+    width: 100%;
+  }
+  .pdp-owner-card {
+    min-width: 100%;
+  }
+  .pdp-kpis {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .pdp-grid {
+    grid-template-columns: 1fr;
+  }
+  .pdp-contacts-grid {
+    grid-template-columns: 1fr;
+  }
+}

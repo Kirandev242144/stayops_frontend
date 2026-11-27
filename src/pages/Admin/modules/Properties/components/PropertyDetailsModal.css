@@ -1,0 +1,239 @@
+/* ==========================================================================
+   PropertyDetailsModal.css — Rich Property Inspection Styles
+   ========================================================================== */
+
+.prop-details-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Banner */
+.prop-details-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+}
+
+.prop-details-category {
+  display: block;
+  font-size: 14px;
+  font-weight: 750;
+  color: #091B33;
+  margin-bottom: 3px;
+}
+
+.prop-details-loc {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: #64748B;
+}
+
+/* Metrics Grid */
+.prop-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.prop-metric-box {
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid #E5E7EB;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.prop-metric-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #94A3B8;
+}
+
+.prop-metric-val {
+  font-size: 15px;
+  font-weight: 750;
+  color: #091B33;
+}
+
+.prop-metric-val.text-teal {
+  color: #04B3C0;
+}
+
+/* Owner Card */
+.prop-owner-card {
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.prop-owner-card__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #091B33;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.prop-owner-card__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 600px) {
+  .prop-owner-card__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sub-label {
+  display: block;
+  font-size: 11px;
+  color: #94A3B8;
+  margin-bottom: 2px;
+}
+
+.sub-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0F172A;
+}
+
+.sub-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #04B3C0;
+  text-decoration: none;
+}
+
+.sub-link:hover {
+  text-decoration: underline;
+}
+
+/* Section */
+.prop-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.prop-section-title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: #091B33;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  letter-spacing: 0.2px;
+}
+
+/* Room Types List */
+.prop-room-types-list {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.prop-room-type-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid #F1F5F9;
+  background: #ffffff;
+}
+
+.prop-room-type-row:last-child {
+  border-bottom: none;
+}
+
+.room-type-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #091B33;
+  display: block;
+}
+
+.room-type-meta {
+  font-size: 11.5px;
+  color: #64748B;
+}
+
+.room-type-rate {
+  font-size: 13.5px;
+  font-weight: 750;
+  color: #091B33;
+}
+
+.room-type-rate small {
+  font-size: 11px;
+  font-weight: 500;
+  color: #94A3B8;
+}
+
+/* Amenities Tags */
+.prop-amenities-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.prop-amenity-chip {
+  padding: 4px 10px;
+  border-radius: 9999px;
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  font-size: 12px;
+  font-weight: 500;
+  color: #475569;
+}
+
+/* Footer layout */
+.property-details-footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.details-footer-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-btn--success {
+  background: #0E9F6E;
+  color: #ffffff;
+  border: none;
+}
+
+.admin-btn--success:hover {
+  background: #057A55;
+}

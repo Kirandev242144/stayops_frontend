@@ -1,0 +1,962 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+.sfs-wrapper {
+  background-color: #F6F6F7;
+  height: calc(100vh - 116px);
+  max-height: calc(100vh - 116px);
+  font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  color: #202223;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #E1E3E5;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
+}
+
+/* ── LOADING STATE ── */
+.sfs-loading-wrapper {
+  padding: 60px 0;
+  text-align: center;
+}
+
+.sfs-loading-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #6D7175;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.sfs-loading-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #E1E3E5;
+  border-top-color: #008060;
+  border-radius: 50%;
+  animation: sfs-spin 0.8s linear infinite;
+}
+
+@keyframes sfs-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── SHOPIFY STUDIO TOP BAR (POLARIS CLEAN) ── */
+.sfs-top-bar {
+  background: #FFFFFF;
+  border-bottom: 1px solid #E1E3E5;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 56px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.sfs-brand-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sfs-property-dropdown {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #C9CCCF;
+  font-size: 13px;
+  font-weight: 600;
+  color: #202223;
+  background: #FFFFFF;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+}
+
+.sfs-property-dropdown:focus {
+  border-color: #008060;
+  box-shadow: 0 0 0 1px #008060;
+}
+
+.sfs-status-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #008060;
+  background: #F1F8F5;
+  padding: 3px 10px;
+  border-radius: 12px;
+  border: 1px solid #B7E4D3;
+}
+
+.sfs-device-switcher {
+  display: flex;
+  align-items: center;
+  background: #F1F2F3;
+  padding: 3px;
+  border-radius: 8px;
+  border: 1px solid #E1E3E5;
+  gap: 2px;
+}
+
+.sfs-device-tab {
+  background: none;
+  border: none;
+  color: #5C5F62;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.sfs-device-tab.active {
+  background: #FFFFFF;
+  color: #202223;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.sfs-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sfs-icon-success {
+  color: #008060;
+}
+
+.sfs-btn-ghost {
+  background: #FFFFFF;
+  color: #202223;
+  border: 1px solid #C9CCCF;
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+}
+
+.sfs-btn-ghost:hover {
+  background: #F6F6F7;
+  border-color: #BABEC3;
+}
+
+.sfs-btn-primary {
+  background: #008060;
+  color: #FFFFFF;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+}
+
+.sfs-btn-primary:hover {
+  background: #006E52;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+.sfs-btn-primary:disabled,
+.sfs-btn-ghost:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ── SHOPIFY STUDIO LAYOUT ── */
+.sfs-studio-body {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  flex: 1;
+  min-height: 0;
+  height: calc(100% - 56px);
+  max-height: calc(100% - 56px);
+  overflow: hidden;
+}
+
+/* ── SHOPIFY SIDEBAR EDITOR PANEL ── */
+.sfs-sidebar-panel {
+  background: #FFFFFF;
+  border-right: 1px solid #E1E3E5;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.sfs-panel-header {
+  padding: 14px 18px;
+  border-bottom: 1px solid #E1E3E5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #FFFFFF;
+  flex-shrink: 0;
+}
+
+.sfs-panel-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #202223;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.sfs-panel-subtitle {
+  font-size: 11px;
+  color: #6D7175;
+  margin: 2px 0 0 0;
+  font-weight: 400;
+}
+
+.sfs-version-tag {
+  font-size: 10px;
+  font-weight: 600;
+  color: #5C5F62;
+  background: #F1F2F3;
+  border: 1px solid #E1E3E5;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+}
+
+.sfs-panel-scrollable {
+  padding: 14px 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: #CBD5E1 transparent;
+}
+
+.sfs-panel-scrollable::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sfs-panel-scrollable::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+.sfs-panel-scrollable::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+.sfs-panel-scrollable::-webkit-scrollbar-thumb {
+  background: #D1D5DB;
+  border-radius: 4px;
+}
+
+.sfs-panel-scrollable::-webkit-scrollbar-thumb:hover {
+  background: #9CA3AF;
+}
+
+/* ── ACCORDION / CARD SECTION IN SIDEBAR ── */
+.sfs-accordion-section {
+  background: #FFFFFF;
+  border: 1px solid #E1E3E5;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sfs-accordion-section:hover {
+  border-color: #BABEC3;
+}
+
+.sfs-accordion-section.open {
+  border-color: #BABEC3;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.sfs-accordion-head {
+  padding: 12px 14px;
+  background: #FFFFFF;
+  border: none;
+  width: 100%;
+  font-weight: 600;
+  font-size: 13px;
+  color: #202223;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  text-align: left;
+  outline: none;
+}
+
+.sfs-accordion-head:hover {
+  background: #F6F6F7;
+}
+
+.sfs-accordion-section.open .sfs-accordion-head {
+  border-bottom: 1px solid #E1E3E5;
+}
+
+.sfs-accordion-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #202223;
+}
+
+.sfs-acc-icon {
+  font-size: 15px;
+  color: #5C5F62;
+  flex-shrink: 0;
+}
+
+.sfs-chevron-icon {
+  font-size: 15px;
+  color: #6D7175;
+  flex-shrink: 0;
+}
+
+.sfs-accordion-body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: #FFFFFF;
+}
+
+/* ── FORM CONTROLS & LABELS ── */
+.sfs-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sfs-input-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #5C5F62;
+  margin-bottom: 2px;
+}
+
+.sfs-input-field {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #C9CCCF;
+  font-size: 13px;
+  font-weight: 500;
+  color: #202223;
+  background: #FFFFFF;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  box-sizing: border-box;
+}
+
+.sfs-input-field:focus {
+  border-color: #008060;
+  box-shadow: 0 0 0 1px #008060;
+}
+
+.sfs-help-text-sm {
+  font-size: 11px;
+  color: #6D7175;
+  display: block;
+  line-height: 1.4;
+  margin-top: 2px;
+}
+
+/* ── POLARIS PRESET PALETTE GRID ── */
+.sfs-preset-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+
+.sfs-color-preset-pill {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  background: #FFFFFF;
+  border: 1px solid #E1E3E5;
+  border-radius: 6px;
+  padding: 7px 10px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  outline: none;
+  width: 100%;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.sfs-color-preset-pill:hover {
+  background: #F6F6F7;
+  border-color: #BABEC3;
+}
+
+.sfs-color-preset-pill.active {
+  background: #F1F2F3;
+  border-color: #202223;
+  box-shadow: 0 0 0 1px #202223;
+}
+
+.sfs-preset-dots-pair {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.sfs-preset-dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+.sfs-preset-dot.accent {
+  margin-left: -5px;
+  border: 1.5px solid #FFFFFF;
+  z-index: 1;
+}
+
+.sfs-preset-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: #202223;
+  white-space: nowrap;
+}
+
+.sfs-color-preset-pill.active .sfs-preset-name {
+  font-weight: 600;
+}
+
+.sfs-preset-check {
+  font-size: 12px;
+  color: #202223;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* ── SHOPIFY POLARIS COLOR PICKER INPUT ── */
+.sfs-color-picker-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #FFFFFF;
+  border: 1px solid #C9CCCF;
+  border-radius: 6px;
+  padding: 4px 8px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sfs-color-picker-group:focus-within {
+  border-color: #008060;
+  box-shadow: 0 0 0 1px #008060;
+}
+
+.sfs-color-swatch-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.sfs-color-input-hidden {
+  position: absolute;
+  inset: -10px;
+  width: 200%;
+  height: 200%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.sfs-color-hex-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: #202223;
+  width: 100%;
+  text-transform: uppercase;
+}
+
+/* ── SUBDOMAIN INPUT GROUP ── */
+.sfs-subdomain-input-group {
+  display: flex;
+  align-items: center;
+  border: 1px solid #C9CCCF;
+  border-radius: 6px;
+  background: #FFFFFF;
+  overflow: hidden;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sfs-subdomain-input-group:focus-within {
+  border-color: #008060;
+  box-shadow: 0 0 0 1px #008060;
+}
+
+.sfs-subdomain-field {
+  border: none;
+  outline: none;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #202223;
+  flex: 1;
+  background: transparent;
+}
+
+.sfs-subdomain-addon {
+  padding: 8px 10px;
+  background: #F6F6F7;
+  border-left: 1px solid #E1E3E5;
+  color: #6D7175;
+  font-size: 12px;
+  font-weight: 500;
+  user-select: none;
+}
+
+.sfs-subdomain-highlight {
+  color: #008060;
+  font-weight: 600;
+}
+
+/* ── PINNED SIDEBAR FOOTER ACTION ── */
+.sfs-panel-footer {
+  padding: 12px 16px;
+  background: #FFFFFF;
+  border-top: 1px solid #E1E3E5;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.sfs-btn-save-primary {
+  width: 100%;
+  padding: 9px 16px;
+  border-radius: 6px;
+  background: #008060;
+  color: #FFFFFF;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+}
+
+.sfs-btn-save-primary:hover {
+  background: #006E52;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+.sfs-btn-save-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── SHOPIFY LIVE PREVIEW CANVAS ── */
+.sfs-canvas-workspace {
+  background: #F6F6F7;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.sfs-browser-frame {
+  background: #FFFFFF;
+  border-radius: 10px;
+  border: 1px solid #D1D5DB;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: width 0.3s ease;
+  min-height: 700px;
+}
+
+.sfs-browser-frame-desktop {
+  width: 100%;
+}
+
+.sfs-browser-frame-tablet {
+  width: 768px;
+}
+
+.sfs-browser-frame-mobile {
+  width: 375px;
+}
+
+.sfs-browser-header {
+  background: #F1F2F3;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #E1E3E5;
+}
+
+.sfs-browser-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.sfs-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.sfs-dot-red { background: #FF5F56; }
+.sfs-dot-yellow { background: #FFBD2E; }
+.sfs-dot-green { background: #27C93F; }
+
+.sfs-browser-url-bar {
+  flex: 1;
+  background: #FFFFFF;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  color: #5C5F62;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #CBD5E1;
+}
+
+.sfs-lock-icon {
+  color: #10B981;
+  font-size: 0.75rem;
+}
+
+.sfs-browser-content {
+  flex: 1;
+  height: 100%;
+}
+
+.sfs-preview-iframe {
+  width: 100%;
+  height: 700px;
+  border: none;
+}
+
+@media (max-width: 1024px) {
+  .sfs-studio-body {
+    grid-template-columns: 1fr;
+  }
+  .sfs-sidebar-panel {
+    border-right: none;
+    border-bottom: 1px solid #E2E8F0;
+  }
+}
+
+/* ── STOREFRONT STUDIO ABOUT MODAL DIALOG ── */
+.sfs-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.sfs-modal-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 640px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border: 1px solid #E2E8F0;
+  animation: sfs-modal-fade 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+@keyframes sfs-modal-fade {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.sfs-modal-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid #E2E8F0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #F8FAFC;
+}
+
+.sfs-modal-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sfs-modal-header-icon {
+  font-size: 1.4rem;
+  color: #059669;
+  background: #ECFDF5;
+  padding: 8px;
+  border-radius: 10px;
+  box-sizing: content-box;
+}
+
+.sfs-modal-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0;
+}
+
+.sfs-modal-subtitle {
+  font-size: 0.8rem;
+  color: #64748B;
+  margin: 2px 0 0 0;
+}
+
+.sfs-modal-close-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: #64748B;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.sfs-modal-close-btn:hover {
+  background: #E2E8F0;
+  color: #0F172A;
+}
+
+.sfs-modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sfs-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.sfs-file-upload-box {
+  position: relative;
+  width: 100%;
+}
+
+.sfs-file-input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.sfs-file-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 20px;
+  background: #F1F5F9;
+  border: 1.5px dashed #CBD5E1;
+  border-radius: 10px;
+  color: #334155;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sfs-file-label:hover {
+  background: #E2E8F0;
+  border-color: #059669;
+  color: #059669;
+}
+
+.sfs-upload-icon {
+  font-size: 1.2rem;
+}
+
+.sfs-modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid #E2E8F0;
+  background: #F8FAFC;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* ============================================================
+   SIDEBAR AMENITIES QUICK VIEW
+   ============================================================ */
+.sfs-amenities-quick-view {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sfs-amenities-chips-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  max-height: 125px;
+  overflow-y: auto;
+  padding: 2px 0;
+}
+
+.sfs-amenity-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 5px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #334155;
+  font-size: 0.72rem;
+  font-weight: 550;
+  line-height: 1.3;
+}
+
+.sfs-chip-del {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 0.85rem;
+  line-height: 1;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.15s ease;
+}
+
+.sfs-chip-del:hover {
+  color: #ef4444;
+}
+
+/* ============================================================
+   BRAND LOGO CUSTOMIZER STYLES
+   ============================================================ */
+.sfs-logo-preview-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.sfs-logo-preview-img {
+  max-height: 38px;
+  max-width: 130px;
+  object-fit: contain;
+}
+
+.sfs-logo-remove-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #FEE2E2;
+  border: 1px solid #FECACA;
+  color: #DC2626;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.sfs-logo-remove-btn:hover {
+  background: #FCA5A5;
+  color: #991B1B;
+}
+
+.sfs-logo-active-hint {
+  display: block;
+  font-size: 0.68rem;
+  color: #059669;
+  font-weight: 600;
+  margin-top: 5px;
+}
+

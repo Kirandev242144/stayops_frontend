@@ -1,0 +1,675 @@
+/* ==========================================================
+   STAYOPS LOGIN SHOWCASE STAGE & UI METRICS CARDS
+   (Buttery Smooth 60fps GPU Hardware-Accelerated Animations)
+   ========================================================== */
+
+.showcase-stage {
+  position: relative;
+  width: 100%;
+  max-width: 660px;
+  height: 560px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  user-select: none;
+  animation: stageFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes stageFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= MAN WRAPPER ================= */
+
+.showcase-man-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 480px;
+  max-width: 85%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.showcase-man-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 24px 36px rgba(0, 0, 0, 0.7));
+}
+
+/* ================= COMMON METRIC CARD STYLES ================= */
+
+.metric-card {
+  position: absolute;
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 10px 12px;
+  box-shadow: 0 14px 28px -6px rgba(0, 0, 0, 0.42),
+              0 4px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(241, 245, 249, 0.9);
+  z-index: 3;
+  will-change: transform;
+  transform: translateZ(0);
+  transition: box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.metric-card:hover {
+  box-shadow: 0 22px 42px -4px rgba(0, 0, 0, 0.6),
+              0 8px 16px rgba(0, 0, 0, 0.3);
+  border-color: rgba(203, 213, 225, 0.8);
+  z-index: 10;
+}
+
+/* ================= INDIVIDUAL CARD POSITIONS & LIQUID FLOATING ================= */
+
+/* 1. Occupancy Rate (Top Left) */
+.card-occupancy {
+  top: 10px;
+  left: -10px;
+  width: 195px;
+  animation: floatOccupancy 5.8s ease-in-out infinite;
+}
+
+@keyframes floatOccupancy {
+  0%, 100% {
+    transform: translateY(0px) translateZ(0);
+  }
+  50% {
+    transform: translateY(-6px) translateZ(0);
+  }
+}
+
+/* 2. Total Bookings (Top Right) */
+.card-bookings {
+  top: 25px;
+  right: -10px;
+  width: 190px;
+  animation: floatBookings 6.4s ease-in-out infinite;
+}
+
+@keyframes floatBookings {
+  0%, 100% {
+    transform: translateY(0px) translateZ(0);
+  }
+  50% {
+    transform: translateY(5px) translateZ(0);
+  }
+}
+
+/* 3. Revenue (Middle Left) */
+.card-revenue {
+  top: 120px;
+  left: -25px;
+  width: 190px;
+  animation: floatRevenue 6.8s ease-in-out infinite;
+}
+
+@keyframes floatRevenue {
+  0%, 100% {
+    transform: translateY(0px) translateZ(0);
+  }
+  50% {
+    transform: translateY(-5px) translateZ(0);
+  }
+}
+
+/* 4. Upcoming Check-ins (Middle Right) */
+.card-checkins {
+  top: 140px;
+  right: -25px;
+  width: 205px;
+  animation: floatCheckins 7.2s ease-in-out infinite;
+}
+
+@keyframes floatCheckins {
+  0%, 100% {
+    transform: translateY(0px) translateZ(0);
+  }
+  50% {
+    transform: translateY(6px) translateZ(0);
+  }
+}
+
+/* 5. Room Availability (Bottom Left) */
+.card-rooms {
+  bottom: 12px;
+  left: -15px;
+  width: 205px;
+  animation: floatRooms 6.2s ease-in-out infinite;
+}
+
+@keyframes floatRooms {
+  0%, 100% {
+    transform: translateY(0px) translateZ(0);
+  }
+  50% {
+    transform: translateY(-5px) translateZ(0);
+  }
+}
+
+/* 6. Channel Bookings (Bottom Right) */
+.card-channels {
+  bottom: 15px;
+  right: -15px;
+  width: 200px;
+  animation: floatChannels 7.6s ease-in-out infinite;
+}
+
+@keyframes floatChannels {
+  0%, 100% {
+    transform: translateY(0px) translateZ(0);
+  }
+  50% {
+    transform: translateY(5px) translateZ(0);
+  }
+}
+
+/* Pause / smooth hover lift */
+.card-occupancy:hover {
+  transform: translateY(-9px) scale(1.02) translateZ(0);
+}
+.card-bookings:hover {
+  transform: translateY(-4px) scale(1.02) translateZ(0);
+}
+.card-revenue:hover {
+  transform: translateY(-8px) scale(1.02) translateZ(0);
+}
+.card-checkins:hover {
+  transform: translateY(-4px) scale(1.02) translateZ(0);
+}
+.card-rooms:hover {
+  transform: translateY(-8px) scale(1.02) translateZ(0);
+}
+.card-channels:hover {
+  transform: translateY(-4px) scale(1.02) translateZ(0);
+}
+
+/* Card Header Action (for checkins, rooms, channels) */
+.card-header-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+}
+
+.card-section-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #0F172A;
+  letter-spacing: -0.01em;
+}
+
+.card-chevron {
+  color: #94A3B8;
+  stroke-width: 2.5;
+  transition: transform 0.2s ease;
+}
+
+.metric-card:hover .card-chevron {
+  transform: translateX(2px);
+  color: #0284C7;
+}
+
+/* Card Top Row */
+.card-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.card-icon-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.card-icon-pill {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-teal {
+  background: #E6FFFA;
+  color: #0D9488;
+}
+
+.icon-orange {
+  background: #FFF7ED;
+  color: #EA580C;
+}
+
+.icon-blue {
+  background: #EFF6FF;
+  color: #2563EB;
+}
+
+.card-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748B;
+  white-space: nowrap;
+}
+
+.card-time-pill {
+  font-size: 9px;
+  font-weight: 600;
+  color: #64748B;
+  background: #F1F5F9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* Card Body Row */
+.card-body-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.card-stat-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-stat-num {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0F172A;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.card-trend {
+  font-size: 9.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-top: 3px;
+  white-space: nowrap;
+}
+
+.trend-green {
+  color: #10B981;
+}
+
+.card-trend span {
+  font-size: 8px;
+}
+
+/* Mini Sparkline Bars with Growth Animation */
+.card-mini-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 26px;
+  padding-bottom: 2px;
+}
+
+.card-mini-bars span {
+  width: 4px;
+  height: 0;
+  border-radius: 2px;
+  animation: barGrowUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes barGrowUp {
+  0% {
+    height: 0;
+    opacity: 0.3;
+  }
+  100% {
+    height: var(--target-height, 100%);
+    opacity: 1;
+  }
+}
+
+.bars-teal span {
+  background: linear-gradient(180deg, #14B8A6 0%, #0D9488 100%);
+}
+
+.bars-orange span {
+  background: linear-gradient(180deg, #FB923C 0%, #EA580C 100%);
+}
+
+/* ================= 3. REVENUE CARD & ANIMATED SVG CHART ================= */
+
+.revenue-main-stat {
+  margin-bottom: 4px;
+}
+
+.revenue-counter {
+  font-size: 19px;
+  font-weight: 800;
+  color: #0F172A;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.revenue-chart-wrap {
+  width: 100%;
+  height: 34px;
+  margin-top: 4px;
+  overflow: visible;
+}
+
+.revenue-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+/* Ultra-smooth SVG Stroke Line Animation */
+.revenue-chart-line {
+  stroke-dasharray: 240;
+  stroke-dashoffset: 240;
+  animation: drawRevenueStroke 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+
+@keyframes drawRevenueStroke {
+  0% {
+    stroke-dashoffset: 240;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Fade In Chart Area Gradient */
+.revenue-chart-area {
+  opacity: 0;
+  animation: fadeRevenueArea 1.2s ease 0.8s forwards;
+}
+
+@keyframes fadeRevenueArea {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Highlight Dot at the tip of the chart */
+.revenue-chart-dot {
+  opacity: 0;
+  transform-origin: 170px 6px;
+  animation: dotPopIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 1.5s forwards;
+}
+
+@keyframes dotPopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  70% {
+    transform: scale(1.3);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Continuous Radar Pulse on Tip Dot */
+.revenue-chart-pulse {
+  opacity: 0;
+  transform-origin: 170px 6px;
+  animation: pulseRings 2.4s cubic-bezier(0.16, 1, 0.3, 1) 1.8s infinite;
+}
+
+@keyframes pulseRings {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.6);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2.4);
+  }
+}
+
+/* ================= 4. UPCOMING CHECK-INS ================= */
+
+.checkins-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.checkin-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition: transform 0.15s ease;
+}
+
+.checkin-item:hover {
+  transform: translateX(2px);
+}
+
+.checkin-avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 8.5px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #FFFFFF;
+}
+
+.av-1 { background: linear-gradient(135deg, #0EA5E9, #0284C7); }
+.av-2 { background: linear-gradient(135deg, #EC4899, #BE185D); }
+.av-3 { background: linear-gradient(135deg, #8B5CF6, #6D28D9); }
+
+.checkin-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.checkin-name {
+  font-size: 10px;
+  font-weight: 700;
+  color: #1E293B;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.checkin-meta {
+  font-size: 8.5px;
+  color: #64748B;
+  white-space: nowrap;
+}
+
+.status-pill {
+  font-size: 8.5px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.status-today {
+  background: #ECFDF5;
+  color: #059669;
+}
+
+.status-tomorrow {
+  background: #EFF6FF;
+  color: #2563EB;
+}
+
+.status-date {
+  background: #F1F5F9;
+  color: #64748B;
+}
+
+/* ================= 5. ROOM AVAILABILITY ================= */
+
+.rooms-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.room-item {
+  display: grid;
+  grid-template-columns: 68px 1fr 28px;
+  align-items: center;
+  gap: 6px;
+}
+
+.room-name {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: #334155;
+  white-space: nowrap;
+}
+
+.room-bar-track {
+  width: 100%;
+  height: 5px;
+  background: #F1F5F9;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.room-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+}
+
+.bar-teal { background: #14B8A6; }
+.bar-orange { background: #F97316; }
+.bar-blue { background: #3B82F6; }
+
+/* Animated Progress Bars */
+.anim-progress {
+  width: 0 !important;
+  animation: fillProgress 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+}
+
+@keyframes fillProgress {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: var(--target-width, 100%);
+  }
+}
+
+.room-count {
+  font-size: 9px;
+  font-weight: 700;
+  color: #64748B;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ================= 6. CHANNEL BOOKINGS ================= */
+
+.channels-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.channel-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  transition: transform 0.15s ease;
+}
+
+.channel-item:hover {
+  transform: translateX(2px);
+}
+
+.channel-brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+.channel-icon-bg {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.channel-icon-bg.abnb { background: #FF5A5F; }
+.channel-icon-bg.bcom { background: #003580; }
+.channel-icon-bg.mmt { background: #E41D2E; color: #FFF; line-height: 1; }
+.channel-icon-bg.direct { background: #F59E0B; }
+
+.channel-name {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.channel-stat-num {
+  font-size: 11px;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.channel-trend {
+  font-size: 8.5px;
+  font-weight: 700;
+  color: #10B981;
+}
+
+/* ================= RESPONSIVE ADJUSTMENTS ================= */
+
+@media (max-width: 1200px) {
+  .showcase-stage {
+    transform: scale(0.92);
+    transform-origin: bottom center;
+  }
+}
+
+@media (max-width: 992px) {
+  .showcase-stage {
+    transform: scale(0.85);
+    height: 480px;
+  }
+}

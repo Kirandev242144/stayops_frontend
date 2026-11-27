@@ -1,0 +1,259 @@
+/* PhotoProofModal.css - Minimalist Light Verification Modal */
+
+.ppm-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 16px;
+  animation: ppmFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ppm-card {
+  width: 100%;
+  max-width: 520px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.15), 0 0 0 1px rgba(15, 23, 42, 0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: ppmScaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Header */
+.ppm-header {
+  background: #FFFFFF;
+  padding: 20px 24px 16px 24px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.ppm-header-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ppm-header-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #E0F2FE;
+  border: 1px solid #BAE6FD;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0284C7;
+  flex-shrink: 0;
+}
+
+.ppm-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #0F172A;
+  margin: 0 0 2px 0;
+  line-height: 1.2;
+}
+
+.ppm-subtitle {
+  font-size: 13px;
+  color: #64748B;
+}
+
+.ppm-close-btn {
+  background: transparent;
+  border: none;
+  color: #94A3B8;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.ppm-close-btn:hover {
+  background: #F1F5F9;
+  color: #0F172A;
+}
+
+/* Body */
+.ppm-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Audit Verified Badge */
+.ppm-status-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  padding: 10px 14px;
+  border-radius: 10px;
+}
+
+.ppm-status-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #065F46;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.ppm-audit-chip {
+  font-size: 11px;
+  color: #047857;
+  background: #D1FAE5;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+/* Audit Grid */
+.ppm-audit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  font-size: 13px;
+  background: #F8FAFC;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #F1F5F9;
+}
+
+.ppm-audit-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #334155;
+}
+
+.ppm-audit-icon {
+  color: #64748B;
+  flex-shrink: 0;
+}
+
+/* Notes */
+.ppm-notes-card {
+  font-size: 13px;
+  color: #334155;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #EFF6FF;
+  border: 1px solid #DBEAFE;
+  padding: 10px 14px;
+  border-radius: 10px;
+}
+
+.ppm-notes-icon {
+  color: #3B82F6;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* Photo Display */
+.ppm-photo-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ppm-photo-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ppm-photo-frame {
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  overflow: hidden;
+  max-height: 320px;
+  background: #0F172A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ppm-photo-img {
+  width: 100%;
+  height: auto;
+  max-height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
+.ppm-no-photo {
+  padding: 36px 20px;
+  border: 2px dashed #CBD5E1;
+  border-radius: 14px;
+  color: #94A3B8;
+  font-size: 13px;
+  background: #F8FAFC;
+  text-align: center;
+}
+
+/* Footer */
+.ppm-footer {
+  padding: 16px 24px 20px 24px;
+  background: #F8FAFC;
+  border-top: 1px solid #F1F5F9;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.ppm-btn {
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ppm-btn:hover {
+  background: #F1F5F9;
+  color: #0F172A;
+}
+
+/* Animations */
+@keyframes ppmFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes ppmScaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

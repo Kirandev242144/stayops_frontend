@@ -1,0 +1,2 @@
+Log ID,Timestamp,Booking Ref,Guest Name,Type,Original Payment Gateway,Payment Method,Refund Settlement Method,Amount (INR),Order ID,Payment ID,Refund ID,Reference No,Status,Notes
+"8","2026-09-12T05:36:12.97132","BK-001","bharath dev","PAYMENT","MANUAL","Walk-In","'-","4000","'-","MANUAL-PAY-68","'-","'-","CAPTURED","Original payment recorded for booking BK-001"

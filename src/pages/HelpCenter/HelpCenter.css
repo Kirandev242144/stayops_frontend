@@ -1,0 +1,11 @@
+.hc-page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+.hc-page-wrapper main {
+  flex: 1;
+}

@@ -1,0 +1,172 @@
+/* ==========================================================================
+   MINIMALISTIC SHOPIFY LIGHT TOAST NOTIFICATIONS (NO BORDERS)
+   ========================================================================== */
+
+/* Container positioning at top-right */
+.Toastify__toast-container {
+  padding: 16px;
+  width: auto;
+  max-width: 400px;
+  z-index: 99999;
+}
+
+.Toastify__toast-container--top-right {
+  top: 16px !important;
+  right: 16px !important;
+}
+
+/* Toast Main Light Pill Card - No Border */
+.Toastify__toast {
+  background: #ffffff !important;
+  color: #1f2937 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+  border: none !important;
+  border-left: none !important;
+  padding: 12px 16px !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  line-height: 1.45 !important;
+  min-height: 48px !important;
+  margin-bottom: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease !important;
+}
+
+.Toastify__toast-body {
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  flex: 1 1 auto !important;
+  color: #1f2937 !important;
+}
+
+/* Success Variant */
+.Toastify__toast--success {
+  border: none !important;
+  border-left: none !important;
+}
+.Toastify__toast--success .Toastify__toast-icon {
+  color: #10b981 !important;
+}
+.Toastify__toast--success .Toastify__toast-icon svg {
+  fill: #10b981 !important;
+}
+
+/* Error Variant */
+.Toastify__toast--error {
+  border: none !important;
+  border-left: none !important;
+}
+.Toastify__toast--error .Toastify__toast-icon {
+  color: #ef4444 !important;
+}
+.Toastify__toast--error .Toastify__toast-icon svg {
+  fill: #ef4444 !important;
+}
+
+/* Warning Variant */
+.Toastify__toast--warning {
+  border: none !important;
+  border-left: none !important;
+}
+.Toastify__toast--warning .Toastify__toast-icon {
+  color: #f59e0b !important;
+}
+.Toastify__toast--warning .Toastify__toast-icon svg {
+  fill: #f59e0b !important;
+}
+
+/* Info Variant */
+.Toastify__toast--info {
+  border: none !important;
+  border-left: none !important;
+}
+.Toastify__toast--info .Toastify__toast-icon {
+  color: #3b82f6 !important;
+}
+.Toastify__toast--info .Toastify__toast-icon svg {
+  fill: #3b82f6 !important;
+}
+
+/* Minimalist Progress bar styling */
+.Toastify__progress-bar {
+  height: 2px !important;
+  border-bottom-left-radius: 12px !important;
+  border-bottom-right-radius: 12px !important;
+  opacity: 0.75 !important;
+}
+
+.Toastify__progress-bar--success {
+  background: #10b981 !important;
+}
+
+.Toastify__progress-bar--error {
+  background: #ef4444 !important;
+}
+
+.Toastify__progress-bar--warning {
+  background: #f59e0b !important;
+}
+
+.Toastify__progress-bar--info {
+  background: #3b82f6 !important;
+}
+
+/* Close Button */
+.Toastify__close-button {
+  color: #9ca3af !important;
+  opacity: 0.6 !important;
+  align-self: center !important;
+  margin-left: 8px !important;
+  transition: opacity 0.15s ease, color 0.15s ease !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+.Toastify__close-button:hover {
+  color: #374151 !important;
+  opacity: 1 !important;
+}
+
+/* Custom Shopify Action Button layout inside Toast */
+.shopify-toast-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 12px;
+}
+
+.shopify-toast-message {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #1f2937;
+  line-height: 1.4;
+}
+
+.shopify-toast-action-btn {
+  background: #f3f4f6;
+  border: none;
+  color: #1f2937;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease;
+}
+
+.shopify-toast-action-btn:hover {
+  background: #e5e7eb;
+}
+
+.shopify-toast-action-btn:active {
+  transform: scale(0.96);
+}

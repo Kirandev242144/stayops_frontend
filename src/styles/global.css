@@ -1,0 +1,178 @@
+/* ==========================================================================
+   GLOBAL.CSS — Applies the design system to the actual page
+   ==========================================================================
+   
+   🧠 MENTOR NOTE:
+   
+   This file does 3 things:
+   1. Imports reset.css (clean browser slate)
+   2. Imports variables.css (your color/font tokens)
+   3. Applies those tokens to HTML elements (body, h1, h2, p, etc.)
+   
+   Think of it as: 
+   - variables.css = the paint cans (defines what colors exist)
+   - global.css    = the painter (actually paints the walls)
+   ========================================================================== */
+
+@import './reset.css';
+@import './variables.css';
+::-webkit-scrollbar {
+   width: 6px;
+}
+
+::-webkit-scrollbar-track {
+   background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+   background: rgba(16, 47, 89, 0.35);
+   border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+   background: rgba(16, 47, 89, 0.6);
+}
+
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+/* --------------------------------------------------------------------------
+   BODY — Default page styling
+   -------------------------------------------------------------------------- */
+
+body {
+  font-family: var(--font-primary);       /* Uses Geist from variables.css */
+  font-size: var(--text-md);              /* 14px default body text */
+  font-weight: var(--font-weight-regular);
+  color: var(--gray-900);                 /* Near-black text for readability */
+  background-color: #F5F5F5;             /* Light gray page background (from Figma) */
+  overflow-x: hidden;                     /* Prevents horizontal scroll */
+}
+
+button {
+  text-align: center;
+}
+
+
+/* --------------------------------------------------------------------------
+   HEADINGS — Typography scale from your design spec
+   --------------------------------------------------------------------------
+   Your spec shows 3 weight variants per heading size:
+   SemiBold, Medium, and Regular.
+   
+   By default we use SemiBold for headings (most common in SaaS).
+   You can override per-component using utility classes below.
+   -------------------------------------------------------------------------- */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-semibold);  /* Default heading weight */
+  line-height: 1.2;
+  color: var(--gray-900);
+}
+
+h1 { font-size: var(--heading-h1); }   /* 64px */
+h2 { font-size: var(--heading-h2); }   /* 48px */
+h3 { font-size: var(--heading-h3); }   /* 40px */
+h4 { font-size: var(--heading-h4); }   /* 32px */
+h5 { font-size: var(--heading-h5); }   /* 24px */
+h6 { font-size: var(--heading-h6); }   /* 20px */
+
+
+/* --------------------------------------------------------------------------
+   HEADING WEIGHT VARIANTS (from your Typography spec)
+   --------------------------------------------------------------------------
+   Usage in JSX:  <h1 className="heading-medium">Hello</h1>
+   -------------------------------------------------------------------------- */
+
+.heading-semibold { font-weight: var(--font-weight-semibold); }  /* 600 */
+.heading-medium   { font-weight: var(--font-weight-medium);   }  /* 500 */
+.heading-regular  { font-weight: var(--font-weight-regular);  }  /* 400 */
+
+
+/* --------------------------------------------------------------------------
+   BODY TEXT SIZE CLASSES (from right column of your Typography spec)
+   --------------------------------------------------------------------------
+   Usage in JSX:  <p className="text-lg text-bold">Big bold text</p>
+   -------------------------------------------------------------------------- */
+
+.text-xl { font-size: var(--text-xl); }   /* 18px */
+.text-lg { font-size: var(--text-lg); }   /* 16px */
+.text-md { font-size: var(--text-md); }   /* 14px */
+.text-sm { font-size: var(--text-sm); }   /* 12px */
+.text-xs { font-size: var(--text-xs); }   /* 10px — Xtra-Small */
+
+/* Body text weight variants */
+.text-bold     { font-weight: var(--font-weight-bold);     }  /* 700 */
+.text-semibold { font-weight: var(--font-weight-semibold); }  /* 600 */
+.text-medium   { font-weight: var(--font-weight-medium);   }  /* 500 */
+.text-regular  { font-weight: var(--font-weight-regular);  }  /* 400 */
+
+
+/* --------------------------------------------------------------------------
+   TEXT COLOR CLASSES
+   --------------------------------------------------------------------------
+   Usage: <p className="text-secondary">Lighter colored text</p>
+   -------------------------------------------------------------------------- */
+
+.text-primary   { color: var(--gray-900); }     /* Darkest — main headings */
+.text-secondary { color: var(--gray-500); }     /* Medium — descriptions */
+.text-muted     { color: var(--gray-300); }     /* Lightest — hints, labels */
+
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE HEADING ADJUSTMENTS
+   --------------------------------------------------------------------------
+   On mobile phones, 64px headings are way too big.
+   We scale them down proportionally.
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+  h1 { font-size: 40px; }
+  h2 { font-size: 32px; }
+  h3 { font-size: 28px; }
+  h4 { font-size: 24px; }
+}
+
+
+/* --------------------------------------------------------------------------
+   LAYOUT CONTAINER
+   --------------------------------------------------------------------------
+   Centers content on the page with max-width and horizontal padding.
+   Used by the Container component.
+   -------------------------------------------------------------------------- */
+
+.container {
+  width: 100%;
+  max-width: var(--max-width-container);   /* 1240px from variables */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-5);    /* 24px */
+  padding-right: var(--space-5);   /* 24px */
+}
+
+
+/* --------------------------------------------------------------------------
+   SECTION SPACING
+   -------------------------------------------------------------------------- */
+
+.section-padding {
+  padding-top: var(--space-9);       /* 96px */
+  padding-bottom: var(--space-9);    /* 96px */
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding-top: var(--space-8);     /* 64px */
+    padding-bottom: var(--space-8);  /* 64px */
+  }
+}

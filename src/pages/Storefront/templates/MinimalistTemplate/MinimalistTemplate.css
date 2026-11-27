@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap');
+
+/* ── MINIMALIST POSTER TEMPLATE (Albergo Inspired) ── */
+.sf-template-minimalist {
+  --sf-font-serif: 'Playfair Display', Georgia, serif;
+  --sf-font-sans: 'Open Sans', system-ui, -apple-system, sans-serif;
+  --sf-radius-lg: 0px;
+  --sf-radius-md: 0px;
+  --sf-radius-sm: 0px;
+  --sf-radius-pill: 0px;
+  font-family: var(--sf-font-sans);
+  background-color: #FFFFFF;
+  color: #1A1A1A;
+}
+
+.sf-template-minimalist .sf-hero {
+  align-items: flex-start;
+  text-align: left;
+  padding: 160px 80px 120px 80px;
+}
+
+.sf-template-minimalist .sf-hero-content {
+  margin-left: 0;
+  text-align: left;
+  max-width: 620px;
+}
+
+.sf-template-minimalist .sf-hero-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 3.6rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+
+.sf-template-minimalist .sf-hero-tagline {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 28px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.sf-template-minimalist .sf-hero-browse-btn {
+  border-radius: 0px !important;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 18px 42px;
+  background-color: var(--sf-primary, #1A1A1A) !important;
+  color: #FFFFFF !important;
+  border: none;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  transition: all 0.2s ease;
+}
+
+.sf-template-minimalist .sf-hero-browse-btn:hover {
+  filter: brightness(1.15);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+.sf-template-minimalist button,
+.sf-template-minimalist input,
+.sf-template-minimalist select,
+.sf-template-minimalist .sf-card,
+.sf-template-minimalist .sf-room-card,
+.sf-template-minimalist .sf-search-bar-card,
+.sf-template-minimalist .sf-modal-box,
+.sf-template-minimalist .sf-nav-btn,
+.sf-template-minimalist .sf-nav-admin-btn,
+.sf-template-minimalist .sf-logo-badge {
+  border-radius: 0px !important;
+}
+
+.sf-template-minimalist .sf-room-card {
+  border: 1px solid #E8E8E8;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+
+/* Minimalist About Section Overrides */
+.sf-template-minimalist .sf-about-section {
+  background-color: #FFFFFF;
+}
+
+.sf-template-minimalist .sf-about-badge,
+.sf-template-minimalist .sf-about-image-wrapper,
+.sf-template-minimalist .sf-about-image-badge {
+  border-radius: 0px !important;
+}
+
+.sf-template-minimalist .sf-about-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: 3rem;
+}
+
+.sf-template-minimalist .sf-about-paragraph {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+}

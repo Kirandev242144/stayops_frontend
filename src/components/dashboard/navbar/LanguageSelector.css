@@ -1,0 +1,166 @@
+/* ===================================================
+   STAYOPS NAVBAR LANGUAGE SELECTOR
+=================================================== */
+
+.navbar-lang-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.navbar-lang-btn {
+  height: 38px;
+  padding: 0 12px;
+  background: #ffffff;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: #374151;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.navbar-lang-btn:hover {
+  background: #F9FAFB;
+  border-color: #D1D5DB;
+  color: #111827;
+}
+
+.navbar-lang-btn.active {
+  border-color: #09B7C8;
+  background: rgba(9, 183, 200, 0.06);
+  color: #09B7C8;
+  box-shadow: 0 0 0 3px rgba(9, 183, 200, 0.15);
+}
+
+.navbar-lang-icon {
+  color: #09B7C8;
+  flex-shrink: 0;
+}
+
+.navbar-lang-current {
+  letter-spacing: -0.01em;
+  font-family: inherit;
+}
+
+.navbar-lang-chevron {
+  color: #9CA3AF;
+  transition: transform 0.2s ease;
+}
+
+.navbar-lang-chevron.open {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Menu */
+.navbar-lang-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 210px;
+  background: #ffffff;
+  border: 1px solid #E5E7EB;
+  border-radius: 14px;
+  box-shadow: 0 12px 28px -4px rgba(16, 24, 40, 0.12), 0 4px 10px -2px rgba(16, 24, 40, 0.05);
+  z-index: 1000;
+  overflow: hidden;
+  animation: navbarLangFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes navbarLangFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.navbar-lang-header {
+  padding: 10px 14px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #9CA3AF;
+  border-bottom: 1px solid #F3F4F6;
+  background: #FAFAFA;
+}
+
+.navbar-lang-list {
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.navbar-lang-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+
+.navbar-lang-item:hover {
+  background: #F3F4F6;
+}
+
+.navbar-lang-item.selected {
+  background: rgba(9, 183, 200, 0.08);
+}
+
+.navbar-lang-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.navbar-lang-item-native {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.navbar-lang-item.selected .navbar-lang-item-native {
+  color: #0891B2;
+}
+
+.navbar-lang-item-label {
+  font-size: 11px;
+  color: #6B7280;
+}
+
+.navbar-lang-item-badge {
+  font-size: 10px;
+  font-weight: 700;
+  color: #9CA3AF;
+  background: #F3F4F6;
+  padding: 2px 6px;
+  border-radius: 6px;
+  margin-left: auto;
+  margin-right: 8px;
+}
+
+.navbar-lang-item.selected .navbar-lang-item-badge {
+  color: #0891B2;
+  background: rgba(9, 183, 200, 0.15);
+}
+
+.navbar-lang-check {
+  color: #09B7C8;
+  flex-shrink: 0;
+}

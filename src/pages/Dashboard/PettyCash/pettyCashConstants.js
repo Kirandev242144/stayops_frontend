@@ -1,0 +1,12 @@
+export const PETTY_CASH = {
+  ALL_PROPERTIES: "all",
+  ALL_TIME: "all",
+  THIS_MONTH: "this_month",
+  LAST_MONTH: "last_month",
+  THIS_YEAR: "this_year",
+  LOW_BALANCE_THRESHOLD: 1000,
+  DEFAULT_FUNDING_NOTE: "Monthly operating float",
+  UPDATED_EVENT: "PETTY_CASH_UPDATED",
+  CHANNEL_FRONTDESK: "FRONTDESK",
+  CHANNEL_PETTY_CASH: "PETTY_CASH"
+};

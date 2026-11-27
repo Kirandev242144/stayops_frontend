@@ -1,0 +1,62 @@
+/* ==========================================================================
+   RESET.CSS — Removes inconsistent browser default styles
+   ==========================================================================
+   
+   🧠 MENTOR NOTE:
+   
+   Every browser (Chrome, Safari, Firefox) adds its own default styles.
+   For example, Chrome adds 8px margin to <body>, and <h1> gets a huge
+   default size. This makes your site look different on every browser.
+   
+   This reset file removes ALL those defaults so you start from a
+   clean, consistent canvas. Think of it as a blank white paper.
+   ========================================================================== */
+
+/* Box-sizing border-box means padding and border are INCLUDED in width/height.
+   Without this, a 200px wide box with 20px padding would actually be 240px wide.
+   With this, it stays 200px. Much easier to work with! */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;         /* Smooth scrolling when clicking anchor links */
+  -webkit-text-size-adjust: 100%;  /* Prevents iOS Safari from resizing text */
+  -webkit-font-smoothing: antialiased;       /* Makes fonts look crisp on Mac */
+  -moz-osx-font-smoothing: grayscale;        /* Same for Firefox on Mac */
+}
+
+body {
+  min-height: 100vh;   /* vh = viewport height. 100vh = full screen height */
+  line-height: 1.5;    /* Space between lines of text. 1.5 = 150% of font size */
+  text-rendering: optimizeLegibility;
+}
+
+/* Make images responsive by default — they never overflow their container */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Form elements should inherit font from parent, not use browser defaults */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* Prevent text from breaking out of its container */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* Remove default link underline and blue color */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Remove default bullet points from lists */
+ul, ol {
+  list-style: none;
+}

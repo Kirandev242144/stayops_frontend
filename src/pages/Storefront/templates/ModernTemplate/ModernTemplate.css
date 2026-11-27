@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* ── MODERN URBAN THEME TEMPLATE ── */
+.sf-template-modern {
+  --sf-font-serif: 'Inter', system-ui, -apple-system, sans-serif;
+  --sf-font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --sf-radius-lg: 8px;
+  --sf-radius-md: 6px;
+  --sf-radius-sm: 4px;
+  --sf-radius-pill: 6px;
+  font-family: var(--sf-font-sans);
+  background-color: #F8FAFC;
+  color: #0F172A;
+}
+
+.sf-template-modern .sf-hero {
+  align-items: flex-start;
+  text-align: left;
+  padding: 160px 48px 120px 48px;
+}
+
+.sf-template-modern .sf-hero-content {
+  margin-left: 0;
+  text-align: left;
+  max-width: 640px;
+}
+
+.sf-template-modern .sf-hero-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 3.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.sf-template-modern .sf-hero-tagline {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.sf-template-modern .sf-hero-browse-btn {
+  border-radius: 6px !important;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  padding: 16px 36px;
+  background-color: var(--sf-primary, #0F4C81) !important;
+  color: #FFFFFF !important;
+  border: none;
+}
+
+.sf-template-modern .sf-room-card,
+.sf-template-modern .sf-search-bar-card,
+.sf-template-modern .sf-modal-box {
+  border-radius: 8px !important;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.sf-template-modern .sf-logo-badge {
+  border-radius: 6px !important;
+}
+
+/* Modern About Section Overrides */
+.sf-template-modern .sf-about-section {
+  background-color: #F8FAFC;
+}
+
+.sf-template-modern .sf-about-badge {
+  border-radius: 6px !important;
+  background: var(--sf-primary, #0F172A);
+  color: #FFFFFF;
+  border: none;
+}
+
+.sf-template-modern .sf-about-image-wrapper,
+.sf-template-modern .sf-about-image-badge {
+  border-radius: 8px !important;
+}
+
+.sf-template-modern .sf-about-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.sf-template-modern .sf-about-paragraph {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}

@@ -1,0 +1,172 @@
+/* ==========================================================================
+   AdminSystemHealth.css — System & Webhook Diagnostics Styles
+   ========================================================================== */
+
+.admin-system-health {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Services Grid */
+.admin-services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 1200px) {
+  .admin-services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.service-card {
+  background: #ffffff;
+  border: 1px solid #E5E7EB;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(16, 47, 89, 0.04), 0 1px 2px rgba(16, 47, 89, 0.02);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.2s ease;
+}
+
+.service-card:hover {
+  border-color: #CBD5E1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(16, 47, 89, 0.08);
+}
+
+.service-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.service-icon-box {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.service-icon-box.is-teal {
+  background: #E6F7F8;
+  color: #04B3C0;
+}
+
+.service-icon-box.is-blue {
+  background: #EFF6FF;
+  color: #2563EB;
+}
+
+.service-icon-box.is-purple {
+  background: #F5F3FF;
+  color: #8B5CF6;
+}
+
+.service-icon-box.is-emerald {
+  background: #ECFDF5;
+  color: #10B981;
+}
+
+.service-card__title {
+  margin: 0 0 6px 0;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #091B33;
+}
+
+.service-card__desc {
+  font-size: 12.5px;
+  color: #64748B;
+  line-height: 1.4;
+  margin: 0 0 16px 0;
+}
+
+.service-card__footer {
+  padding-top: 12px;
+  border-top: 1px solid #F1F5F9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.footer-stat-label {
+  color: #64748B;
+}
+
+.footer-stat-value {
+  font-weight: 700;
+  color: #091B33;
+}
+
+/* Webhook Table Cells */
+.webhook-event-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: #091B33;
+  background: #F8FAFC;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid #E2E8F0;
+}
+
+.text-teal {
+  color: #04B3C0;
+}
+
+.webhook-route-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.webhook-source {
+  font-size: 13px;
+  font-weight: 600;
+  color: #091B33;
+}
+
+.webhook-dest {
+  font-size: 11.5px;
+  color: #64748B;
+}
+
+.webhook-status-pill {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: #E8FFF5;
+  border: 1px solid #BCF0DA;
+  color: #0E9F6E;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.webhook-latency {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.webhook-time {
+  font-size: 12.5px;
+  color: #64748B;
+}

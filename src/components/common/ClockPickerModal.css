@@ -1,0 +1,325 @@
+/* ClockPickerModal.css - Interactive Circular Clock Face Time Picker */
+
+.cpm-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 16px;
+  animation: cpmFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cpm-card {
+  width: 100%;
+  max-width: 320px;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25), 0 0 0 1px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: cpmScaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+/* Vibrant Blue Header Display */
+.cpm-header {
+  background: linear-gradient(135deg, #4F46E5 0%, #3B82F6 100%);
+  padding: 24px 20px 20px 20px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  position: relative;
+}
+
+.cpm-time-display {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.cpm-time-unit {
+  padding: 4px 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  opacity: 0.75;
+}
+
+.cpm-time-unit.active {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.cpm-time-unit:hover {
+  opacity: 1;
+}
+
+.cpm-time-colon {
+  opacity: 0.9;
+  animation: cpmBlink 1.5s infinite;
+}
+
+.cpm-ampm-switcher {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.15);
+  padding: 3px;
+  border-radius: 20px;
+  gap: 2px;
+  margin-top: 4px;
+}
+
+.cpm-ampm-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.cpm-ampm-btn.active {
+  background: #ffffff;
+  color: #4F46E5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Dial Body */
+.cpm-body {
+  padding: 24px 20px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cpm-clock-face {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: #F1F5F9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Center Pivot */
+.cpm-pivot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4F46E5;
+  z-index: 5;
+}
+
+/* Pointer Hand Line */
+.cpm-hand {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 2px;
+  background: #4F46E5;
+  transform-origin: 0% 50%;
+  z-index: 4;
+  pointer-events: none;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), width 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cpm-hand-head {
+  position: absolute;
+  right: -17px;
+  top: -16px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #4F46E5;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Dial Numbers */
+.cpm-num-node {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  margin-left: -17px;
+  margin-top: -17px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  z-index: 6;
+  transition: all 0.15s ease;
+}
+
+.cpm-num-node.inner {
+  font-size: 11px;
+  color: #64748B;
+}
+
+.cpm-num-node:hover {
+  background: rgba(79, 70, 229, 0.1);
+  color: #4F46E5;
+}
+
+.cpm-num-node.selected {
+  color: #ffffff !important;
+  font-weight: 700;
+}
+
+/* Mode Sub-label */
+.cpm-mode-label {
+  margin-top: 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748B;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Footer Buttons */
+.cpm-footer {
+  padding: 12px 20px 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #F1F5F9;
+}
+
+.cpm-cancel-btn {
+  background: transparent;
+  border: none;
+  color: #64748B;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.cpm-cancel-btn:hover {
+  background: #F1F5F9;
+  color: #0F172A;
+}
+
+.cpm-submit-btn {
+  background: #4F46E5;
+  border: none;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+  transition: all 0.15s ease;
+}
+
+.cpm-submit-btn:hover {
+  background: #4338CA;
+  transform: translateY(-1px);
+}
+
+.cpm-submit-btn:active {
+  transform: translateY(0);
+}
+
+/* Clock Time Input Trigger Control */
+.clock-time-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.clock-time-input-field {
+  width: 100%;
+  padding: 10px 36px 10px 14px;
+  border: 1.5px solid #CBD5E1;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0F172A;
+  background: #FFFFFF;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.clock-time-input-field:focus, .clock-time-input-field:hover {
+  border-color: #4F46E5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.clock-time-input-btn {
+  position: absolute;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: #4F46E5;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.clock-time-input-btn:hover {
+  background: #EEF2FF;
+}
+
+/* Animations */
+@keyframes cpmFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes cpmScaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes cpmBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}

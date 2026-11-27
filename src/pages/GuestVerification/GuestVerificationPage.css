@@ -1,0 +1,336 @@
+/* ==========================================================================
+   GUEST MOBILE ID VERIFICATION PAGE (AMAZON-STYLE ULTRA-CLEAN MOBILE UX)
+   ========================================================================== */
+
+.gvp-container {
+  min-height: 100vh;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #0f172a;
+  box-sizing: border-box;
+}
+
+.gvp-card {
+  width: 100%;
+  max-width: 480px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  margin: 12px 0 24px;
+}
+
+/* TOP BRAND BANNER */
+.gvp-banner {
+  background: linear-gradient(135deg, #091b33 0%, #0d284c 100%);
+  color: #ffffff;
+  padding: 24px 20px 20px;
+  text-align: center;
+  position: relative;
+}
+
+.gvp-badge-security {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(4, 179, 192, 0.18);
+  border: 1px solid rgba(4, 179, 192, 0.35);
+  color: #38bdf8;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.gvp-prop-name {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+.gvp-prop-sub {
+  margin: 4px 0 0;
+  font-size: 12.5px;
+  color: #94a3b8;
+}
+
+/* GUEST GREETING SECTION */
+.gvp-greeting {
+  padding: 16px 20px 14px;
+  background: #f1f5f9;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gvp-guest-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.gvp-guest-label {
+  font-size: 11px;
+  font-weight: 550;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.gvp-guest-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.gvp-pill-pending {
+  font-size: 11px;
+  font-weight: 600;
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+/* FORM BODY */
+.gvp-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.gvp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.gvp-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  display: flex;
+  justify-content: space-between;
+}
+
+.gvp-label-opt {
+  font-size: 11.5px;
+  font-weight: 400;
+  color: #94a3b8;
+}
+
+.gvp-select,
+.gvp-input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #0f172a;
+  background: #ffffff;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.15s ease;
+}
+
+.gvp-select:focus,
+.gvp-input:focus {
+  border-color: #0284c7;
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.15);
+}
+
+/* PHOTO UPLOAD BOXES */
+.gvp-upload-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 400px) {
+  .gvp-upload-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gvp-upload-card {
+  position: relative;
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  background: #f8fafc;
+  padding: 16px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gvp-upload-card:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+}
+
+.gvp-upload-card.has-file {
+  border-style: solid;
+  border-color: #10b981;
+  background: #f0fdf4;
+  padding: 6px;
+}
+
+.gvp-card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.gvp-upload-title {
+  font-size: 13px;
+  font-weight: 650;
+  color: #1e293b;
+  margin-bottom: 2px;
+}
+
+.gvp-upload-desc {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.gvp-preview-img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.gvp-preview-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 6px 4px 2px;
+  font-size: 11px;
+  color: #065f46;
+  font-weight: 600;
+}
+
+.gvp-btn-remove {
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 2px 4px;
+}
+
+/* SUBMIT BUTTON */
+.gvp-btn-submit {
+  width: 100%;
+  padding: 14px 20px;
+  background: #008060;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(0, 128, 96, 0.25);
+  transition: all 0.15s ease;
+  margin-top: 6px;
+}
+
+.gvp-btn-submit:hover:not(:disabled) {
+  background: #006e52;
+}
+
+.gvp-btn-submit:disabled {
+  background: #94a3b8;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* SUCCESS SCREEN */
+.gvp-success-card {
+  padding: 36px 20px 32px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gvp-success-icon-wrap {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: #dcfce7;
+  color: #16a34a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  animation: gvpScaleBounce 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes gvpScaleBounce {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.gvp-success-title {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 750;
+  color: #0f172a;
+}
+
+.gvp-success-desc {
+  margin: 0 0 20px;
+  font-size: 13.5px;
+  color: #64748b;
+  line-height: 1.5;
+  max-width: 340px;
+}
+
+.gvp-success-badge {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  color: #334155;
+  font-weight: 550;
+}
+
+/* FOOTER */
+.gvp-footer {
+  text-align: center;
+  font-size: 11.5px;
+  color: #94a3b8;
+  margin-bottom: 16px;
+}

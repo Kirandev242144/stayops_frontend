@@ -1,0 +1,124 @@
+.hc-support-minimal {
+  padding: 64px 0 80px 0;
+  background: #ffffff;
+  border-top: 1px solid #f1f5f9;
+}
+
+.hc-support-minimal-header {
+  text-align: center;
+  max-width: 580px;
+  margin: 0 auto 40px auto;
+}
+
+.hc-support-minimal-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px 0;
+}
+
+.hc-support-minimal-sub {
+  font-size: 15px;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.55;
+}
+
+.hc-support-minimal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.hc-minimal-card {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hc-minimal-card:hover {
+  border-color: #04b3c0;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
+}
+
+.hc-minimal-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.hc-minimal-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #0f172a;
+  transition: all 0.2s ease;
+}
+
+.hc-minimal-card:hover .hc-minimal-icon {
+  background: rgba(4, 179, 192, 0.1);
+  border-color: rgba(4, 179, 192, 0.25);
+  color: #048b96;
+}
+
+.hc-minimal-arrow {
+  font-size: 16px;
+  color: #94a3b8;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.hc-minimal-card:hover .hc-minimal-arrow {
+  color: #04b3c0;
+  transform: translate(2px, -2px);
+}
+
+.hc-minimal-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 6px 0;
+}
+
+.hc-minimal-desc {
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+  flex: 1;
+}
+
+.hc-minimal-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: #04b3c0;
+  transition: color 0.2s ease;
+}
+
+.hc-minimal-card:hover .hc-minimal-link {
+  color: #0284c7;
+}
+
+@media (max-width: 768px) {
+  .hc-support-minimal-grid {
+    grid-template-columns: 1fr;
+  }
+  .hc-support-minimal {
+    padding: 48px 0 60px 0;
+  }
+}
