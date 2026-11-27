@@ -16,7 +16,9 @@ import {
   FiFileText,
   FiEye,
   FiUploadCloud,
-  FiSmartphone
+  FiSmartphone,
+  FiUsers,
+  FiLayers
 } from 'react-icons/fi';
 import { BOOKING_SOURCES } from '../constants';
 import { formatTime12Hr } from '../../../../utils/timeFormat';
@@ -404,22 +406,21 @@ function PropertyUnitSection({
           type="button"
           onClick={handleAutoSuggestRooms}
           style={{
-            background: 'linear-gradient(135deg, #4f46e5 0%, #6366f1 100%)',
+            background: '#0F172A',
             color: '#ffffff',
             border: 'none',
             borderRadius: 6,
-            padding: '4px 10px',
+            padding: '5px 10px',
             fontSize: 11,
             fontWeight: 600,
             cursor: 'pointer',
             display: 'inline-flex',
             alignItems: 'center',
-            gap: 4,
-            boxShadow: '0 1px 2px rgba(79,70,229,0.2)'
+            gap: 5
           }}
           title="Auto-select optimal room combination for guest count"
         >
-          ✨ Suggest Rooms
+          <FiZap size={12} /> Suggest Rooms
         </button>
       </div>
 
@@ -439,8 +440,8 @@ function PropertyUnitSection({
       {/* UNIFIED ALLOCATED ROOM UNITS CARD */}
       <div style={{ padding: '12px', background: '#F8FAFC', border: '1px solid #E2E8F0', borderRadius: 8 }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
-          <span style={{ fontSize: 12, fontWeight: 600, color: '#334155' }}>
-            🛏️ Allocated Rooms {selectedRoomsList.length > 0 ? `(${selectedRoomsList.length})` : ''}:
+          <span style={{ fontSize: 12, fontWeight: 600, color: '#334155', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+            <FiLayers size={13} /> Allocated Rooms {selectedRoomsList.length > 0 ? `(${selectedRoomsList.length})` : ''}:
           </span>
           <select 
             className="nwr-select" 
@@ -456,9 +457,9 @@ function PropertyUnitSection({
               return (
                 <option key={i} value={u.name} disabled={isOccupied || isSelected}>
                   {isSelected 
-                    ? `✓ [SELECTED] ${u.name}` 
+                    ? `[SELECTED] ${u.name}` 
                     : isOccupied 
-                    ? `⛔ [OCCUPIED] ${u.name}` 
+                    ? `[OCCUPIED] ${u.name}` 
                     : `+ ${u.name} (${capLabel})`}
                 </option>
               );
@@ -487,18 +488,19 @@ function PropertyUnitSection({
           </div>
         ) : (
           <div style={{ fontSize: 12, color: '#64748B', fontStyle: 'italic' }}>
-            No rooms allocated yet. Select a room from the dropdown above or click ✨ Suggest Rooms.
+            No rooms allocated yet. Select a room from the dropdown above or click Suggest Rooms.
           </div>
         )}
       </div>
 
       {/* LIVE OCCUPANCY & BED SUMMARY STATUS BAR */}
-      <div style={{ marginTop: 8, padding: '8px 12px', background: !isSatisfied ? '#FFFBEB' : '#F0FDF4', border: `1px solid ${!isSatisfied ? '#FDE68A' : '#BBF7D0'}`, borderRadius: 8, fontSize: 12, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <span style={{ color: !isSatisfied ? '#92400E' : '#166534', fontWeight: 500 }}>
-          👥 {currentTotalGuests} guest{currentTotalGuests > 1 ? 's' : ''} — {selectedRoomsList.length} room{selectedRoomsList.length > 1 ? 's' : ''} selected (Beds: {roomMaxCapacity} / Needed: {currentTotalGuests})
+      <div style={{ marginTop: 8, padding: '8px 12px', background: !isSatisfied ? '#FFFBEB' : '#F0FDF4', border: `1px solid ${!isSatisfied ? '#FDE68A' : '#BBF7D0'}`, borderRadius: 8, fontSize: 12, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 6 }}>
+        <span style={{ color: !isSatisfied ? '#92400E' : '#166534', fontWeight: 500, display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+          <FiUsers size={13} /> {currentTotalGuests} guest{currentTotalGuests > 1 ? 's' : ''} — {selectedRoomsList.length} room{selectedRoomsList.length > 1 ? 's' : ''} (Beds: {roomMaxCapacity} / Needed: {currentTotalGuests})
         </span>
-        <span style={{ fontSize: 11, fontWeight: 600, color: !isSatisfied ? '#B45309' : '#15803D' }}>
-          {!isSatisfied ? '⚠️ Need More Capacity' : '✅ Capacity Satisfied'}
+        <span style={{ fontSize: 11, fontWeight: 600, color: !isSatisfied ? '#B45309' : '#15803D', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+          {!isSatisfied ? <FiAlertTriangle size={12} /> : <FiCheckCircle size={12} />}
+          {!isSatisfied ? 'Need More Capacity' : 'Capacity Satisfied'}
         </span>
       </div>
 
@@ -528,7 +530,7 @@ function DatesGuestsSection({
   return (
     <div className="nwr-section">
       <div className="nwr-section-label">Dates & Guests</div>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: 12 }}>
+      <div className="nwr-dates-guests-grid">
         <div className="nwr-field">
           <label className="nwr-label">Check-In Date *</label>
           <input
@@ -852,15 +854,25 @@ function ModalFooter({
   isCurrentRoomOccupied,
   isCapacityExceeded,
   handleRazorpayClick,
-  handleCreateWalkin
+  handleCreateWalkin,
+  pricing = {}
 }) {
   const isDisabled = isCurrentRoomOccupied || isCapacityExceeded;
+  const { effectiveTotalAmount = 0, totalNights = 1, ratePerNight = 0 } = pricing;
 
   return (
     <div className="nwr-footer">
-      <button type="button" className="nwr-btn-ghost" onClick={onClose}>
-        Cancel
-      </button>
+      <div className="nwr-footer-left">
+        <button type="button" className="nwr-btn-ghost" onClick={onClose}>
+          Cancel
+        </button>
+        {ratePerNight > 0 && (
+          <div className="nwr-mobile-price-badge">
+            <span className="nwr-mpb-amount">₹{effectiveTotalAmount.toLocaleString('en-IN')}</span>
+            <span className="nwr-mpb-sub">{totalNights}N</span>
+          </div>
+        )}
+      </div>
 
       <div className="nwr-footer-right">
         {currentStep > 1 && (
@@ -1253,6 +1265,7 @@ export default function NewReservationModal({
           isCapacityExceeded={isCapacityExceeded}
           handleRazorpayClick={handleRazorpayClick}
           handleCreateWalkin={handleCreateWalkin}
+          pricing={pricing}
         />
       </div>
     </div>
