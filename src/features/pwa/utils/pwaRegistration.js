@@ -55,6 +55,12 @@ export function registerServiceWorker({ onUpdate, onInstall } = {}) {
     return () => {};
   }
 
+  // In local development, bypass /sw.js registration to allow instant HMR and avoid unexpected HTML parsing errors
+  if (import.meta.env && import.meta.env.DEV) {
+    console.info('[StayOps PWA] Dev mode: Service worker caching bypassed for rapid development.');
+    return () => {};
+  }
+
   // Check manifest validity in background
   verifyManifest().then((result) => {
     if (!result.valid) {
