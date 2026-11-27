@@ -1,6 +1,7 @@
 /* =========================================================
-   RECEPTION DESK CHECK-IN MODAL (MINIMALIST DESIGN)
-   Matches RecordPaymentModal Design System
+   STAYOPS CONFIRM CHECK-IN MODAL (DESKTOP & MOBILE PWA)
+   Desktop: Clean Minimalist Floating Modal
+   Mobile (< 768px): Native PWA Bottom Sheet with tactile touch triggers
    ========================================================= */
 
 .cim-backdrop {
@@ -11,7 +12,7 @@
   align-items: center;
   justify-content: center;
   padding: 16px;
-  background: rgba(15, 23, 42, 0.45);
+  background: rgba(15, 23, 42, 0.55);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   animation: cimFadeIn 0.15s ease-out;
@@ -24,29 +25,35 @@
 
 .cim-modal {
   width: 100%;
-  max-width: 440px;
+  max-width: 480px;
   background: #ffffff;
   border: 1px solid rgba(226, 232, 240, 0.9);
-  border-radius: 14px;
+  border-radius: 16px;
   box-shadow: 
-    0 20px 40px -12px rgba(15, 23, 42, 0.18),
+    0 24px 48px -12px rgba(15, 23, 42, 0.2),
     0 0 0 1px rgba(15, 23, 42, 0.04);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   animation: cimSlideUp 0.18s cubic-bezier(0.16, 1, 0.3, 1);
   font-family: inherit;
+  box-sizing: border-box;
 }
 
 @keyframes cimSlideUp {
   from {
     opacity: 0;
-    transform: translateY(8px) scale(0.99);
+    transform: translateY(12px) scale(0.98);
   }
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
+}
+
+/* Drag Indicator - Hidden on desktop */
+.cim-drag-indicator {
+  display: none;
 }
 
 /* HEADER */
@@ -62,60 +69,33 @@
 .cim-title-wrap {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
 }
 
 .cim-title {
   margin: 0;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 16.5px;
+  font-weight: 750;
   color: #0f172a;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
 
-.cim-guest-pill {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+.cim-subtitle {
   font-size: 12px;
   color: #64748b;
-  flex-wrap: wrap;
-}
-
-.cim-guest-name {
-  font-weight: 600;
-  color: #1e293b;
-}
-
-.cim-bullet {
-  color: #cbd5e1;
-}
-
-.cim-booking-id {
   font-weight: 500;
-  color: #64748b;
-  font-family: ui-monospace, SFMono-Regular, monospace;
-}
-
-.cim-unit-tag {
-  background: #f1f5f9;
-  color: #475569;
-  padding: 1px 6px;
-  border-radius: 4px;
-  font-weight: 500;
-  font-size: 11px;
 }
 
 .cim-close-btn {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #64748b;
   background: #f8fafc;
   border: 1px solid #e2e8f0;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.12s ease;
 }
@@ -128,346 +108,747 @@
 
 /* BODY */
 .cim-body {
-  padding: 18px 20px;
+  padding: 16px 20px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   background: #ffffff;
+  max-height: 75vh;
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 
-/* MINIMAL STAY & PAYMENT STRIP */
-.cim-stay-strip {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 12px;
+/* 1. GUEST & STAY COMPACT OVERVIEW CARD */
+.cim-overview-card {
   background: #f8fafc;
-  border: 1px solid #f1f5f9;
-  border-radius: 8px;
-  font-size: 12px;
-}
-
-.cim-stay-dates {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: #475569;
-  font-weight: 500;
-}
-
-.cim-badge-paid {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  color: #15803d;
-  background: #f0fdf4;
-  border: 1px solid #bbf7d0;
-  padding: 2px 7px;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 11.5px;
-}
-
-.cim-badge-pending {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  color: #b45309;
-  background: #fffbeb;
-  border: 1px solid #fde68a;
-  padding: 2px 7px;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 11.5px;
-}
-
-/* VERIFIED ID STATE */
-.cim-verified-strip {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
   padding: 12px 14px;
-  background: #f0fdf4;
-  border: 1px solid #bbf7d0;
-  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.cim-verified-details {
+.cim-overview-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cim-overview-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #0f172a;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.cim-overview-info {
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
-.cim-verified-tag {
+.cim-overview-name-row {
   display: flex;
   align-items: center;
-  gap: 5px;
-  font-size: 11px;
-  font-weight: 600;
-  color: #15803d;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
+  justify-content: space-between;
 }
 
-.cim-verified-num {
-  font-size: 13.5px;
+.cim-overview-name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 750;
+  color: #0f172a;
+}
+
+.cim-overview-ref {
+  font-size: 11px;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.cim-overview-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  color: #64748b;
+  flex-wrap: wrap;
+}
+
+.cim-overview-room {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.cim-overview-dot {
+  color: #cbd5e1;
+}
+
+.cim-overview-dates {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Financial Strip */
+.cim-overview-finance-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 8px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.cim-finance-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.cim-finance-lbl {
+  font-size: 10px;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+}
+
+.cim-finance-val {
+  font-size: 13px;
   font-weight: 700;
   color: #0f172a;
-  font-family: ui-monospace, SFMono-Regular, monospace;
 }
 
-.cim-edit-link {
+.cim-finance-val.paid {
+  color: #16a34a;
+}
+
+.cim-status-tag {
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.cim-status-tag.paid {
+  background: #dcfce7;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+.cim-status-tag.due {
+  background: #fef3c7;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
+/* 2. VERIFIED ID STRIP */
+.cim-id-verified-card {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.cim-verified-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cim-verified-shield-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #dcfce7;
+  color: #16a34a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cim-verified-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.cim-verified-status {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #166534;
+}
+
+.cim-verified-desc {
+  font-size: 11.5px;
+  color: #15803d;
+  font-weight: 500;
+}
+
+.cim-verified-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cim-btn-view-photo {
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 6px;
+  background: #ffffff;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+  font-size: 11.5px;
+  font-weight: 650;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.cim-btn-change-id {
+  height: 30px;
+  padding: 0 8px;
+  border-radius: 6px;
   background: transparent;
   border: none;
-  color: #2563eb;
-  font-size: 12px;
+  color: #64748b;
+  font-size: 11.5px;
   font-weight: 600;
   cursor: pointer;
-  padding: 4px 6px;
-}
-
-.cim-edit-link:hover {
   text-decoration: underline;
 }
 
-/* ID FORM SECTION */
-.cim-section {
+/* 3. ID CAPTURE BOX */
+.cim-id-capture-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 14px;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.cim-section-label-row {
+.cim-id-box-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.cim-section-label {
-  font-size: 11px;
+.cim-id-header-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #64748b;
+  color: #0f172a;
 }
 
-.cim-status-pill {
-  font-size: 10.5px;
-  font-weight: 600;
+.cim-id-shield {
+  color: #3b82f6;
+}
+
+.cim-optional-pill {
+  font-size: 10px;
+  font-weight: 700;
   padding: 1px 6px;
   border-radius: 4px;
-}
-
-.cim-status-pill.required {
   background: #fee2e2;
   color: #b91c1c;
 }
 
-.cim-row-2col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+/* Pill selector for ID type */
+.cim-id-type-pills {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 2px;
 }
 
-.cim-field {
+.cim-id-type-pills::-webkit-scrollbar {
+  display: none;
+}
+
+.cim-id-pill {
+  flex: 0 0 auto;
+  height: 30px;
+  padding: 0 11px;
+  border-radius: 20px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  white-space: nowrap;
+}
+
+.cim-id-pill.active {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.15);
+}
+
+.cim-input-field {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.cim-micro-label {
+.cim-field-label {
   font-size: 11px;
-  font-weight: 600;
-  color: #475569;
+  font-weight: 650;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
-.cim-micro-label .req {
-  color: #ef4444;
-}
-
-.cim-select,
-.cim-input {
+.cim-text-input {
   width: 100%;
   height: 38px;
-  padding: 0 10px;
+  border-radius: 9px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  padding: 0 12px;
   font-size: 13px;
   color: #0f172a;
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
   outline: none;
-  transition: all 0.15s ease;
+  box-sizing: border-box;
+  transition: all 0.12s ease;
+}
+
+.cim-text-input:focus {
+  border-color: #0f172a;
+  box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.06);
+}
+
+/* Upload & Capture actions */
+.cim-upload-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cim-capture-action-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.cim-action-tile {
+  height: 60px;
+  border: 1.5px dashed #cbd5e1;
+  border-radius: 10px;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8fafc;
+  cursor: pointer;
+  transition: all 0.12s ease;
   box-sizing: border-box;
 }
 
-.cim-select:focus,
-.cim-input:focus {
-  border-color: #0f172a;
-  box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.08);
+.cim-action-tile:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
 }
 
-.cim-input::placeholder {
-  color: #94a3b8;
-  font-size: 12.5px;
+.cim-action-tile.remote {
+  border-color: #bbf7d0;
+  background: #f0fdf4;
 }
 
-/* COMPACT DOCUMENT ATTACHMENT */
-.cim-attach-row {
+.cim-action-tile.remote:hover {
+  background: #dcfce7;
+}
+
+.cim-tile-icon {
+  color: #3b82f6;
+  flex-shrink: 0;
+}
+
+.cim-tile-icon.green {
+  color: #16a34a;
+}
+
+.cim-tile-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.cim-tile-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.cim-tile-sub {
+  font-size: 10px;
+  color: #64748b;
+}
+
+.cim-uploading-indicator {
+  height: 48px;
+  border-radius: 8px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.cim-spin-icon {
+  animation: cimSpin 1s linear infinite;
+}
+
+@keyframes cimSpin {
+  100% { transform: rotate(360deg); }
+}
+
+/* Document preview card */
+.cim-doc-preview-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 10px;
   background: #f8fafc;
-  border: 1px dashed #cbd5e1;
-  border-radius: 8px;
-  font-size: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 8px 12px;
+  gap: 8px;
 }
 
-.cim-attach-btn {
-  display: inline-flex;
+.cim-doc-preview-left {
+  display: flex;
   align-items: center;
-  gap: 6px;
-  color: #3b82f6;
-  font-weight: 500;
+  gap: 10px;
+  min-width: 0;
+  flex: 1;
+}
+
+.cim-doc-thumb {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #94a3b8;
   cursor: pointer;
-  background: transparent;
-  border: none;
-  padding: 0;
-  font-size: 12px;
+  flex-shrink: 0;
 }
 
-.cim-attach-btn:hover {
-  color: #1d4ed8;
-}
-
-.cim-doc-chip {
-  display: inline-flex;
+.cim-doc-file-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  background: #eff6ff;
+  color: #2563eb;
+  display: flex;
   align-items: center;
-  gap: 6px;
-  font-weight: 500;
-  color: #1e293b;
-  max-width: 280px;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cim-doc-preview-meta {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cim-doc-name {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #0f172a;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
-.cim-doc-del {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: #ef4444;
+.cim-doc-ready {
   font-size: 11px;
   font-weight: 600;
-  padding: 2px 4px;
+  color: #16a34a;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
-.cim-doc-del:hover {
+.cim-doc-preview-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.cim-btn-view-preview {
+  height: 28px;
+  padding: 0 8px;
+  border-radius: 6px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.cim-btn-remove-preview {
+  height: 28px;
+  padding: 0 8px;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid #e2e8f0;
+  color: #ef4444;
+  font-size: 11px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+/* Geo optional row */
+.cim-geo-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.cim-geo-field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.cim-geo-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.cim-geo-input {
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  padding: 0 10px;
+  font-size: 12px;
+  color: #0f172a;
+  outline: none;
+}
+
+.cim-cancel-edit-wrap {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cim-cancel-edit-btn {
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 11.5px;
+  font-weight: 600;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 /* FOOTER */
 .cim-footer {
-  padding: 12px 20px;
-  background: #fafafa;
-  border-top: 1px solid #f1f5f9;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 8px;
+  padding: 14px 20px;
+  background: #ffffff;
+  border-top: 1px solid #f1f5f9;
 }
 
 .cim-btn-cancel {
-  padding: 8px 14px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 9px;
   background: #ffffff;
   border: 1px solid #cbd5e1;
-  border-radius: 8px;
+  color: #475569;
   font-size: 13px;
   font-weight: 600;
-  color: #475569;
   cursor: pointer;
   transition: all 0.12s ease;
-  white-space: nowrap;
-}
-
-.cim-btn-cancel:hover {
-  background: #f1f5f9;
-  color: #0f172a;
-  border-color: #94a3b8;
 }
 
 .cim-btn-skip {
-  padding: 8px 14px;
-  background: #ffffff;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 9px;
+  background: #f8fafc;
   border: 1px solid #e2e8f0;
-  border-radius: 8px;
+  color: #475569;
   font-size: 13px;
-  font-weight: 500;
-  color: #64748b;
+  font-weight: 650;
   cursor: pointer;
   transition: all 0.12s ease;
-  white-space: nowrap;
-}
-
-.cim-btn-skip:hover {
-  background: #f8fafc;
-  color: #0f172a;
-  border-color: #cbd5e1;
 }
 
 .cim-btn-submit {
-  padding: 8px 16px;
+  height: 40px;
+  padding: 0 20px;
+  border-radius: 9px;
   background: #0f172a;
-  color: #ffffff;
   border: none;
-  border-radius: 8px;
+  color: #ffffff;
   font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.15s ease;
+  font-weight: 700;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.12);
+  transition: all 0.12s ease;
 }
 
-.cim-btn-submit:hover:not(:disabled) {
-  background: #1e293b;
-  transform: translateY(-0.5px);
+.cim-btn-submit:active {
+  opacity: 0.9;
+  transform: scale(0.99);
 }
 
-.cim-btn-submit:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none;
+/* Lightbox Modal */
+.cim-lightbox-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.cim-lightbox-card {
+  position: relative;
+  max-width: 92vw;
+  max-height: 92vh;
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.cim-lightbox-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.cim-lightbox-title {
+  font-weight: 700;
+  font-size: 13.5px;
+  color: #1e293b;
+}
+
+.cim-lightbox-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.cim-lightbox-external {
+  font-size: 12px;
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.cim-lightbox-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  color: #475569;
+}
+
+.cim-lightbox-img-wrap {
+  padding: 14px;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  background: #090d16;
+}
+
+.cim-lightbox-img {
+  max-width: 100%;
+  max-height: 76vh;
+  object-fit: contain;
+  border-radius: 8px;
 }
 
 /* =========================================================
-   NATIVE MOBILE PWA BOTTOM SHEET / FULL SCREEN (< 768px)
+   MOBILE PWA BOTTOM SHEET OVERHAUL (< 768px)
+   Transforms Check-in Modal into a sleek iOS / Material 3 bottom sheet
    ========================================================= */
 
 @media (max-width: 768px) {
   .cim-backdrop {
     padding: 0 !important;
-    background: rgba(15, 23, 42, 0.6) !important;
-    align-items: stretch !important;
-    justify-content: stretch !important;
+    background: rgba(15, 23, 42, 0.65) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
   }
 
   .cim-modal {
-    position: fixed !important;
-    inset: 0 !important;
+    position: relative !important;
     width: 100vw !important;
-    height: 100vh !important;
     max-width: 100vw !important;
-    max-height: 100vh !important;
-    border-radius: 0 !important;
+    max-height: 92vh !important;
+    border-radius: 20px 20px 0 0 !important;
     border: none !important;
-    box-shadow: none !important;
-    animation: cimMobileSlide 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.2) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    animation: cimSheetSlideUp 0.24s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    overflow: hidden !important;
+    margin: 0 !important;
   }
 
-  @keyframes cimMobileSlide {
+  @keyframes cimSheetSlideUp {
     from {
       transform: translateY(100%);
       opacity: 0.8;
@@ -478,17 +859,36 @@
     }
   }
 
+  /* Top drag handle indicator */
+  .cim-drag-indicator {
+    display: block !important;
+    width: 38px !important;
+    height: 4px !important;
+    background: #CBD5E1 !important;
+    border-radius: 9999px !important;
+    margin: 10px auto 2px auto !important;
+    flex-shrink: 0 !important;
+  }
+
   .cim-header {
-    padding: 14px 16px !important;
-    padding-top: max(14px, env(safe-area-inset-top)) !important;
+    padding: 10px 16px 12px 16px !important;
     border-bottom: 1px solid #F1F5F9 !important;
     background: #FFFFFF !important;
     flex-shrink: 0 !important;
   }
 
+  .cim-title {
+    font-size: 17px !important;
+    font-weight: 800 !important;
+  }
+
+  .cim-subtitle {
+    font-size: 11.5px !important;
+  }
+
   .cim-close-btn {
-    width: 36px !important;
-    height: 36px !important;
+    width: 32px !important;
+    height: 32px !important;
     border-radius: 50% !important;
     background: #F1F5F9 !important;
     border: none !important;
@@ -498,26 +898,37 @@
     flex: 1 !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
-    padding: 16px 16px 24px 16px !important;
-    gap: 16px !important;
-  }
-
-  .cim-row-2col {
-    grid-template-columns: 1fr !important;
+    padding: 12px 16px 20px 16px !important;
     gap: 12px !important;
   }
 
-  .cim-id-actions-row {
-    flex-direction: column !important;
-    align-items: stretch !important;
+  .cim-overview-card {
+    padding: 12px !important;
+    border-radius: 14px !important;
+  }
+
+  .cim-id-capture-box {
+    padding: 12px !important;
+    border-radius: 14px !important;
+  }
+
+  .cim-capture-action-grid {
+    grid-template-columns: 1fr 1fr !important;
     gap: 8px !important;
   }
 
-  .cim-btn-upload-file,
-  .cim-btn-request-phone {
-    width: 100% !important;
-    height: 42px !important;
-    justify-content: center !important;
+  .cim-action-tile {
+    height: 64px !important;
+    padding: 8px 10px !important;
+    border-radius: 12px !important;
+  }
+
+  .cim-tile-title {
+    font-size: 12px !important;
+  }
+
+  .cim-tile-sub {
+    font-size: 9.5px !important;
   }
 
   .cim-footer {
@@ -526,40 +937,46 @@
     background: #FFFFFF !important;
     border-top: 1px solid #F1F5F9 !important;
     padding: 12px 16px !important;
-    padding-bottom: max(14px, env(safe-area-inset-bottom)) !important;
+    padding-bottom: max(16px, env(safe-area-inset-bottom)) !important;
     display: flex !important;
     gap: 8px !important;
-    box-shadow: 0 -4px 16px rgba(15, 23, 42, 0.06) !important;
-    z-index: 20 !important;
+    box-shadow: 0 -4px 16px rgba(15, 23, 42, 0.08) !important;
+    z-index: 30 !important;
   }
 
   .cim-btn-cancel {
-    height: 46px !important;
-    padding: 0 12px !important;
+    height: 48px !important;
+    padding: 0 14px !important;
     font-size: 13.5px !important;
+    font-weight: 600 !important;
+    border-radius: 12px !important;
+    background: #F1F5F9 !important;
+    border: none !important;
     flex: 1 !important;
-    justify-content: center !important;
-    align-items: center !important;
-    display: inline-flex !important;
   }
 
   .cim-btn-skip {
-    height: 46px !important;
-    padding: 0 12px !important;
+    height: 48px !important;
+    padding: 0 14px !important;
     font-size: 13.5px !important;
+    font-weight: 650 !important;
+    border-radius: 12px !important;
+    background: #FFFFFF !important;
+    border: 1px solid #CBD5E1 !important;
+    color: #334155 !important;
     flex: 1.2 !important;
-    justify-content: center !important;
-    align-items: center !important;
-    display: inline-flex !important;
   }
 
   .cim-btn-submit {
-    height: 46px !important;
-    padding: 0 14px !important;
+    height: 48px !important;
+    padding: 0 16px !important;
     font-size: 14px !important;
-    font-weight: 700 !important;
+    font-weight: 750 !important;
+    border-radius: 12px !important;
+    background: #0F172A !important;
+    color: #FFFFFF !important;
     flex: 2 !important;
     justify-content: center !important;
-    align-items: center !important;
+    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.18) !important;
   }
 }

@@ -10,7 +10,10 @@ import {
   FiFileText,
   FiLoader,
   FiSmartphone,
-  FiEye
+  FiEye,
+  FiCamera,
+  FiHome,
+  FiUser
 } from 'react-icons/fi';
 import { API_BASE_URL } from '../../../../config/api';
 import MobileIdRequestModal from '../../Reservations/components/MobileIdRequestModal';
@@ -23,6 +26,17 @@ const ID_TYPES = [
   'Voter ID',
   'Other Govt ID'
 ];
+
+function formatStayDatesClean(cin, cout) {
+  if (!cin || !cout) return `${cin || ''} → ${cout || ''}`;
+  try {
+    const d1 = new Date(cin).toLocaleDateString('en-US', { day: 'numeric', month: 'short' });
+    const d2 = new Date(cout).toLocaleDateString('en-US', { day: 'numeric', month: 'short' });
+    return `${d1} – ${d2}`;
+  } catch {
+    return `${cin} – ${cout}`;
+  }
+}
 
 export default function CheckInModal({
   isOpen,
@@ -175,95 +189,112 @@ export default function CheckInModal({
   const balanceDue = Number(res.balanceDue ?? (Number(res.totalAmount || res.amount || 0) - Number(res.amountPaid || 0)));
   const isBalancePending = balanceDue > 0;
   const guestDisplay = res.guestName || res.guest || 'Guest';
-  const unitDisplay = res.unit || res.roomUnit || '';
+  const unitDisplay = res.unit || res.roomUnit || 'Room Unit';
+  const guestInitial = guestDisplay.charAt(0).toUpperCase();
+  const stayDatesFormatted = formatStayDatesClean(res.checkin || res.checkIn, res.checkout || res.checkOut);
 
   return (
     <div className="cim-backdrop" onClick={onClose}>
       <div className="cim-modal" onClick={(e) => e.stopPropagation()}>
+        
+        {/* Mobile Drag Indicator Handle */}
+        <div className="cim-drag-indicator"></div>
+
         {/* HEADER */}
         <div className="cim-header">
           <div className="cim-title-wrap">
-            <h3 className="cim-title">Guest Check-In</h3>
-            <div className="cim-guest-pill">
-              <span className="cim-guest-name">{guestDisplay}</span>
-              <span className="cim-bullet">•</span>
-              <span className="cim-booking-id">{res.id}</span>
-              {unitDisplay && (
-                <>
-                  <span className="cim-bullet">•</span>
-                  <span className="cim-unit-tag">{unitDisplay}</span>
-                </>
-              )}
-            </div>
+            <h3 className="cim-title">Confirm Check-In</h3>
+            <span className="cim-subtitle">Room key handoff &amp; guest arrival verification</span>
           </div>
           <button
             type="button"
             className="cim-close-btn"
             onClick={onClose}
-            aria-label="Close"
+            aria-label="Close modal"
           >
-            <FiX size={15} />
+            <FiX size={16} />
           </button>
         </div>
 
         {/* BODY */}
         <div className="cim-body">
-          {/* QUICK STAY & FOLIO STRIP */}
-          <div className="cim-stay-strip">
-            <div className="cim-stay-dates">
-              <FiCalendar size={13} />
-              <span>{res.checkin || res.checkIn} → {res.checkout || res.checkOut} ({nights}N)</span>
+          
+          {/* ── 1. GUEST & STAY COMPACT OVERVIEW CARD ── */}
+          <div className="cim-overview-card">
+            <div className="cim-overview-top">
+              <div className="cim-overview-avatar">
+                {guestInitial}
+              </div>
+              <div className="cim-overview-info">
+                <div className="cim-overview-name-row">
+                  <h4 className="cim-overview-name">{guestDisplay}</h4>
+                  <span className="cim-overview-ref">#{res.bookingRef || res.id}</span>
+                </div>
+                <div className="cim-overview-meta">
+                  <span className="cim-overview-room">
+                    <FiHome size={11} /> {unitDisplay}
+                  </span>
+                  <span className="cim-overview-dot">•</span>
+                  <span className="cim-overview-dates">
+                    <FiCalendar size={11} /> {stayDatesFormatted} ({nights}N)
+                  </span>
+                </div>
+              </div>
             </div>
-            {isBalancePending ? (
-              <span className="cim-badge-pending">
-                <FiAlertCircle size={12} /> Balance Due: ₹{balanceDue.toLocaleString('en-IN')}
-              </span>
-            ) : (
-              <span className="cim-badge-paid">
-                <FiCheckCircle size={12} /> Paid in Full (₹{Number(res.amountPaid || res.totalAmount || 0).toLocaleString('en-IN')})
-              </span>
-            )}
+
+            <div className="cim-overview-finance-row">
+              <div className="cim-finance-item">
+                <span className="cim-finance-lbl">Total Folio</span>
+                <span className="cim-finance-val">₹{Number(res.totalAmount || res.amount || 0).toLocaleString('en-IN')}</span>
+              </div>
+              <div className="cim-finance-item">
+                <span className="cim-finance-lbl">Paid</span>
+                <span className="cim-finance-val paid">₹{Number(res.amountPaid || 0).toLocaleString('en-IN')}</span>
+              </div>
+              <div className="cim-finance-item">
+                <span className="cim-finance-lbl">Payment Status</span>
+                {isBalancePending ? (
+                  <span className="cim-status-tag due">
+                    ₹{balanceDue.toLocaleString('en-IN')} Due
+                  </span>
+                ) : (
+                  <span className="cim-status-tag paid">
+                    <FiCheckCircle size={10} /> Paid in Full
+                  </span>
+                )}
+              </div>
+            </div>
           </div>
 
-          {/* ID VERIFICATION SECTION */}
+          {/* ── 2. IDENTITY VERIFICATION CARD ── */}
           {hasExistingId && !isEditingId ? (
-            <div className="cim-verified-strip">
-              <div className="cim-verified-details">
-                <span className="cim-verified-tag">
-                  <FiShield size={12} /> ID Verified on File
-                </span>
-                <span className="cim-verified-num">
-                  {res.idType || idType}
-                  {res.idNumber ? ` • ${res.idNumber}` : ''}
-                  {(res.idDocumentUrl || idDocumentUrl) ? ' • Photo on file' : ''}
-                </span>
+            <div className="cim-id-verified-card">
+              <div className="cim-verified-header">
+                <div className="cim-verified-shield-icon">
+                  <FiShield size={16} />
+                </div>
+                <div className="cim-verified-text">
+                  <span className="cim-verified-status">Government ID Verified</span>
+                  <span className="cim-verified-desc">
+                    {res.idType || idType} {res.idNumber ? `• ${res.idNumber}` : ''}
+                  </span>
+                </div>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+
+              <div className="cim-verified-actions">
                 {(res.idDocumentUrl || idDocumentUrl) && (
                   <button
                     type="button"
-                    style={{
-                      background: '#eff6ff',
-                      border: '1px solid #bfdbfe',
-                      color: '#1d4ed8',
-                      padding: '4px 10px',
-                      borderRadius: 6,
-                      fontSize: 12,
-                      fontWeight: 650,
-                      cursor: 'pointer',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: 4
-                    }}
+                    className="cim-btn-view-photo"
                     onClick={() => setLightboxUrl(res.idDocumentUrl || idDocumentUrl)}
-                    title="View uploaded ID document photo"
                   >
-                    <FiEye size={12} /> View ID
+                    <FiEye size={13} />
+                    <span>View Photo</span>
                   </button>
                 )}
                 <button
                   type="button"
-                  className="cim-edit-link"
+                  className="cim-btn-change-id"
                   onClick={() => setIsEditingId(true)}
                 >
                   Change ID
@@ -271,141 +302,143 @@ export default function CheckInModal({
               </div>
             </div>
           ) : (
-            <div className="cim-section">
-              <div className="cim-section-label-row">
-                <span className="cim-section-label">Identity Proof</span>
-                <span className="cim-status-pill required">Upload Photo</span>
+            <div className="cim-id-capture-box">
+              <div className="cim-id-box-header">
+                <div className="cim-id-header-title">
+                  <FiShield className="cim-id-shield" size={14} />
+                  <span>Identity Proof (Govt ID)</span>
+                </div>
+                <span className="cim-optional-pill">Required</span>
               </div>
 
-              {/* ID TYPE (CLEAN DROPDOWN) */}
-              <div className="cim-field">
-                <label className="cim-micro-label">
-                  ID Type <span className="req">*</span>
-                </label>
-                <select
-                  className="cim-select"
-                  value={idType}
-                  onChange={(e) => setIdType(e.target.value)}
-                >
-                  {ID_TYPES.map(type => (
-                    <option key={type} value={type}>{type}</option>
-                  ))}
-                </select>
+              {/* Segmented Pill Selector for ID Type */}
+              <div className="cim-id-type-pills" role="tablist">
+                {ID_TYPES.map(type => (
+                  <button
+                    key={type}
+                    type="button"
+                    className={`cim-id-pill ${idType === type ? 'active' : ''}`}
+                    onClick={() => setIdType(type)}
+                  >
+                    {type}
+                  </button>
+                ))}
               </div>
 
-              {/* UPLOAD ID PHOTO / SCAN */}
-              <div className="cim-field">
-                <label className="cim-micro-label">
-                  Guest ID Photo / Scan <span className="req">*</span>
-                </label>
-                <div className="cim-attach-row">
-                  {isUploadingDoc ? (
-                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: '#2563eb', fontSize: 12 }}>
-                      <FiLoader size={13} style={{ animation: 'spin 1s linear infinite' }} />
-                      <span>Uploading document...</span>
-                    </span>
-                  ) : idDocumentUrl ? (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, width: '100%' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: 8, padding: '8px 12px' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                          {idDocumentUrl.match(/\.(jpeg|jpg|png|webp|gif)$/i) || idDocumentUrl.startsWith('data:image') || idDocumentUrl.includes('/uploads/') ? (
-                            <img
-                              src={idDocumentUrl}
-                              alt="ID Thumbnail"
-                              style={{ width: 44, height: 44, objectFit: 'cover', borderRadius: 6, border: '1px solid #94a3b8', cursor: 'pointer' }}
-                              onClick={() => setLightboxUrl(idDocumentUrl)}
-                              title="Click to view full photo"
-                            />
-                          ) : (
-                            <FiFileText size={22} color="#2563eb" />
-                          )}
-                          <div>
-                            <div style={{ fontSize: 12.5, fontWeight: 650, color: '#1e293b' }}>
-                              {docFileName || 'Guest ID Document'}
-                            </div>
-                            <span style={{ fontSize: 11, color: '#16a34a', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-                              <FiCheckCircle size={11} /> Attached &amp; Ready
-                            </span>
-                          </div>
-                        </div>
+              {/* ID Number Input */}
+              <div className="cim-input-field">
+                <label className="cim-field-label">Document Number</label>
+                <input
+                  type="text"
+                  className="cim-text-input"
+                  placeholder={`Enter ${idType} number...`}
+                  value={idNumber}
+                  onChange={(e) => setIdNumber(e.target.value)}
+                />
+              </div>
 
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                          <button
-                            type="button"
-                            style={{
-                              background: '#eff6ff',
-                              border: '1px solid #bfdbfe',
-                              color: '#1d4ed8',
-                              padding: '4px 10px',
-                              borderRadius: 6,
-                              fontSize: 12,
-                              fontWeight: 650,
-                              cursor: 'pointer',
-                              display: 'inline-flex',
-                              alignItems: 'center',
-                              gap: 4
-                            }}
-                            onClick={() => setLightboxUrl(idDocumentUrl)}
-                            title="View full size ID image"
-                          >
-                            <FiEye size={12} /> View Photo
-                          </button>
-                          <button
-                            type="button"
-                            className="cim-doc-del"
-                            onClick={handleRemoveDoc}
-                          >
-                            Remove
-                          </button>
+              {/* Photo Upload & Remote Capture Action */}
+              <div className="cim-upload-section">
+                <label className="cim-field-label">ID Photo or Scan</label>
+
+                {isUploadingDoc ? (
+                  <div className="cim-uploading-indicator">
+                    <FiLoader size={16} className="cim-spin-icon" />
+                    <span>Uploading ID Document...</span>
+                  </div>
+                ) : idDocumentUrl ? (
+                  <div className="cim-doc-preview-card">
+                    <div className="cim-doc-preview-left">
+                      {idDocumentUrl.match(/\.(jpeg|jpg|png|webp|gif)$/i) || idDocumentUrl.startsWith('data:image') || idDocumentUrl.includes('/uploads/') ? (
+                        <img
+                          src={idDocumentUrl}
+                          alt="ID Thumbnail"
+                          className="cim-doc-thumb"
+                          onClick={() => setLightboxUrl(idDocumentUrl)}
+                          title="Click to view full photo"
+                        />
+                      ) : (
+                        <div className="cim-doc-file-icon">
+                          <FiFileText size={20} />
                         </div>
+                      )}
+                      <div className="cim-doc-preview-meta">
+                        <span className="cim-doc-name">{docFileName || `${idType} Photo`}</span>
+                        <span className="cim-doc-ready">
+                          <FiCheckCircle size={11} /> Attached &amp; Verified
+                        </span>
                       </div>
                     </div>
-                  ) : (
-                    <div style={{ display: 'flex', gap: 8, width: '100%' }}>
-                      <label className="cim-attach-btn" style={{ flex: 1, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
-                        <FiPaperclip size={13} />
-                        <span>Upload ID (JPG, PNG, PDF)</span>
-                        <input
-                          type="file"
-                          accept="image/*,application/pdf"
-                          style={{ display: 'none' }}
-                          onChange={handleFileUpload}
-                        />
-                      </label>
+
+                    <div className="cim-doc-preview-right">
                       <button
                         type="button"
-                        className="cim-attach-btn"
-                        style={{ width: 'auto', padding: '0 12px', background: '#f0fdf4', borderColor: '#bbf7d0', color: '#166534', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontWeight: 600 }}
-                        onClick={() => setIsMobileModalOpen(true)}
-                        title="Send upload link to guest's phone via WhatsApp or QR"
+                        className="cim-btn-view-preview"
+                        onClick={() => setLightboxUrl(idDocumentUrl)}
                       >
-                        <FiSmartphone size={13} color="#16a34a" />
-                        <span>Request via Phone</span>
+                        <FiEye size={12} /> View
+                      </button>
+                      <button
+                        type="button"
+                        className="cim-btn-remove-preview"
+                        onClick={handleRemoveDoc}
+                      >
+                        Remove
                       </button>
                     </div>
-                  )}
-                </div>
+                  </div>
+                ) : (
+                  <div className="cim-capture-action-grid">
+                    {/* Native File / Camera Trigger */}
+                    <label className="cim-action-tile upload">
+                      <FiCamera size={18} className="cim-tile-icon" />
+                      <div className="cim-tile-text">
+                        <span className="cim-tile-title">Capture / Upload</span>
+                        <span className="cim-tile-sub">Camera or Photo Library</span>
+                      </div>
+                      <input
+                        type="file"
+                        accept="image/*,application/pdf"
+                        capture="environment"
+                        style={{ display: 'none' }}
+                        onChange={handleFileUpload}
+                      />
+                    </label>
+
+                    {/* WhatsApp / QR Remote Trigger */}
+                    <button
+                      type="button"
+                      className="cim-action-tile remote"
+                      onClick={() => setIsMobileModalOpen(true)}
+                    >
+                      <FiSmartphone size={18} className="cim-tile-icon green" />
+                      <div className="cim-tile-text">
+                        <span className="cim-tile-title">Request on Phone</span>
+                        <span className="cim-tile-sub">Send WhatsApp link</span>
+                      </div>
+                    </button>
+                  </div>
+                )}
               </div>
 
-              {/* 2-COLUMN: GUEST CITY & STATE (OPTIONAL COMPLIANCE) */}
-              <div className="cim-row-2col">
-                <div className="cim-field">
-                  <label className="cim-micro-label">City (Optional)</label>
+              {/* Optional City and State */}
+              <div className="cim-geo-row">
+                <div className="cim-geo-field">
+                  <label className="cim-geo-label">Guest City (Optional)</label>
                   <input
                     type="text"
-                    className="cim-input"
-                    placeholder="e.g. Mumbai"
+                    className="cim-geo-input"
+                    placeholder="e.g. Bengaluru"
                     value={guestCity}
                     onChange={(e) => setGuestCity(e.target.value)}
                   />
                 </div>
-
-                <div className="cim-field">
-                  <label className="cim-micro-label">State (Optional)</label>
+                <div className="cim-geo-field">
+                  <label className="cim-geo-label">State (Optional)</label>
                   <input
                     type="text"
-                    className="cim-input"
-                    placeholder="e.g. Maharashtra"
+                    className="cim-geo-input"
+                    placeholder="e.g. Karnataka"
                     value={guestState}
                     onChange={(e) => setGuestState(e.target.value)}
                   />
@@ -413,13 +446,13 @@ export default function CheckInModal({
               </div>
 
               {hasExistingId && isEditingId && (
-                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <div className="cim-cancel-edit-wrap">
                   <button
                     type="button"
-                    className="cim-edit-link"
+                    className="cim-cancel-edit-btn"
                     onClick={() => setIsEditingId(false)}
                   >
-                    Cancel Edit
+                    Cancel Editing ID
                   </button>
                 </div>
               )}
@@ -427,7 +460,7 @@ export default function CheckInModal({
           )}
         </div>
 
-        {/* FOOTER */}
+        {/* ── 3. STICKY MOBILE ACTION BAR ── */}
         <div className="cim-footer">
           <button
             type="button"
@@ -444,9 +477,9 @@ export default function CheckInModal({
               className="cim-btn-skip"
               onClick={handleSkipAndCheckIn}
               disabled={isSubmitting}
-              title="Check in now; capture ID before departure"
+              title="Proceed check-in now; verify ID later"
             >
-              Skip & Check-In
+              Skip ID
             </button>
           )}
 
@@ -456,15 +489,15 @@ export default function CheckInModal({
             onClick={handleConfirmWithId}
             disabled={isSubmitting}
           >
-            <FiKey size={14} />
-            {isSubmitting ? 'Checking In...' : 'Confirm Check-In'}
+            <FiKey size={16} />
+            <span>{isSubmitting ? 'Checking In...' : 'Confirm Check-In'}</span>
           </button>
         </div>
 
         <MobileIdRequestModal
           isOpen={isMobileModalOpen}
           onClose={() => setIsMobileModalOpen(false)}
-          guestName={res?.guest || res?.guestName || 'Guest'}
+          guestName={guestDisplay}
           guestPhone={res?.phone || res?.guestPhone || ''}
           propertyName={res?.propertyName || 'StayOps Property'}
           propertyId={res?.propertyId || ''}
@@ -474,60 +507,40 @@ export default function CheckInModal({
         {/* Lightbox Modal for inspecting full size ID photo */}
         {lightboxUrl && (
           <div
-            style={{
-              position: 'fixed',
-              inset: 0,
-              zIndex: 100000,
-              background: 'rgba(15, 23, 42, 0.75)',
-              backdropFilter: 'blur(4px)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              padding: 20
-            }}
+            className="cim-lightbox-backdrop"
             onClick={() => setLightboxUrl(null)}
           >
             <div
-              style={{
-                position: 'relative',
-                maxWidth: '92vw',
-                maxHeight: '92vh',
-                background: '#ffffff',
-                borderRadius: 12,
-                overflow: 'hidden',
-                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.45)',
-                display: 'flex',
-                flexDirection: 'column'
-              }}
+              className="cim-lightbox-card"
               onClick={e => e.stopPropagation()}
             >
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 18px', borderBottom: '1px solid #e2e8f0', background: '#f8fafc' }}>
-                <span style={{ fontWeight: 650, fontSize: 13.5, color: '#1e293b' }}>
-                  🪪 Guest ID Proof — {res?.guest || res?.guestName || 'Guest'}
+              <div className="cim-lightbox-header">
+                <span className="cim-lightbox-title">
+                  🪪 ID Proof — {guestDisplay}
                 </span>
-                <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+                <div className="cim-lightbox-actions">
                   <a
                     href={lightboxUrl}
                     target="_blank"
                     rel="noreferrer"
-                    style={{ fontSize: 12, color: '#2563eb', textDecoration: 'none', fontWeight: 600 }}
+                    className="cim-lightbox-external"
                   >
-                    Open in New Tab ↗
+                    Open Full ↗
                   </a>
                   <button
                     type="button"
                     onClick={() => setLightboxUrl(null)}
-                    style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4, display: 'flex', color: '#475569' }}
+                    className="cim-lightbox-close"
                   >
                     <FiX size={18} />
                   </button>
                 </div>
               </div>
-              <div style={{ padding: 14, overflow: 'auto', display: 'flex', justifyContent: 'center', background: '#090d16' }}>
+              <div className="cim-lightbox-img-wrap">
                 <img
                   src={lightboxUrl}
                   alt="Guest ID Document"
-                  style={{ maxWidth: '100%', maxHeight: '76vh', objectFit: 'contain', borderRadius: 6 }}
+                  className="cim-lightbox-img"
                 />
               </div>
             </div>
