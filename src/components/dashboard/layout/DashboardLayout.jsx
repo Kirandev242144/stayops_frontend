@@ -1,5 +1,6 @@
 ﻿import Sidebar from "../sidebar/Sidebar";
 import Navbar from "../navbar/Navbar";
+import MobileBottomNav from "../navigation/MobileBottomNav";
 import { useState } from "react";
 import { NotificationProvider } from "../../../context/NotificationContext";
 import "./DashboardLayout.css";
@@ -26,14 +27,16 @@ const DashboardLayout = ({
 
           <div
             className="dashboard-content"
-            style={{
-              paddingTop: "100px",
-              paddingLeft: "24px",
-            }}
           >
             {children}
           </div>
         </main>
+
+        {/* NATIVE PWA MOBILE BOTTOM NAVIGATION */}
+        <MobileBottomNav
+          activePage={activePage}
+          setActivePage={setActivePage}
+        />
       </div>
     </NotificationProvider>
   );

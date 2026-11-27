@@ -604,3 +604,13 @@
 .sidebar.collapsed .sidebar-toggle {
     right: -12px;
 }
+
+/* ============================================================
+   RESPONSIVE: HIDE DESKTOP SIDEBAR ON MOBILE
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .sidebar {
+        display: none !important;
+    }
+}

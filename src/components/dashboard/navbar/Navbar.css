@@ -271,3 +271,52 @@
 .dashboard-navbar.navbar-collapsed {
   left: 72px;
 }
+
+/* ============================================================
+   RESPONSIVE MOBILE PWA NAVBAR
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .dashboard-navbar,
+  .dashboard-navbar.navbar-collapsed {
+    left: 0 !important;
+    padding: 0 14px;
+    height: 56px;
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  .navbar-greeting {
+    max-width: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .navbar-greeting h2 {
+    font-size: 0.88rem;
+  }
+
+  .navbar-actions {
+    gap: 8px;
+  }
+
+  .navbar-buttons {
+    gap: 6px;
+  }
+
+  /* Make primary quick action button compact on mobile */
+  .navbar-btn.primary {
+    height: 34px;
+    padding: 0 10px;
+    font-size: 12px;
+  }
+
+  .navbar-btn.primary span {
+    display: none;
+  }
+
+  .navbar-btn.icon {
+    width: 34px;
+    height: 34px;
+  }
+}

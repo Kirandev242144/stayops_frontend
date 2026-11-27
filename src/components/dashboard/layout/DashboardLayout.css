@@ -17,3 +17,21 @@
   padding: 82px 24px 24px;
   box-sizing: border-box;
 }
+
+/* ============================================================
+   RESPONSIVE MOBILE PWA LAYOUT
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .dashboard-main {
+    margin-left: 0 !important;
+  }
+
+  .dashboard-layout.sidebar-collapsed .dashboard-main {
+    margin-left: 0 !important;
+  }
+
+  .dashboard-content {
+    padding: 72px 14px calc(76px + env(safe-area-inset-bottom, 0px)) 14px !important;
+  }
+}

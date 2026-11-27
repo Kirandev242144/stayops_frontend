@@ -579,3 +579,108 @@
   color: #202223;
   margin-top: 2px;
 }
+
+/* ============================================================
+   RESPONSIVE MOBILE PWA: PETTY CASH NATIVE CARDS & BOTTOM SHEET
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .pc-container {
+    padding: 0 0 16px 0;
+  }
+
+  .pc-header-card {
+    padding: 14px;
+    border-radius: 12px;
+    margin-bottom: 14px;
+  }
+
+  .pc-top-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .pc-main-heading {
+    font-size: 1.15rem;
+  }
+
+  .pc-sub-heading {
+    font-size: 12px;
+  }
+
+  .pc-top-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .pc-primary-btn, 
+  .pc-expense-btn {
+    height: 38px;
+    padding: 0 8px;
+    font-size: 12px;
+    justify-content: center;
+  }
+
+  .pc-refresh-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  /* Stats summary row stack */
+  .pc-stats-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .pc-balance-card,
+  .pc-stat-card {
+    padding: 14px;
+    border-radius: 12px;
+  }
+
+  .pc-balance-amount {
+    font-size: 1.6rem;
+  }
+
+  /* Filters row */
+  .pc-controls-bar {
+    padding: 10px 12px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .pc-controls-left {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .pc-filter-select {
+    width: 100%;
+  }
+
+  .pc-search-box {
+    width: 100%;
+  }
+
+  /* Modals morph into touch Bottom Sheet on mobile */
+  .pc-modal-overlay {
+    align-items: flex-end !important;
+    padding: 0 !important;
+  }
+
+  .pc-modal-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 20px 20px 0 0 !important;
+    padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px)) !important;
+    max-height: 85vh;
+    animation: sheetSlideUp 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+}

@@ -176,3 +176,30 @@ h6 { font-size: var(--heading-h6); }   /* 20px */
     padding-bottom: var(--space-8);  /* 64px */
   }
 }
+
+/* ==========================================================================
+   NATIVE MOBILE APP & PWA POLISH
+   ========================================================================== */
+
+/* Remove grey tap flash on touch devices */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent unwanted pull-to-refresh rubber-banding inside app */
+html, body {
+  overscroll-behavior-y: contain;
+}
+
+/* Safe Area Inset Support for notch/home-bar */
+:root {
+  --sat: env(safe-area-inset-top, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+}
+
+/* Improve native mobile button and input responsiveness */
+button, a, input, select, textarea {
+  touch-action: manipulation;
+}
