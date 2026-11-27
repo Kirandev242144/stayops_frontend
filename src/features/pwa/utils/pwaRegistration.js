@@ -1,5 +1,3 @@
-import { registerSW } from 'virtual:pwa-register';
-
 /**
  * Validates that the web manifest is linked, reachable via HTTP 200,
  * and contains all required W3C/Chromium fields for installability.
@@ -48,8 +46,14 @@ export async function verifyManifest() {
   }
 }
 
+/**
+ * Standard native service worker registration without virtual plugin dependencies.
+ * Works seamlessly in both Vite dev server and production builds.
+ */
 export function registerServiceWorker({ onUpdate, onInstall } = {}) {
-  if (typeof window === 'undefined') return () => {};
+  if (typeof window === 'undefined' || !('serviceWorker' in navigator)) {
+    return () => {};
+  }
 
   // Check manifest validity in background
   verifyManifest().then((result) => {
@@ -58,15 +62,36 @@ export function registerServiceWorker({ onUpdate, onInstall } = {}) {
     }
   });
 
-  return registerSW({
-    immediate: true,
-    onNeedRefresh() {
-      if (onUpdate) onUpdate();
-    },
-    onOfflineReady() {
-      if (onInstall) onInstall();
-    }
-  });
+  try {
+    navigator.serviceWorker
+      .register('/sw.js', { scope: '/' })
+      .then((registration) => {
+        registration.addEventListener('updatefound', () => {
+          const installingWorker = registration.installing;
+          if (installingWorker) {
+            installingWorker.addEventListener('statechange', () => {
+              if (installingWorker.state === 'installed') {
+                if (navigator.serviceWorker.controller) {
+                  if (onUpdate) onUpdate();
+                } else {
+                  if (onInstall) onInstall();
+                }
+              }
+            });
+          }
+        });
+      })
+      .catch((err) => {
+        // Non-blocking in dev mode or local environment
+        console.info('[StayOps PWA] Service worker registration note:', err.message);
+      });
+  } catch (e) {
+    console.warn('[StayOps PWA] Service worker register exception:', e);
+  }
+
+  return (reloadPage = true) => {
+    if (reloadPage) window.location.reload();
+  };
 }
 
 export function setupControllerChangeListener() {
@@ -80,4 +105,3 @@ export function setupControllerChangeListener() {
     }
   });
 }
-
