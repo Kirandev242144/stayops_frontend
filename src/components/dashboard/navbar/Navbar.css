@@ -288,12 +288,15 @@
   .dashboard-navbar,
   .dashboard-navbar.navbar-collapsed {
     left: 0 !important;
-    padding: 0 12px;
-    height: 52px;
-    padding-top: env(safe-area-inset-top, 0px);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    padding: 0 16px !important;
+    height: 56px !important;
+    padding-top: env(safe-area-inset-top, 0px) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    background: #FFFFFF !important;
+    border-bottom: 1px solid #F1F5F9 !important;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03) !important;
   }
 
   .navbar-desktop-greeting {
@@ -308,46 +311,34 @@
   }
 
   .navbar-mobile-logo {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
     object-fit: contain;
   }
 
   .navbar-mobile-brand-name {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 800;
-    color: #111827;
+    color: #0F172A;
     letter-spacing: -0.02em;
   }
 
   .navbar-actions {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
   }
 
   .navbar-buttons {
-    gap: 4px;
+    gap: 6px !important;
   }
 
-  /* Hide + Quick Action button on mobile navbar */
-  .navbar-btn.primary {
+  /* Hide desktop-only controls from mobile header to prevent clutter */
+  .navbar-btn.primary,
+  .navbar-btn.icon,
+  .navbar-lang-btn,
+  .navbar-lang-container {
     display: none !important;
-  }
-
-  .navbar-btn.icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-  }
-
-  /* Compact Language button */
-  .navbar-lang-btn {
-    height: 32px;
-    padding: 0 8px;
-    font-size: 11px;
-    gap: 4px;
-    border-radius: 8px;
   }
 
   /* Hide user name and role text on mobile, keep avatar */

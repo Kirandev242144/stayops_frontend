@@ -46,26 +46,63 @@ export default function FrontdeskCounters({
 
   return (
     <>
-      {/* ── 1. NATIVE MOBILE APP TOUCH SEGMENTED QUEUE BAR (< 768px) ── */}
-      <div className="fd-mobile-queue-bar" role="tablist">
-        {mobileChips.map(chip => {
-          const Icon = chip.icon;
-          const isActive = opTab === chip.id;
-          return (
-            <button
-              key={chip.id}
-              type="button"
-              role="tab"
-              aria-selected={isActive}
-              className={`fd-mobile-queue-chip ${isActive ? 'active' : ''} ${chip.isAlert ? 'alert' : ''}`}
-              onClick={() => setOpTab(chip.id)}
-            >
-              <Icon size={14} className="fd-mqc-icon" />
-              <span className="fd-mqc-label">{chip.label}</span>
-              <span className="fd-mqc-badge">{chip.count}</span>
-            </button>
-          );
-        })}
+      {/* ── 1. NATIVE MOBILE APP PRIMARY ACTION COUNTERS (< 768px) ── */}
+      <div className="fd-mobile-counters-section">
+        <div className="fd-mob-action-grid">
+          <button
+            type="button"
+            className={`fd-mob-action-card ${opTab === OP_TABS.CHECKIN ? 'active' : ''}`}
+            onClick={() => setOpTab(OP_TABS.CHECKIN)}
+          >
+            <div className="fd-mob-action-top">
+              <span className="fd-mob-action-num">{todayArrivals.length}</span>
+              <FiLogIn className="fd-mob-action-icon" size={18} />
+            </div>
+            <span className="fd-mob-action-label">Arrivals</span>
+          </button>
+
+          <button
+            type="button"
+            className={`fd-mob-action-card ${opTab === OP_TABS.CHECKOUT ? 'active' : ''}`}
+            onClick={() => setOpTab(OP_TABS.CHECKOUT)}
+          >
+            <div className="fd-mob-action-top">
+              <span className="fd-mob-action-num">{todayDepartures.length}</span>
+              <FiLogOut className="fd-mob-action-icon" size={18} />
+            </div>
+            <span className="fd-mob-action-label">Departures</span>
+          </button>
+        </div>
+
+        {/* Secondary Queues as horizontal swipeable chips */}
+        <div className="fd-mob-secondary-chips" role="tablist">
+          <button
+            type="button"
+            className={`fd-mob-sec-chip ${opTab === OP_TABS.INHOUSE ? 'active' : ''}`}
+            onClick={() => setOpTab(OP_TABS.INHOUSE)}
+          >
+            <FiHome size={13} />
+            <span>In-House ({inHouseGuests.length})</span>
+          </button>
+
+          <button
+            type="button"
+            className={`fd-mob-sec-chip ${opTab === OP_TABS.NOSHOW ? 'active' : ''} ${noShowAlerts > 0 ? 'alert' : ''}`}
+            onClick={() => setOpTab(OP_TABS.NOSHOW)}
+          >
+            <FiAlertTriangle size={13} />
+            <span>Alerts ({noShowAlerts})</span>
+          </button>
+
+          <button
+            type="button"
+            className={`fd-mob-sec-chip ${opTab === OP_TABS.COMPLETED ? 'active' : ''}`}
+            onClick={() => setOpTab(OP_TABS.COMPLETED)}
+          >
+            <FiArchive size={13} />
+            <span>Completed ({completedStays.length})</span>
+          </button>
+        </div>
       </div>
 
       {/* ── 2. DESKTOP & LAPTOP SPACIOUS 5-COLUMN PMS CARDS (>= 769px) ── */}

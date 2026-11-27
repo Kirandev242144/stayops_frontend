@@ -25,9 +25,9 @@ export default function FrontdeskTimeFilter({
   }
 
   const filters = [
-    { id: TIME_FILTERS.TODAY, label: 'Today' },
-    { id: TIME_FILTERS.TOMORROW, label: 'Tomorrow' },
-    { id: TIME_FILTERS.WEEK, label: 'This Week Queue' }
+    { id: TIME_FILTERS.TODAY, label: 'Today', mobileLabel: 'Today' },
+    { id: TIME_FILTERS.TOMORROW, label: 'Tomorrow', mobileLabel: 'Tomorrow' },
+    { id: TIME_FILTERS.WEEK, label: 'This Week Queue', mobileLabel: 'This Week' }
   ];
 
   return (
@@ -40,7 +40,8 @@ export default function FrontdeskTimeFilter({
             className={`fd-filter-btn ${timeFilter === t.id ? 'active' : ''}`}
             onClick={() => setTimeFilter(t.id)}
           >
-            {t.label}
+            <span className="fd-filter-btn-desktop">{t.label}</span>
+            <span className="fd-filter-btn-mobile">{t.mobileLabel}</span>
           </button>
         ))}
       </div>

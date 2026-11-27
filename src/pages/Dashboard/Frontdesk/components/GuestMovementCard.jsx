@@ -39,7 +39,9 @@ function formatStayDates(checkin, checkout, guestCount = 1) {
 
 /**
  * Human-designed Operational Guest Movement Card for Front Desk.
- * Designed for high-density desktop and native mobile PWA touch execution.
+ * Dual-layout:
+ * - .gmc-mob-card: Clean, flat, native PWA layout with zero nested-box clutter
+ * - .gmc-desktop-view: High-density, spacious desktop operational card
  */
 export default function GuestMovementCard({
   res,
@@ -62,6 +64,35 @@ export default function GuestMovementCard({
   const roomUnitName = res.roomUnit || res.unit || 'Room Unit';
   const stayDatesText = formatStayDates(res.checkin, res.checkout, res.guests || 1);
 
+  // Compute short date & night count for mobile
+  const checkinDateShort = res.checkin
+    ? new Date(res.checkin).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+    : '—';
+
+  const nightsCount = (() => {
+    if (!res.checkin || !res.checkout) return 1;
+    try {
+      const diff = (new Date(res.checkout) - new Date(res.checkin)) / (1000 * 60 * 60 * 24);
+      return Math.max(1, Math.round(diff));
+    } catch {
+      return 1;
+    }
+  })();
+
+  // Mobile status badge label & style
+  let mobStatusLabel = 'Arriving today';
+  let mobStatusClass = 'arriving';
+  if (isInHouse) {
+    mobStatusLabel = 'In-House';
+    mobStatusClass = 'inhouse';
+  } else if (res.status === 'no_show') {
+    mobStatusLabel = 'No-Show';
+    mobStatusClass = 'noshow';
+  } else if (!isCheckInPending) {
+    mobStatusLabel = res.status || 'Confirmed';
+    mobStatusClass = 'confirmed';
+  }
+
   // Handle direct WhatsApp opening
   const handleWhatsApp = (e) => {
     e.stopPropagation();
@@ -78,215 +109,358 @@ export default function GuestMovementCard({
   };
 
   return (
-    <div className="gmc-card">
-      
-      {/* ── 1. CARD TOP BAR: ROOM UNIT & BOOKING REF ── */}
-      <div className="gmc-header">
-        <div className="gmc-header-left">
-          {/* Prominent Room Badge */}
-          <div className="gmc-room-tag">
-            <FiGrid size={13} />
-            <span className="gmc-room-name">{roomUnitName}</span>
-          </div>
-
-          <div className="gmc-meta-pills">
-            <span className="gmc-booking-ref">{res.id}</span>
-            <span className="gmc-source-pill">{res.ota || res.bookingSource || 'Walk-In'}</span>
-            {res.propertyName && (
-              <span className="gmc-property-pill"><FiHome size={11} /> {res.propertyName}</span>
-            )}
-          </div>
+    <>
+      {/* ═════════════════════════════════════════════════════════
+          1. NATIVE MOBILE APP PWA CARD (< 768px)
+          Designed to feel like an authentic iOS / Material 3 card:
+          - Status + Booking ID at top
+          - Guest Avatar + Name + WhatsApp
+          - Clean Key-Value details (Flat, NO box-in-box)
+          - Full-width 50px Primary CTA at bottom
+          - Clean 44px Secondary Voucher CTA
+         ═════════════════════════════════════════════════════════ */}
+      <div className="gmc-mob-card">
+        {/* Top Status & Booking Ref */}
+        <div className="gmc-mob-topbar">
+          <span className={`gmc-mob-badge ${mobStatusClass}`}>
+            {mobStatusLabel}
+          </span>
+          <span className="gmc-mob-ref">{res.id}</span>
         </div>
 
-        {/* Primary Operational Action CTA (Desktop Only, Top Right) */}
-        <div className="gmc-header-right">
-          {isCheckInPending && (
-            <button
-              type="button"
-              className="gmc-btn-primary gmc-btn-checkin"
-              onClick={() => onExecuteCheckIn(res)}
-            >
-              <FiKey size={14} /> Execute Check-In
-            </button>
-          )}
-
-          {isInHouse && (
-            <button
-              type="button"
-              className="gmc-btn-primary gmc-btn-checkout"
-              onClick={() => onExecuteCheckOut(res)}
-            >
-              <FiLogOut size={14} /> Execute Check-Out
-            </button>
-          )}
-        </div>
-      </div>
-
-      {/* ── 2. GUEST IDENTITY & STAY DETAILS ── */}
-      <div className="gmc-body">
-        <div className="gmc-guest-profile">
-          <div className="gmc-avatar">
+        {/* Guest Profile Row */}
+        <div className="gmc-mob-guest-row">
+          <div className="gmc-mob-avatar">
             {(res.guest || 'G').charAt(0).toUpperCase()}
           </div>
-          <div className="gmc-guest-details">
-            <div className="gmc-guest-name-row">
-              <h3 className="gmc-guest-name">{res.guest}</h3>
-              {res.phone && (
-                <button 
-                  type="button" 
-                  className="gmc-icon-btn-wa" 
-                  onClick={handleWhatsApp}
-                  title="Chat on WhatsApp"
-                >
-                  <FiMessageSquare size={13} /> {res.phone}
-                </button>
-              )}
-            </div>
-            
-            <div className="gmc-meta-tags">
-              <span className="gmc-stay-dates">
-                <FiCalendar size={12} /> {stayDatesText}
-              </span>
-              
+          <div className="gmc-mob-guest-info">
+            <h3 className="gmc-mob-guest-name">{res.guest}</h3>
+            <span className="gmc-mob-guest-sub">
+              {res.guests || 1} Guest · {nightsCount} Night{nightsCount > 1 ? 's' : ''}
+            </span>
+          </div>
+          {res.phone && (
+            <button
+              type="button"
+              className="gmc-mob-wa-btn"
+              onClick={handleWhatsApp}
+              title="Chat on WhatsApp"
+            >
+              <FiMessageSquare size={13} />
+              <span>WhatsApp</span>
+            </button>
+          )}
+        </div>
+
+        {/* Key-Value Information Rows (Clean, Flat, No nested box) */}
+        <div className="gmc-mob-kv-section">
+          <div className="gmc-mob-kv-row">
+            <span className="gmc-mob-k">Room</span>
+            <span className="gmc-mob-v gmc-mob-room-val">{roomUnitName} · {res.id}</span>
+          </div>
+
+          <div className="gmc-mob-kv-row">
+            <span className="gmc-mob-k">Check-in</span>
+            <span className="gmc-mob-v">{checkinDateShort}</span>
+          </div>
+
+          <div className="gmc-mob-kv-row">
+            <span className="gmc-mob-k">ID verification</span>
+            <span className="gmc-mob-v gmc-mob-id-val">
               {res.idType && (res.idNumber || res.idDocumentUrl || res.status === 'checkedin') ? (
-                <span className="gmc-id-verified-wrap">
-                  <span className="gmc-id-verified-text">
-                    <FiShield size={12} /> ID Verified ({res.idType})
+                <span className="gmc-mob-id-verified-wrap">
+                  <span className="gmc-mob-verified-badge">
+                    <FiShield size={12} /> Verified
                   </span>
                   {res.idDocumentUrl && (
                     <button
                       type="button"
-                      className="gmc-btn-view-id"
+                      className="gmc-mob-btn-view-id"
                       onClick={(e) => {
                         e.stopPropagation();
-                        if (onViewIdDocument) {
-                          onViewIdDocument(res);
-                        } else {
-                          window.open(res.idDocumentUrl, '_blank');
-                        }
+                        if (onViewIdDocument) onViewIdDocument(res);
+                        else window.open(res.idDocumentUrl, '_blank');
                       }}
-                      title="View guest uploaded ID photo"
                     >
                       <FiEye size={11} /> View ID
                     </button>
                   )}
                 </span>
-              ) : isCheckInPending ? (
-                <span className="gmc-id-pending-text">
-                  <FiShield size={12} /> ID Pending
+              ) : (
+                <span className="gmc-mob-pending-badge">
+                  <FiShield size={12} /> Pending
                 </span>
-              ) : null}
+              )}
+            </span>
+          </div>
+
+          <div className="gmc-mob-kv-row">
+            <span className="gmc-mob-k">Total amount</span>
+            <span className="gmc-mob-v gmc-mob-v-bold">₹{folio.totalFolio.toLocaleString('en-IN')}</span>
+          </div>
+
+          <div className="gmc-mob-kv-row">
+            <span className="gmc-mob-k">Paid</span>
+            <span className="gmc-mob-v gmc-mob-v-green">₹{folio.paidAmount.toLocaleString('en-IN')}</span>
+          </div>
+
+          {folio.isBalancePending && (
+            <div className="gmc-mob-kv-row highlight-due">
+              <span className="gmc-mob-k gmc-mob-k-due">Balance due</span>
+              <span className="gmc-mob-v gmc-mob-v-due">₹{folio.balanceDue.toLocaleString('en-IN')}</span>
             </div>
-          </div>
+          )}
         </div>
 
-        {/* Special Request or Caretaker Notes */}
-        {res.notes && (
-          <div className="gmc-notes-box">
-            <span className="gmc-notes-label">Note:</span>
-            <span className="gmc-notes-content">{res.notes}</span>
-          </div>
-        )}
-      </div>
-
-      {/* ── 3. FINANCIAL FOLIO SUMMARY ── */}
-      <div className="gmc-folio-strip">
-        <div className="gmc-folio-item">
-          <span className="lbl">TOTAL FOLIO</span>
-          <strong className="val-dark">₹{folio.totalFolio.toLocaleString('en-IN')}</strong>
-        </div>
-        <div className="gmc-folio-item">
-          <span className="lbl">PAID</span>
-          <strong className="val-green">₹{folio.paidAmount.toLocaleString('en-IN')}</strong>
-        </div>
-        <div className="gmc-folio-item">
-          <span className="lbl">BALANCE DUE</span>
-          <strong className={folio.isBalancePending ? "val-due-badge" : "val-paid-badge"}>
-            {folio.isBalancePending ? `₹${folio.balanceDue.toLocaleString('en-IN')}` : '₹0 (Paid)'}
-          </strong>
-        </div>
-      </div>
-
-      {/* ── 4. MOBILE-ONLY FULL-WIDTH PRIMARY ACTION (At Bottom of Card) ── */}
-      <div className="gmc-mobile-primary-action">
+        {/* Primary Action Button (Full-width 50px thumb target) */}
         {isCheckInPending && (
           <button
             type="button"
-            className="gmc-btn-primary gmc-btn-checkin"
+            className="gmc-mob-primary-btn checkin"
             onClick={() => onExecuteCheckIn(res)}
           >
-            <FiKey size={15} /> Execute Check-In
+            <FiKey size={16} /> Execute Check-in
           </button>
         )}
 
         {isInHouse && (
           <button
             type="button"
-            className="gmc-btn-primary gmc-btn-checkout"
+            className="gmc-mob-primary-btn checkout"
             onClick={() => onExecuteCheckOut(res)}
           >
-            <FiLogOut size={15} /> Execute Check-Out
+            <FiLogOut size={16} /> Execute Check-out
           </button>
         )}
-      </div>
 
-      {/* ── 5. OPERATIONAL TOOLS GRID (QR, PAYMENT, MEAL, BILL) ── */}
-      <div className="gmc-footer">
-        <div className="gmc-toolbar">
-          {/* Quick UPI QR Payment */}
-          {folio.isBalancePending && (
-            <button
-              type="button"
-              className="gmc-tool-btn gmc-btn-qr"
-              onClick={() => onOpenRazorpayQr(res, folio.balanceDue)}
-            >
-              <FiZap size={13} /> Scan &amp; Pay QR
-            </button>
-          )}
-
-          {/* In-House Operations: Food and Other In-Stay Services */}
-          {isInHouse && (
-            <>
-              <button
-                type="button"
-                className="gmc-tool-btn"
-                onClick={() => onOpenAddMeal && onOpenAddMeal(res)}
-              >
-                <FiPlusCircle size={13} /> Add Meal
-              </button>
-
-              <button
-                type="button"
-                className="gmc-tool-btn"
-                onClick={() => onOpenAddService && onOpenAddService(res)}
-              >
-                <FiPlusCircle size={13} /> Add Service
-              </button>
-            </>
-          )}
-
-          {/* Record Manual Payment */}
-          {folio.isBalancePending && (
-            <button
-              type="button"
-              className="gmc-tool-btn"
-              onClick={() => onOpenRecordPayment(res, folio.balanceDue)}
-            >
-              <FiCreditCard size={13} /> Record Payment
-            </button>
-          )}
-
-          {/* View Folio & Tax Invoice Voucher */}
+        {/* Secondary Action: View booking voucher */}
+        <div className="gmc-mob-secondary-actions">
           <button
             type="button"
-            className="gmc-tool-btn"
+            className="gmc-mob-secondary-btn"
             onClick={() => onOpenVoucher(res)}
           >
-            <FiFileText size={13} /> {isInHouse ? 'View Folio & Bill' : 'Booking Voucher'}
+            <FiFileText size={14} /> View booking voucher
           </button>
+
+          {/* Quick Operations: QR Pay, Record Payment, Meal */}
+          {(folio.isBalancePending || isInHouse) && (
+            <div className="gmc-mob-quick-chips">
+              {folio.isBalancePending && (
+                <button
+                  type="button"
+                  className="gmc-mob-chip-btn"
+                  onClick={() => onOpenRazorpayQr(res, folio.balanceDue)}
+                >
+                  <FiZap size={12} /> QR Pay
+                </button>
+              )}
+              {folio.isBalancePending && (
+                <button
+                  type="button"
+                  className="gmc-mob-chip-btn"
+                  onClick={() => onOpenRecordPayment(res, folio.balanceDue)}
+                >
+                  <FiCreditCard size={12} /> Payment
+                </button>
+              )}
+              {isInHouse && (
+                <button
+                  type="button"
+                  className="gmc-mob-chip-btn"
+                  onClick={() => onOpenAddMeal && onOpenAddMeal(res)}
+                >
+                  <FiPlusCircle size={12} /> Add Meal
+                </button>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
-    </div>
+      {/* ═════════════════════════════════════════════════════════
+          2. DESKTOP & LAPTOP SPACIOUS PMS CARD (>= 769px)
+          Preserved untouched for desktop / laptop displays
+         ═════════════════════════════════════════════════════════ */}
+      <div className="gmc-card gmc-desktop-view">
+        {/* CARD TOP BAR: ROOM UNIT & BOOKING REF */}
+        <div className="gmc-header">
+          <div className="gmc-header-left">
+            <div className="gmc-room-tag">
+              <FiGrid size={13} />
+              <span className="gmc-room-name">{roomUnitName}</span>
+            </div>
+
+            <div className="gmc-meta-pills">
+              <span className="gmc-booking-ref">{res.id}</span>
+              <span className="gmc-source-pill">{res.ota || res.bookingSource || 'Walk-In'}</span>
+              {res.propertyName && (
+                <span className="gmc-property-pill"><FiHome size={11} /> {res.propertyName}</span>
+              )}
+            </div>
+          </div>
+
+          {/* Primary Action CTA (Top Right on Desktop) */}
+          <div className="gmc-header-right">
+            {isCheckInPending && (
+              <button
+                type="button"
+                className="gmc-btn-primary gmc-btn-checkin"
+                onClick={() => onExecuteCheckIn(res)}
+              >
+                <FiKey size={14} /> Execute Check-In
+              </button>
+            )}
+
+            {isInHouse && (
+              <button
+                type="button"
+                className="gmc-btn-primary gmc-btn-checkout"
+                onClick={() => onExecuteCheckOut(res)}
+              >
+                <FiLogOut size={14} /> Execute Check-Out
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* GUEST IDENTITY & STAY DETAILS */}
+        <div className="gmc-body">
+          <div className="gmc-guest-profile">
+            <div className="gmc-avatar">
+              {(res.guest || 'G').charAt(0).toUpperCase()}
+            </div>
+            <div className="gmc-guest-details">
+              <div className="gmc-guest-name-row">
+                <h3 className="gmc-guest-name">{res.guest}</h3>
+                {res.phone && (
+                  <button 
+                    type="button" 
+                    className="gmc-icon-btn-wa" 
+                    onClick={handleWhatsApp}
+                    title="Chat on WhatsApp"
+                  >
+                    <FiMessageSquare size={13} /> {res.phone}
+                  </button>
+                )}
+              </div>
+              
+              <div className="gmc-meta-tags">
+                <span className="gmc-stay-dates">
+                  <FiCalendar size={12} /> {stayDatesText}
+                </span>
+                
+                {res.idType && (res.idNumber || res.idDocumentUrl || res.status === 'checkedin') ? (
+                  <span className="gmc-id-verified-wrap">
+                    <span className="gmc-id-verified-text">
+                      <FiShield size={12} /> ID Verified ({res.idType})
+                    </span>
+                    {res.idDocumentUrl && (
+                      <button
+                        type="button"
+                        className="gmc-btn-view-id"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (onViewIdDocument) {
+                            onViewIdDocument(res);
+                          } else {
+                            window.open(res.idDocumentUrl, '_blank');
+                          }
+                        }}
+                        title="View guest uploaded ID photo"
+                      >
+                        <FiEye size={11} /> View ID
+                      </button>
+                    )}
+                  </span>
+                ) : isCheckInPending ? (
+                  <span className="gmc-id-pending-text">
+                    <FiShield size={12} /> ID Pending
+                  </span>
+                ) : null}
+              </div>
+            </div>
+          </div>
+
+          {res.notes && (
+            <div className="gmc-notes-box">
+              <span className="gmc-notes-label">Note:</span>
+              <span className="gmc-notes-content">{res.notes}</span>
+            </div>
+          )}
+        </div>
+
+        {/* FINANCIAL FOLIO SUMMARY */}
+        <div className="gmc-folio-strip">
+          <div className="gmc-folio-item">
+            <span className="lbl">TOTAL FOLIO</span>
+            <strong className="val-dark">₹{folio.totalFolio.toLocaleString('en-IN')}</strong>
+          </div>
+          <div className="gmc-folio-item">
+            <span className="lbl">PAID</span>
+            <strong className="val-green">₹{folio.paidAmount.toLocaleString('en-IN')}</strong>
+          </div>
+          <div className="gmc-folio-item">
+            <span className="lbl">BALANCE DUE</span>
+            <strong className={folio.isBalancePending ? "val-due-badge" : "val-paid-badge"}>
+              {folio.isBalancePending ? `₹${folio.balanceDue.toLocaleString('en-IN')}` : '₹0 (Paid)'}
+            </strong>
+          </div>
+        </div>
+
+        {/* OPERATIONAL TOOLS GRID */}
+        <div className="gmc-footer">
+          <div className="gmc-toolbar">
+            {folio.isBalancePending && (
+              <button
+                type="button"
+                className="gmc-tool-btn gmc-btn-qr"
+                onClick={() => onOpenRazorpayQr(res, folio.balanceDue)}
+              >
+                <FiZap size={13} /> Scan &amp; Pay QR
+              </button>
+            )}
+
+            {isInHouse && (
+              <>
+                <button
+                  type="button"
+                  className="gmc-tool-btn"
+                  onClick={() => onOpenAddMeal && onOpenAddMeal(res)}
+                >
+                  <FiPlusCircle size={13} /> Add Meal
+                </button>
+
+                <button
+                  type="button"
+                  className="gmc-tool-btn"
+                  onClick={() => onOpenAddService && onOpenAddService(res)}
+                >
+                  <FiPlusCircle size={13} /> Add Service
+                </button>
+              </>
+            )}
+
+            {folio.isBalancePending && (
+              <button
+                type="button"
+                className="gmc-tool-btn"
+                onClick={() => onOpenRecordPayment(res, folio.balanceDue)}
+              >
+                <FiCreditCard size={13} /> Record Payment
+              </button>
+            )}
+
+            <button
+              type="button"
+              className="gmc-tool-btn"
+              onClick={() => onOpenVoucher(res)}
+            >
+              <FiFileText size={13} /> {isInHouse ? 'View Folio & Bill' : 'Booking Voucher'}
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
