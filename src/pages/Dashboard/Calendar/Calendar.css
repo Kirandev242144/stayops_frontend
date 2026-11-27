@@ -1106,6 +1106,11 @@
     gap: 12px;
   }
 
+  /* HIDE DESKTOP HEADER COMPLETELY ON MOBILE */
+  .cal-desktop-header {
+    display: none !important;
+  }
+
   /* Header Card compact mobile design */
   .cal-header-card {
     padding: 12px 14px;

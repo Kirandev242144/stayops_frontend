@@ -356,10 +356,17 @@
   }
 
   .user-profile {
+    min-width: unset !important;
+    width: auto !important;
+    height: auto !important;
     padding: 0 !important;
     border: none !important;
     background: transparent !important;
     gap: 0 !important;
+  }
+
+  .user-profile .chevron {
+    display: none !important;
   }
 
   .user-avatar {

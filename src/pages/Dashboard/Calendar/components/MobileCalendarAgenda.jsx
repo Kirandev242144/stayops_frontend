@@ -135,10 +135,10 @@ export default function MobileCalendarAgenda({
     <div className="mob-cal-container">
       {/* ── 1. NATIVE TOP TOOLBAR ── */}
       <div className="mob-cal-top-card">
+        {/* Row 1: Property Selector & Primary Booking Action */}
         <div className="mob-cal-top-row">
-          {/* Property Selector */}
           <div className="mob-cal-property-pill">
-            <FiHome size={14} className="mob-cal-prop-icon" />
+            <FiHome size={15} className="mob-cal-prop-icon" />
             <select
               className="mob-cal-property-select"
               value={selectedPropertyId}
@@ -151,47 +151,47 @@ export default function MobileCalendarAgenda({
             </select>
           </div>
 
-          {/* Quick Action Buttons */}
-          <div className="mob-cal-actions-cluster">
-            <button
-              type="button"
-              className={`mob-cal-icon-btn ${showSearch ? 'active' : ''}`}
-              onClick={() => setShowSearch(!showSearch)}
-              title="Search"
-              aria-label="Search"
-            >
-              <FiSearch size={15} />
-            </button>
+          <button
+            type="button"
+            className="mob-cal-new-booking-btn"
+            onClick={onOpenNewResModal}
+          >
+            <FiPlus size={15} />
+            <span>+ Booking</span>
+          </button>
+        </div>
 
-            <button
-              type="button"
-              className="mob-cal-icon-btn"
-              onClick={onOpenBlockDatesModal}
-              title="Block Dates"
-              aria-label="Block Dates"
-            >
-              <FiLock size={15} color="#D97706" />
-            </button>
+        {/* Row 2: Secondary Quick Action Chips */}
+        <div className="mob-cal-secondary-row">
+          <button
+            type="button"
+            className={`mob-cal-action-chip ${showSearch ? 'active' : ''}`}
+            onClick={() => setShowSearch(!showSearch)}
+            aria-label="Search rooms"
+          >
+            <FiSearch size={13} />
+            <span>Search</span>
+          </button>
 
-            <button
-              type="button"
-              className="mob-cal-icon-btn"
-              onClick={onOpenBulkPriceModal}
-              title="Bulk Rates"
-              aria-label="Bulk Rates"
-            >
-              <FiDollarSign size={15} color="#0D9488" />
-            </button>
+          <button
+            type="button"
+            className="mob-cal-action-chip"
+            onClick={onOpenBlockDatesModal}
+            aria-label="Block Dates"
+          >
+            <FiLock size={13} color="#D97706" />
+            <span>Block Dates</span>
+          </button>
 
-            <button
-              type="button"
-              className="mob-cal-new-booking-btn"
-              onClick={onOpenNewResModal}
-            >
-              <FiPlus size={15} />
-              <span>Booking</span>
-            </button>
-          </div>
+          <button
+            type="button"
+            className="mob-cal-action-chip"
+            onClick={onOpenBulkPriceModal}
+            aria-label="Bulk Rates"
+          >
+            <FiDollarSign size={13} color="#0D9488" />
+            <span>Bulk Rates</span>
+          </button>
         </div>
 
         {/* Collapsible Search Input */}

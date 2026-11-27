@@ -26,7 +26,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 10px;
+  width: 100%;
 }
 
 .mob-cal-property-pill {
@@ -34,7 +35,7 @@
   display: flex;
   align-items: center;
   flex: 1;
-  max-width: 175px;
+  min-width: 0;
 }
 
 .mob-cal-prop-icon {
@@ -46,12 +47,12 @@
 
 .mob-cal-property-select {
   width: 100%;
-  height: 36px;
-  padding: 0 10px 0 30px;
+  height: 38px;
+  padding: 0 12px 0 32px;
   background: #F8FAFC;
   border: 1px solid #CBD5E1;
-  border-radius: 9px;
-  font-size: 13px;
+  border-radius: 10px;
+  font-size: 13.5px;
   font-weight: 700;
   color: #0F172A;
   outline: none;
@@ -61,55 +62,60 @@
   text-overflow: ellipsis;
 }
 
-.mob-cal-actions-cluster {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.mob-cal-icon-btn {
-  width: 36px;
-  height: 36px;
-  background: #F8FAFC;
-  border: 1px solid #CBD5E1;
-  border-radius: 9px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #475569;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  flex-shrink: 0;
-}
-
-.mob-cal-icon-btn:active,
-.mob-cal-icon-btn.active {
-  background: #E2E8F0;
-  border-color: #94A3B8;
-  color: #0F172A;
-}
-
 .mob-cal-new-booking-btn {
-  height: 36px;
-  padding: 0 12px;
+  height: 38px;
+  padding: 0 14px;
   background: #008060;
   border: 1px solid #008060;
-  border-radius: 9px;
+  border-radius: 10px;
   color: #FFFFFF;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   cursor: pointer;
-  transition: background 0.15s ease;
+  transition: all 0.15s ease;
   flex-shrink: 0;
-  box-shadow: 0 1px 2px rgba(0, 128, 96, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 128, 96, 0.2);
 }
 
 .mob-cal-new-booking-btn:active {
   background: #006E52;
   transform: scale(0.97);
+}
+
+.mob-cal-secondary-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.mob-cal-action-chip {
+  flex: 1;
+  height: 34px;
+  padding: 0 8px;
+  background: #F8FAFC;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.mob-cal-action-chip:active,
+.mob-cal-action-chip.active {
+  background: #E2E8F0;
+  border-color: #94A3B8;
+  color: #0F172A;
 }
 
 .mob-cal-search-bar {
