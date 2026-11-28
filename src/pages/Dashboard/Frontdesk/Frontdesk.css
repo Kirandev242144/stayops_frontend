@@ -1783,6 +1783,10 @@ display: inline-flex;
   display: none !important;
 }
 
+.fd-stitch-sheet-backdrop {
+  display: none !important;
+}
+
 /* =========================================================
    STAYOPS FRONTDESK ULTRA-MODERN COMPACT PWA (< 768px)
    Stitch Project: "StayOps Front Desk - Modern Compact PWA"
@@ -2405,6 +2409,348 @@ display: inline-flex;
     gap: 4px !important;
     cursor: pointer !important;
     white-space: nowrap !important;
+  }
+
+  /* In-Stay Quick Action Strip (Meals, Services & Quick Payment) */
+  .fd-stitch-instay-strip {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    margin-top: 8px !important;
+    padding-top: 8px !important;
+    border-top: 1px dashed rgba(226, 232, 240, 0.9) !important;
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+  }
+
+  .fd-stitch-instay-strip::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .fd-stitch-chip-btn {
+    height: 28px !important;
+    padding: 0 9px !important;
+    border-radius: 6px !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    cursor: pointer !important;
+    white-space: nowrap !important;
+    transition: all 0.12s ease !important;
+    box-sizing: border-box !important;
+  }
+
+  .fd-stitch-chip-btn.meal {
+    background: #FFF7ED !important;
+    border: 1px solid #FED7AA !important;
+    color: #C2410C !important;
+  }
+
+  .fd-stitch-chip-btn.meal:active {
+    background: #FFEDD5 !important;
+    transform: scale(0.96) !important;
+  }
+
+  .fd-stitch-chip-btn.service {
+    background: #F5F3FF !important;
+    border: 1px solid #DDD6FE !important;
+    color: #6D28D9 !important;
+  }
+
+  .fd-stitch-chip-btn.service:active {
+    background: #EDE9FE !important;
+    transform: scale(0.96) !important;
+  }
+
+  .fd-stitch-chip-btn.pay {
+    background: #ECFDF5 !important;
+    border: 1px solid #A7F3D0 !important;
+    color: #047857 !important;
+  }
+
+  .fd-stitch-chip-btn.pay:active {
+    background: #D1FAE5 !important;
+    transform: scale(0.96) !important;
+  }
+
+  /* 3-Dots More Action Trigger */
+  .fd-stitch-btn-more {
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 8px !important;
+    background: #F8FAFC !important;
+    border: 1px solid rgba(226, 232, 240, 0.9) !important;
+    color: #475569 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    cursor: pointer !important;
+    transition: all 0.12s ease !important;
+  }
+
+  .fd-stitch-btn-more:active {
+    background: #E2E8F0 !important;
+    color: #0F172A !important;
+    transform: scale(0.95) !important;
+  }
+
+  /* ── 5. NATIVE MOBILE ACTION BOTTOM SHEET (iOS / Material 3) ── */
+  .fd-stitch-sheet-backdrop {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 99999 !important;
+    background: rgba(15, 23, 42, 0.45) !important;
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    animation: fdSheetBackdropFade 0.15s ease-out !important;
+  }
+
+  @keyframes fdSheetBackdropFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .fd-stitch-sheet {
+    width: 100% !important;
+    max-width: 520px !important;
+    background: #FFFFFF !important;
+    border-radius: 20px 20px 0 0 !important;
+    padding: 12px 16px 20px 16px !important;
+    padding-bottom: max(20px, env(safe-area-inset-bottom)) !important;
+    box-shadow: 0 -10px 40px rgba(15, 23, 42, 0.18) !important;
+    animation: fdSheetSlideUp 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    max-height: 88vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box !important;
+  }
+
+  @keyframes fdSheetSlideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+  .fd-stitch-sheet-drag {
+    width: 36px !important;
+    height: 4px !important;
+    background: #CBD5E1 !important;
+    border-radius: 9999px !important;
+    margin: 0 auto 12px auto !important;
+    flex-shrink: 0 !important;
+  }
+
+  .fd-stitch-sheet-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding-bottom: 12px !important;
+    border-bottom: 1px solid #F1F5F9 !important;
+    flex-shrink: 0 !important;
+  }
+
+  .fd-stitch-sheet-guest {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    min-width: 0 !important;
+    flex: 1 !important;
+  }
+
+  .fd-stitch-sheet-name {
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    color: #0F172A !important;
+    margin: 0 !important;
+  }
+
+  .fd-stitch-sheet-sub {
+    font-size: 11.5px !important;
+    color: #64748B !important;
+    margin: 2px 0 0 0 !important;
+  }
+
+  .fd-stitch-sheet-close {
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 50% !important;
+    background: #F1F5F9 !important;
+    border: none !important;
+    color: #64748B !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+  }
+
+  .fd-stitch-sheet-folio {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 8px 12px !important;
+    background: #F8FAFC !important;
+    border-radius: 8px !important;
+    margin-top: 10px !important;
+    font-size: 12px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .fd-stitch-sheet-folio-total {
+    font-weight: 600 !important;
+    color: #334155 !important;
+  }
+
+  .fd-stitch-sheet-folio-due {
+    font-weight: 700 !important;
+    padding: 2px 7px !important;
+    border-radius: 4px !important;
+    font-size: 11px !important;
+  }
+
+  .fd-stitch-sheet-folio-due.paid {
+    background: #ECFDF5 !important;
+    color: #047857 !important;
+  }
+
+  .fd-stitch-sheet-folio-due.due {
+    background: #FFFBEB !important;
+    color: #B45309 !important;
+  }
+
+  .fd-stitch-sheet-actions {
+    margin-top: 10px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    max-height: 52vh !important;
+    padding-right: 2px !important;
+  }
+
+  .fd-stitch-sheet-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 10px 12px !important;
+    border-radius: 10px !important;
+    border: none !important;
+    background: #FFFFFF !important;
+    cursor: pointer !important;
+    text-align: left !important;
+    transition: background 0.12s ease !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .fd-stitch-sheet-item:active {
+    background: #F1F5F9 !important;
+  }
+
+  .fd-stitch-sheet-icon {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+  }
+
+  .fd-stitch-sheet-icon.amber {
+    background: #FFF7ED !important;
+    color: #EA580C !important;
+    border: 1px solid #FFEDD5 !important;
+  }
+
+  .fd-stitch-sheet-icon.purple {
+    background: #F5F3FF !important;
+    color: #7C3AED !important;
+    border: 1px solid #EDE9FE !important;
+  }
+
+  .fd-stitch-sheet-icon.green {
+    background: #ECFDF5 !important;
+    color: #059669 !important;
+    border: 1px solid #D1FAE5 !important;
+  }
+
+  .fd-stitch-sheet-icon.blue {
+    background: #EFF6FF !important;
+    color: #2563EB !important;
+    border: 1px solid #DBEAFE !important;
+  }
+
+  .fd-stitch-sheet-icon.slate {
+    background: #F1F5F9 !important;
+    color: #475569 !important;
+    border: 1px solid #E2E8F0 !important;
+  }
+
+  .fd-stitch-sheet-icon.emerald {
+    background: #ECFDF5 !important;
+    color: #059669 !important;
+    border: 1px solid #A7F3D0 !important;
+  }
+
+  .fd-stitch-sheet-icon.whatsapp {
+    background: #ECFDF5 !important;
+    color: #10B981 !important;
+    border: 1px solid #A7F3D0 !important;
+  }
+
+  .fd-stitch-sheet-item-text {
+    flex: 1 !important;
+    min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1px !important;
+  }
+
+  .fd-stitch-sheet-item-text strong {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #0F172A !important;
+  }
+
+  .fd-stitch-sheet-item-text span {
+    font-size: 11px !important;
+    color: #64748B !important;
+    line-height: 1.25 !important;
+  }
+
+  .fd-stitch-sheet-arrow {
+    color: #CBD5E1 !important;
+    flex-shrink: 0 !important;
+  }
+
+  .fd-stitch-sheet-footer {
+    margin-top: 12px !important;
+    padding-top: 10px !important;
+    border-top: 1px solid #F1F5F9 !important;
+    flex-shrink: 0 !important;
+  }
+
+  .fd-stitch-sheet-dismiss {
+    width: 100% !important;
+    height: 44px !important;
+    border-radius: 10px !important;
+    background: #F1F5F9 !important;
+    color: #334155 !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: background 0.12s ease !important;
+  }
+
+  .fd-stitch-sheet-dismiss:active {
+    background: #E2E8F0 !important;
   }
 
   .fd-cards-list {

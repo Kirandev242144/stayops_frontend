@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   FiUser, 
   FiCalendar, 
@@ -14,7 +14,11 @@ import {
   FiShield,
   FiEye,
   FiCheckCircle,
-  FiAlertTriangle
+  FiAlertTriangle,
+  FiCoffee,
+  FiMoreHorizontal,
+  FiX,
+  FiChevronRight
 } from 'react-icons/fi';
 import { calculateFolio } from '../utils/folioCalculator';
 
@@ -58,6 +62,7 @@ export default function GuestMovementCard({
   onOpenVoucher,
   onViewIdDocument
 }) {
+  const [showMobileActionSheet, setShowMobileActionSheet] = useState(false);
   const folio = calculateFolio(res, mealOrders, taxSettings);
 
   const isCheckInPending = res.status === 'confirmed' || res.status === 'checkin';
@@ -187,6 +192,43 @@ export default function GuestMovementCard({
           )}
         </div>
 
+        {/* In-Stay Operational Quick Chips (Meals, Services & Quick Payment) */}
+        {isInHouse && (
+          <div className="fd-stitch-instay-strip">
+            <button
+              type="button"
+              className="fd-stitch-chip-btn meal"
+              onClick={() => onOpenAddMeal && onOpenAddMeal(res)}
+              title="Add food, breakfast or room service order"
+            >
+              <FiCoffee size={12} />
+              <span>+ Meal</span>
+            </button>
+
+            <button
+              type="button"
+              className="fd-stitch-chip-btn service"
+              onClick={() => onOpenAddService && onOpenAddService(res)}
+              title="Add laundry, extra bed, cab or room service charge"
+            >
+              <FiPlusCircle size={12} />
+              <span>+ Service</span>
+            </button>
+
+            {folio.isBalancePending && (
+              <button
+                type="button"
+                className="fd-stitch-chip-btn pay"
+                onClick={() => onOpenRecordPayment && onOpenRecordPayment(res, folio.balanceDue)}
+                title="Record offline payment received"
+              >
+                <FiCreditCard size={12} />
+                <span>+ Payment</span>
+              </button>
+            )}
+          </div>
+        )}
+
         {/* Bottom Action Strip: Compact tactile buttons */}
         <div className="fd-stitch-card-bot">
           {isCheckInPending && (
@@ -232,9 +274,224 @@ export default function GuestMovementCard({
               <span>QR Pay</span>
             </button>
           )}
+
+          {/* 3-Dots Quick Action Sheet Trigger */}
+          <button
+            type="button"
+            className="fd-stitch-btn-more"
+            onClick={() => setShowMobileActionSheet(true)}
+            title="All operational actions"
+            aria-label="More operational actions"
+          >
+            <FiMoreHorizontal size={15} />
+          </button>
         </div>
 
       </article>
+
+      {/* ═════════════════════════════════════════════════════════
+          NATIVE MOBILE ACTION BOTTOM SHEET (iOS / Material 3)
+          Gives 1-tap mobile access to 100% front desk operations:
+          - Add Meal / Dining Order
+          - Add In-Stay Service & Extras
+          - Record Payment
+          - UPI QR Code
+          - View Folio & Voucher
+          - View ID Document
+          - Direct WhatsApp
+         ═════════════════════════════════════════════════════════ */}
+      {showMobileActionSheet && (
+        <div 
+          className="fd-stitch-sheet-backdrop" 
+          onClick={() => setShowMobileActionSheet(false)}
+        >
+          <div 
+            className="fd-stitch-sheet" 
+            onClick={e => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Guest Operational Actions"
+          >
+            {/* Native Top Drag Handle */}
+            <div className="fd-stitch-sheet-drag"></div>
+
+            {/* Guest Summary Card Header */}
+            <div className="fd-stitch-sheet-header">
+              <div className="fd-stitch-sheet-guest">
+                <div className="fd-stitch-avatar">{initial}</div>
+                <div className="min-w-0 flex-1">
+                  <h3 className="fd-stitch-sheet-name truncate">{res.guest}</h3>
+                  <p className="fd-stitch-sheet-sub truncate">
+                    {roomUnitName} • {res.bookingRef || res.id}
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                className="fd-stitch-sheet-close"
+                onClick={() => setShowMobileActionSheet(false)}
+                aria-label="Close action sheet"
+              >
+                <FiX size={15} />
+              </button>
+            </div>
+
+            {/* Folio Mini Snapshot */}
+            <div className="fd-stitch-sheet-folio">
+              <span className="fd-stitch-sheet-folio-total">Total: ₹{folio.totalFolio.toLocaleString('en-IN')}</span>
+              <span className={`fd-stitch-sheet-folio-due ${folio.isBalancePending ? 'due' : 'paid'}`}>
+                {folio.isBalancePending ? `Due: ₹${folio.balanceDue.toLocaleString('en-IN')}` : 'Paid in Full'}
+              </span>
+            </div>
+
+            {/* List of Native Action Tiles */}
+            <div className="fd-stitch-sheet-actions">
+              <button
+                type="button"
+                className="fd-stitch-sheet-item"
+                onClick={() => {
+                  setShowMobileActionSheet(false);
+                  onOpenAddMeal && onOpenAddMeal(res);
+                }}
+              >
+                <div className="fd-stitch-sheet-icon amber">
+                  <FiCoffee size={16} />
+                </div>
+                <div className="fd-stitch-sheet-item-text">
+                  <strong>Add Food &amp; Meal Order</strong>
+                  <span>Post dining, breakfast, coffee or room service</span>
+                </div>
+                <FiChevronRight size={16} className="fd-stitch-sheet-arrow" />
+              </button>
+
+              <button
+                type="button"
+                className="fd-stitch-sheet-item"
+                onClick={() => {
+                  setShowMobileActionSheet(false);
+                  onOpenAddService && onOpenAddService(res);
+                }}
+              >
+                <div className="fd-stitch-sheet-icon purple">
+                  <FiPlusCircle size={16} />
+                </div>
+                <div className="fd-stitch-sheet-item-text">
+                  <strong>Add In-Stay Service &amp; Extras</strong>
+                  <span>Post laundry, extra bed, cab, luggage or amenities</span>
+                </div>
+                <FiChevronRight size={16} className="fd-stitch-sheet-arrow" />
+              </button>
+
+              {folio.isBalancePending && (
+                <button
+                  type="button"
+                  className="fd-stitch-sheet-item"
+                  onClick={() => {
+                    setShowMobileActionSheet(false);
+                    onOpenRecordPayment && onOpenRecordPayment(res, folio.balanceDue);
+                  }}
+                >
+                  <div className="fd-stitch-sheet-icon green">
+                    <FiCreditCard size={16} />
+                  </div>
+                  <div className="fd-stitch-sheet-item-text">
+                    <strong>Record Offline Payment</strong>
+                    <span>Collect cash, card or manual UPI transfer</span>
+                  </div>
+                  <FiChevronRight size={16} className="fd-stitch-sheet-arrow" />
+                </button>
+              )}
+
+              {folio.isBalancePending && (
+                <button
+                  type="button"
+                  className="fd-stitch-sheet-item"
+                  onClick={() => {
+                    setShowMobileActionSheet(false);
+                    onOpenRazorpayQr && onOpenRazorpayQr(res, folio.balanceDue);
+                  }}
+                >
+                  <div className="fd-stitch-sheet-icon blue">
+                    <FiZap size={16} />
+                  </div>
+                  <div className="fd-stitch-sheet-item-text">
+                    <strong>Scan &amp; Pay UPI QR</strong>
+                    <span>Generate Razorpay QR for guest phone scan</span>
+                  </div>
+                  <FiChevronRight size={16} className="fd-stitch-sheet-arrow" />
+                </button>
+              )}
+
+              <button
+                type="button"
+                className="fd-stitch-sheet-item"
+                onClick={() => {
+                  setShowMobileActionSheet(false);
+                  onOpenVoucher && onOpenVoucher(res);
+                }}
+              >
+                <div className="fd-stitch-sheet-icon slate">
+                  <FiFileText size={16} />
+                </div>
+                <div className="fd-stitch-sheet-item-text">
+                  <strong>{isInHouse ? 'View Folio & Bill Voucher' : 'View Booking Voucher'}</strong>
+                  <span>Review itemized invoice and billing breakdown</span>
+                </div>
+                <FiChevronRight size={16} className="fd-stitch-sheet-arrow" />
+              </button>
+
+              <button
+                type="button"
+                className="fd-stitch-sheet-item"
+                onClick={() => {
+                  setShowMobileActionSheet(false);
+                  onViewIdDocument && onViewIdDocument(res);
+                }}
+              >
+                <div className={`fd-stitch-sheet-icon ${isIdVerified ? 'emerald' : 'amber'}`}>
+                  <FiShield size={16} />
+                </div>
+                <div className="fd-stitch-sheet-item-text">
+                  <strong>{isIdVerified ? 'View ID Document' : 'Verify Guest ID'}</strong>
+                  <span>{isIdVerified ? `${res.idType || 'ID Document'} verified on file` : 'Government ID pending verification'}</span>
+                </div>
+                <FiChevronRight size={16} className="fd-stitch-sheet-arrow" />
+              </button>
+
+              {res.phone && (
+                <button
+                  type="button"
+                  className="fd-stitch-sheet-item"
+                  onClick={(e) => {
+                    setShowMobileActionSheet(false);
+                    handleWhatsApp(e);
+                  }}
+                >
+                  <div className="fd-stitch-sheet-icon whatsapp">
+                    <FiMessageSquare size={16} />
+                  </div>
+                  <div className="fd-stitch-sheet-item-text">
+                    <strong>Chat on WhatsApp</strong>
+                    <span>Direct message {res.phone}</span>
+                  </div>
+                  <FiChevronRight size={16} className="fd-stitch-sheet-arrow" />
+                </button>
+              )}
+            </div>
+
+            {/* Bottom Dismiss Button */}
+            <div className="fd-stitch-sheet-footer">
+              <button
+                type="button"
+                className="fd-stitch-sheet-dismiss"
+                onClick={() => setShowMobileActionSheet(false)}
+              >
+                Done
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ═════════════════════════════════════════════════════════
           2. DESKTOP & LAPTOP SPACIOUS PMS CARD (>= 769px)
