@@ -80,11 +80,11 @@ export default function CompletedStayCard({
 
           <button
             type="button"
-            className="fd-stitch-btn-voucher"
+            className="fd-stitch-btn-secondary"
             onClick={() => onOpenVoucher(res)}
             title="View booking voucher"
           >
-            <FiFileText size={13} className="text-slate-500" />
+            <FiFileText size={13} />
             <span>Voucher</span>
           </button>
         </div>
